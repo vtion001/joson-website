@@ -18,35 +18,35 @@ import { Toaster } from "sonner"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "ModuLux - Luxury Modular Cabinets | Premium Home Solutions",
+  title: "Joson Furniture - Filipino Craft, World-Class Comfort | Philippines",
   description:
-    "Discover ModuLux premium modular cabinets. Where modern meets timeless. Luxury in every detail. Serving all of the Philippines from Bulacan.",
+    "Joson Furniture blends tradition and innovation to create pieces that bring world-class comfort into every home. Shop bed frames, bunk beds, sofa beds and more.",
   generator: "v0.app",
   keywords:
-    "modular cabinets, luxury cabinets, kitchen cabinets, wardrobes, bathroom vanities, walk-in closets, bespoke furniture, Philippines, Bulacan, premium furniture, custom cabinets",
-  authors: [{ name: "ModuLux" }],
-  creator: "ModuLux",
-  publisher: "ModuLux",
+    "furniture Philippines, bed frame, bunk bed, platform bed, sofa bed, Filipino furniture, Joson Furniture, affordable furniture, loft bed, canopy bed, day bed",
+  authors: [{ name: "Joson Furniture" }],
+  creator: "Joson Furniture",
+  publisher: "Joson Furniture",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://modulux.com"),
+  metadataBase: new URL("https://josonfurniture.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "ModuLux - Luxury Modular Cabinets | Premium Home Solutions",
-    description: "Discover ModuLux premium modular cabinets. Where modern meets timeless. Luxury in every detail.",
-    url: "https://modulux.com",
-    siteName: "ModuLux",
+    title: "Joson Furniture - Filipino Craft, World-Class Comfort",
+    description: "Where Filipino artistry meets timeless design. Shop quality bed frames, bunk beds, and more.",
+    url: "https://josonfurniture.com",
+    siteName: "Joson Furniture",
     images: [
       {
-        url: "https://res.cloudinary.com/dbviya1rj/image/upload/v1757004631/nlir90vrzv0qywleruvv.png",
-        width: 1200,
-        height: 630,
-        alt: "ModuLux - Premium Modular Cabinets",
+        url: "https://josonfurniture.com/cdn/shop/files/Untitled_design_-_2025-12-04T231503.522.png",
+        width: 32,
+        height: 32,
+        alt: "Joson Furniture Logo",
       },
     ],
     locale: "en_US",
@@ -54,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ModuLux - Luxury Modular Cabinets",
-    description: "Discover ModuLux premium modular cabinets. Where modern meets timeless.",
-    images: ["https://res.cloudinary.com/dbviya1rj/image/upload/v1757004631/nlir90vrzv0qywleruvv.png"],
+    title: "Joson Furniture - Filipino Craft, World-Class Comfort",
+    description: "Where Filipino artistry meets timeless design.",
+    images: ["https://josonfurniture.com/cdn/shop/files/Untitled_design_-_2025-12-04T231503.522.png"],
   },
   robots: {
     index: true,
@@ -85,11 +85,11 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "ModuLux",
+              name: "Joson Furniture",
               description:
-                "Premium modular cabinet manufacturer specializing in luxury kitchen cabinets, wardrobes, and bespoke furniture.",
-              url: "https://modulux.com",
-              logo: "https://res.cloudinary.com/dbviya1rj/image/upload/v1757004631/nlir90vrzv0qywleruvv.png",
+                "Filipino furniture brand blending tradition and innovation. Shop bed frames, bunk beds, sofa beds and more.",
+              url: "https://josonfurniture.com",
+              logo: "https://josonfurniture.com/cdn/shop/files/Untitled_design_-_2025-12-04T231503.522.png",
               contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+63-917-133-8888",
@@ -100,9 +100,8 @@ export default function RootLayout({
               address: {
                 "@type": "PostalAddress",
                 addressCountry: "PH",
-                addressRegion: "Bulacan",
               },
-              sameAs: ["https://www.facebook.com/modulux", "https://www.instagram.com/modulux"],
+              sameAs: ["https://www.facebook.com/josonfurniture", "https://www.instagram.com/josonfurniture"],
             }),
           }}
         />

@@ -11,11 +11,11 @@ export default async function ProductsPage() {
   const raw = await readFile(filePath, "utf-8").catch(() => "[]")
   const items = JSON.parse(raw) as Array<{ id: string; name: string; category?: string; image?: string }>
   const fallback = [
-    { id: "kitchen-cabinets", name: "Kitchen Cabinets", category: "Kitchen", image: "/modern-luxury-kitchen-with-emerald-green-modular-c.png" },
-    { id: "wardrobes", name: "Wardrobes", category: "Wardrobes", image: "/luxury-bedroom-with-emerald-green-modular-wardrobe.png" },
-    { id: "bathroom-vanities", name: "Bathroom Vanities", category: "Bathroom", image: "/luxury-kitchen-with-emerald-green-modular-cabinets.png" },
-    { id: "walk-in-closets", name: "Walk-in Closets", category: "Closets", image: "/luxury-home-office-with-emerald-green-modular-cabi.png" },
-    { id: "bespoke-furniture", name: "Bespoke Furniture", category: "Furniture", image: "/elegant-living-room-with-built-in-emerald-green-mo.png" },
+    { id: "affordabed-bed-frame", name: "AFFORDABED Bed Frame", category: "AFFORDABED", image: "/Gemini_Generated_Image_etnbuoetnbuoetnb.png" },
+    { id: "affordabed-bunk-bed", name: "AFFORDABED Bunk Bed", category: "AFFORDABED", image: "/Gemini_Generated_Image_rexyzurexyzurexy.png" },
+    { id: "premium-bunk-bed", name: "Premium Bunk Bed", category: "Premium", image: "/IMG20230713121455.jpg" },
+    { id: "platform-bed", name: "Platform Bed", category: "Bed Frames", image: "/IMG20231014093159.jpg" },
+    { id: "loft-bed", name: "Loft Bed", category: "Loft Beds", image: "/IMG20241123111857.jpg" },
   ]
   const products = items.length ? items : fallback
 
@@ -32,7 +32,7 @@ export default async function ProductsPage() {
           <div className="group text-center max-w-4xl mx-auto">
             <h1 id="products-title" className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance animate-in">Our Products</h1>
             <p className="text-xl text-muted-foreground mb-8 text-pretty slide-in-from-bottom-2">
-              Discover our comprehensive range of premium modular solutions designed to transform your living spaces
+              Quality bed frames for every Filipino home. From affordable AFFORDABED to premium designs — all proudly made in Bulacan.
             </p>
             <div className="mx-auto h-px w-24 bg-gradient-to-r from-primary to-accent opacity-80 transition-all duration-300 group-hover:w-32" />
             <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
@@ -56,17 +56,16 @@ export default async function ProductsPage() {
       <section className="py-20 bg-primary/5">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold text-foreground mb-6 text-balance">Ready to Transform Your Space?</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-6 text-balance">Ready to upgrade your bedroom?</h2>
             <p className="text-xl text-muted-foreground mb-8 text-pretty">
-              Contact us today for a free consultation and discover how our premium modular solutions can enhance your
-              home
+              Contact us today for a free quote and discover quality bed frames at affordable prices.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
                 <Link href="/contact">Get Free Quote</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href="/projects">View Projects</Link>
+                <Link href="/about">Learn More</Link>
               </Button>
             </div>
           </div>

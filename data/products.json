@@ -1,32 +1,44 @@
 [
   {
-    "id": "kitchen-cabinets",
-    "name": "Kitchen Cabinets",
-    "category": "Kitchen",
-    "image": "/modern-luxury-kitchen-with-emerald-green-modular-c.png"
+    "id": "affordabed-bed-frame",
+    "name": "AFFORDABED - Bed Frame",
+    "category": "AFFORDABED",
+    "image": "/Gemini_Generated_Image_etnbuoetnbuoetnb.png"
   },
   {
-    "id": "wardrobes",
-    "name": "Wardrobes",
-    "category": "Wardrobes",
-    "image": "/luxury-bedroom-with-emerald-green-modular-wardrobe.png"
+    "id": "affordabed-bunk-bed",
+    "name": "AFFORDABED - Bunk Bed",
+    "category": "AFFORDABED",
+    "image": "/Gemini_Generated_Image_rexyzurexyzurexy.png"
   },
   {
-    "id": "bathroom-vanities",
-    "name": "Bathroom Vanities",
-    "category": "Bathroom",
-    "image": "/luxury-kitchen-with-emerald-green-modular-cabinets.png"
+    "id": "premium-bunk-bed",
+    "name": "Premium Maze Bunk Bed",
+    "category": "Premium",
+    "image": "/IMG20230713121455.jpg"
   },
   {
-    "id": "walk-in-closets",
-    "name": "Walk-in Closets",
-    "category": "Closets",
-    "image": "/luxury-home-office-with-emerald-green-modular-cabi.png"
+    "id": "premium-platform-bed",
+    "name": "Premium Modern Platform Bed",
+    "category": "Premium",
+    "image": "/IMG20231014093159.jpg"
   },
   {
-    "id": "bespoke-furniture",
-    "name": "Bespoke Furniture",
-    "category": "Furniture",
-    "image": "/elegant-living-room-with-built-in-emerald-green-mo.png"
+    "id": "premium-leaf-bed",
+    "name": "Premium Leaf Bed",
+    "category": "Premium",
+    "image": "/IMG20250801141310.jpg"
+  },
+  {
+    "id": "ordinary-bunk-bed",
+    "name": "Ordinary Bunk Bed",
+    "category": "Ordinary",
+    "image": "/IMG20240705133104.jpg"
+  },
+  {
+    "id": "ordinary-platform-bed",
+    "name": "Ordinary Classic Platform Bed",
+    "category": "Ordinary",
+    "image": "/IMG20240808130056.jpg"
   }
 ]

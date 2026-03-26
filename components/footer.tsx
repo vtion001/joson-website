@@ -30,14 +30,14 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <motion.div whileHover={{ scale: 1.03 }} className="flex items-center">
               <img
-                src="https://res.cloudinary.com/dbviya1rj/image/upload/v1757004631/nlir90vrzv0qywleruvv.png"
-                alt="ModuLux logo"
+                src="https://josonfurniture.com/cdn/shop/files/Untitled_design_-_2025-12-04T231503.522.png"
+                alt="Joson Furniture logo"
                 loading="lazy"
                 decoding="async"
                 className="h-10 md:h-12 w-auto object-contain"
               />
             </motion.div>
-            <p className="text-muted-foreground">Your Vision, Built with Precision</p>
+            <p className="text-muted-foreground">Filipino Craft, World-Class Comfort</p>
           </div>
 
           <div className="grid grid-cols-2 gap-8 md:col-span-2 lg:col-span-2">
@@ -54,14 +54,13 @@ export function Footer() {
             <div>
               <div className="text-sm font-semibold mb-3">Contact</div>
               <ul className="space-y-2 text-sm">
-                <li className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:info@modulux.design" className="hover:text-primary transition-colors">info@modulux.design</a></li>
-                <li className="flex items-center gap-2"><Phone className="w-4 h-4" /><a href="tel:+639000000000" className="hover:text-primary transition-colors">+63 900 000 0000</a></li>
+                <li className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:info@josonfurniture.com" className="hover:text-primary transition-colors">info@josonfurniture.com</a></li>
+                <li className="flex items-center gap-2"><Phone className="w-4 h-4" /><a href="tel:+639171338888" className="hover:text-primary transition-colors">+63 917 133 8888</a></li>
                 <li className="flex items-center gap-2"><MapPin className="w-4 h-4" /><span>Philippines</span></li>
               </ul>
               <div className="mt-4 flex items-center gap-3">
-                <a aria-label="Facebook" href="#" className="inline-flex items-center justify-center w-9 h-9 rounded-md border hover:bg-muted transition-colors"><Facebook className="w-4 h-4" /></a>
-                <a aria-label="Instagram" href="#" className="inline-flex items-center justify-center w-9 h-9 rounded-md border hover:bg-muted transition-colors"><Instagram className="w-4 h-4" /></a>
-                <a aria-label="LinkedIn" href="#" className="inline-flex items-center justify-center w-9 h-9 rounded-md border hover:bg-muted transition-colors"><Linkedin className="w-4 h-4" /></a>
+                <a aria-label="Facebook" href="https://www.facebook.com/josonfurniture" className="inline-flex items-center justify-center w-9 h-9 rounded-md border hover:bg-muted transition-colors"><Facebook className="w-4 h-4" /></a>
+                <a aria-label="Instagram" href="https://www.instagram.com/josonfurniture" className="inline-flex items-center justify-center w-9 h-9 rounded-md border hover:bg-muted transition-colors"><Instagram className="w-4 h-4" /></a>
               </div>
             </div>
           </div>
@@ -70,7 +69,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border/60 py-6 text-sm flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-          <div className="text-muted-foreground">© {new Date().getFullYear()} ModuLux. All rights reserved.</div>
+          <div className="text-muted-foreground">© {new Date().getFullYear()} Joson Furniture. All rights reserved.</div>
           <div className="flex items-center gap-4 text-muted-foreground">
             <Link href="/privacy" className="hover:text-primary transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-primary transition-colors">Terms</Link>

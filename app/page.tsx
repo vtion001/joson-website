@@ -19,14 +19,14 @@ export default function HomePage() {
         <div className="absolute inset-0 hero-gradient opacity-70"></div>
 
         <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-          <div className="text-sm font-medium text-primary mb-4 tracking-wider uppercase">SLEEK & LUXURY</div>
+          <div className="text-sm font-medium text-primary mb-4 tracking-wider uppercase">FILIPINO CRAFT, WORLD-CLASS COMFORT</div>
 
           <h1 id="hero-title" className="text-5xl md:text-7xl font-bold text-foreground mb-6 text-balance animate-in">
-            Custom European Kitchen Cabinets
+            Joson Furniture
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto text-pretty slide-in-from-bottom-2">
-            Get a modern kitchen cabinet design you will love for a life.
+            Where Filipino artistry meets timeless design. Quality furniture for every home.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -62,18 +62,18 @@ export default function HomePage() {
             <div>
               <h2 id="products-title" className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6">Our Products</h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                ModuLux provides turnkey European-style custom solutions: kitchen cabinets, wardrobes, bathroom vanities,
-                interior doors, aluminum doors and windows, and bespoke furniture.
+                Joson Furniture offers quality bed frames and furniture: AFFORDABED series, platform beds, bunk beds,
+                loft beds, canopy beds, day beds, and sofa beds. Filipino craft, world-class comfort.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-4 mb-8">
                 {[
-                  { name: "Kitchen Cabinets", href: "/products" },
-                  { name: "Wardrobes", href: "/products" },
-                  { name: "Bathroom Vanities", href: "/products" },
-                  { name: "Interior Doors", href: "/products" },
-                  { name: "Aluminum Doors & Windows", href: "/products" },
-                  { name: "Bespoke Furniture", href: "/products" },
+                  { name: "AFFORDABED Bed Frame", href: "/products" },
+                  { name: "AFFORDABED Bunk Bed", href: "/products" },
+                  { name: "Premium Bunk Beds", href: "/products" },
+                  { name: "Platform Beds", href: "/products" },
+                  { name: "Loft Beds", href: "/products" },
+                  { name: "Canopy Beds", href: "/products" },
                 ].map((product, index) => (
                   <Link key={index} href={product.href} aria-label={`Browse ${product.name}`}>
                     <div className="group relative rounded-xl border border-border/60 bg-card/60 p-4 transition-all duration-200 hover:shadow-md hover:-translate-y-[2px] focus-within:shadow-md">
@@ -105,8 +105,8 @@ export default function HomePage() {
 
             <div className="relative group rounded-2xl overflow-hidden">
               <img
-                src="/luxury-kitchen-with-emerald-green-modular-cabinets.png"
-                alt="ModuLux premium kitchen cabinetry"
+                src="/IMG20231026154857.jpg"
+                alt="Joson Furniture premium bed frame"
                 loading="lazy"
                 decoding="async"
                 className="w-full h-[520px] object-cover rounded-2xl will-change-transform transition-transform duration-500 ease-out group-hover:scale-[1.03]"
@@ -114,8 +114,8 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/10 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center rounded-full bg-primary/90 text-primary-foreground px-3 py-1 text-xs">European Minimalism</span>
-                  <span className="inline-flex items-center rounded-full bg-white/70 text-foreground/80 px-3 py-1 text-xs">Precision Craft</span>
+                  <span className="inline-flex items-center rounded-full bg-primary/90 text-primary-foreground px-3 py-1 text-xs">Filipino Craft</span>
+                  <span className="inline-flex items-center rounded-full bg-white/70 text-foreground/80 px-3 py-1 text-xs">Quality Built</span>
                 </div>
                 <Link href="/products" aria-label="Explore all products">
                   <Button variant="outline" size="sm" className="backdrop-blur-sm">
@@ -144,8 +144,8 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative group rounded-2xl overflow-hidden">
               <img
-                src="/elegant-living-room-with-built-in-emerald-green-mo.png"
-                alt="About ModuLux Cabinet Manufacturing"
+                src="/IMG20230512120029.jpg"
+                alt="Joson Furniture workshop in Bulacan"
                 loading="lazy"
                 decoding="async"
                 className="w-full h-[520px] object-cover rounded-2xl will-change-transform transition-transform duration-500 ease-out group-hover:scale-[1.03]"
@@ -153,12 +153,12 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/10 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <span className="inline-flex items-center rounded-full bg-primary/90 text-primary-foreground px-3 py-1 text-xs">Premium Craft</span>
-                  <span className="inline-flex items-center rounded-full bg-white/70 text-foreground/80 px-3 py-1 text-xs">Sustainable Materials</span>
+                  <span className="inline-flex items-center rounded-full bg-primary/90 text-primary-foreground px-3 py-1 text-xs">Bulacan Made</span>
+                  <span className="inline-flex items-center rounded-full bg-white/70 text-foreground/80 px-3 py-1 text-xs">Filipino Pride</span>
                 </div>
-                <Link href="/projects" aria-label="View projects">
+                <Link href="/about" aria-label="Learn more about us">
                   <Button variant="outline" size="sm" className="backdrop-blur-sm">
-                    View Projects
+                    Learn More
                     <span className="ml-1">→</span>
                   </Button>
                 </Link>
@@ -168,30 +168,31 @@ export default function HomePage() {
             <div className="space-y-6">
               <h2 id="about-title" className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">About Us</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                ModuLux delivers minimalist European aesthetics with high functionality and modern engineering. We design
-                and build custom cabinetry that elevates everyday living through precision, sustainability, and timeless design.
+                Joson Furniture started with a simple belief: every Filipino deserves a bed frame that feels solid, looks good, 
+                and does not cost a fortune. Proudly from Bulacan, we have grown from a local workshop to a trusted name 
+                across the Philippines — honoring Filipino craftsmanship that continues to inspire the world.
               </p>
 
               <div className="grid grid-cols-2 gap-6 sm:gap-8">
                 <div className="rounded-xl border border-border/60 bg-card/60 p-6 text-center transition-shadow duration-300 hover:shadow-md focus-within:shadow-md">
-                  <div className="text-4xl font-bold text-primary">10+</div>
-                  <div className="mt-2 text-sm text-muted-foreground">Years of Combined Experience</div>
+                  <div className="text-4xl font-bold text-primary">300+</div>
+                  <div className="mt-2 text-sm text-muted-foreground">Happy Customers</div>
                 </div>
                 <div className="rounded-xl border border-border/60 bg-card/60 p-6 text-center transition-shadow duration-300 hover:shadow-md focus-within:shadow-md">
-                  <div className="text-4xl font-bold text-primary">300+</div>
-                  <div className="mt-2 text-sm text-muted-foreground">Families Served</div>
+                  <div className="text-4xl font-bold text-primary">100%</div>
+                  <div className="mt-2 text-sm text-muted-foreground">Filipino Craftsmanship</div>
                 </div>
               </div>
 
               <div className="flex flex-wrap gap-3" aria-label="Highlights">
                 <span className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1 text-sm">
-                  <span className="size-2 rounded-full bg-primary" /> Bespoke Designs
+                  <span className="size-2 rounded-full bg-primary" /> Affordable Quality
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1 text-sm">
-                  <span className="size-2 rounded-full bg-emerald-500" /> Eco-Conscious Production
+                  <span className="size-2 rounded-full bg-emerald-500" /> Built in Bulacan
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1 text-sm">
-                  <span className="size-2 rounded-full bg-blue-500" /> Turnkey Solutions
+                  <span className="size-2 rounded-full bg-blue-500" /> Space-Saving Designs
                 </span>
               </div>
 
@@ -277,16 +278,16 @@ export default function HomePage() {
         <div className="absolute top-8 left-8 section-number">04</div>
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 id="advantages-title" className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">Our Advantages</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">ModuLux leads in quality, safety, and end-to-end delivery for custom cabinetry.</p>
+            <h2 id="advantages-title" className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">Why Choose Joson</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">Joson Furniture delivers quality, craftsmanship, and value for every Filipino home.</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Custom Design", description: "9 materials, 100+ styles, 200+ colors. Engineered for ergonomics and space." },
-              { title: "No Worry Delivery", description: "Door-to-door logistics with seamless coordination and one-stop service." },
-              { title: "Quality & Safety Warranty", description: "European standards. Certified panels, coatings, and adhesives." },
-              { title: "Easy Installation", description: "Pre-assembled packages, extra spares, step-by-step video guidance." },
+              { title: "Affordable Quality", description: "Premium bed frames at prices every family can afford." },
+              { title: "Built to Last", description: "Sturdy construction using quality materials for long-term durability." },
+              { title: "Space Saving", description: "Smart designs like bunk beds and loft beds for smaller spaces." },
+              { title: "Filipino Craft", description: "Proudly made in Bulacan, honoring local craftsmanship." },
             ].map((advantage, index) => (
               <div key={index} className="group relative rounded-xl border border-border/60 bg-card/60 p-6 transition-all duration-200 hover:shadow-md hover:-translate-y-[2px] focus-within:shadow-md">
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-primary/10 to-transparent rounded-xl" />
@@ -307,8 +308,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section 05 - Quality Suppliers */}
-      <section aria-labelledby="suppliers-title" role="region" className="relative py-24 bg-card overflow-hidden">
+      {/* Section 05 - Product Lines */}
+      <section aria-labelledby="lines-title" role="region" className="relative py-24 bg-card overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-primary/10 blur-3xl" />
           <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-muted/30 blur-2xl" />
@@ -316,28 +317,38 @@ export default function HomePage() {
         <div className="absolute top-8 left-8 section-number">05</div>
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 id="suppliers-title" className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">Quality Suppliers</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">We partner with world-class brands to ensure premium hardware and materials.</p>
+            <h2 id="lines-title" className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">Our Product Lines</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">From budget-friendly to premium, we have a bed frame for every need.</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8 place-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { name: "Blum", src: "https://res.cloudinary.com/dbviya1rj/image/upload/v1763354436/es1g9cuvzsehcih0e0m6.png" },
-              { name: "Hafele", src: "https://res.cloudinary.com/dbviya1rj/image/upload/v1763354435/x12hvcg1kxzurinijtqw.png" },
-              { name: "Hettich", src: "https://res.cloudinary.com/dbviya1rj/image/upload/v1763354436/mdnln0msjwbbi91umhuj.png" },
-              { name: "Salice", src: "https://res.cloudinary.com/dbviya1rj/image/upload/v1763354436/gh2nj24ohzszvsngedkv.png" },
-            ].map((supplier) => (
-              <div key={supplier.name} className="group text-center w-full">
-                <div className="relative bg-muted rounded-xl p-6 h-24 w-full flex items-center justify-center transition-all duration-200 hover:shadow-md hover:-translate-y-[2px]">
-                  <div className="w-40 md:w-48 h-12 md:h-16 flex items-center justify-center">
-                    <img
-                      src={supplier.src}
-                      alt={`${supplier.name} logo`}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-                    />
-                  </div>
+              { 
+                name: "AFFORDABED", 
+                description: "Simple, solid, and affordable sleep setups. Perfect for condos, apartments, and first-time furniture buyers.",
+                href: "/products"
+              },
+              { 
+                name: "Ordinary Collection", 
+                description: "Quality everyday furniture at accessible prices. Built for real Filipino homes and everyday use.",
+                href: "/products"
+              },
+              { 
+                name: "Premium Collection", 
+                description: "Higher-end designs for those seeking luxury aesthetics. Crafted with premium materials and attention to detail.",
+                href: "/products"
+              },
+            ].map((line) => (
+              <div key={line.name} className="group text-center w-full">
+                <div className="relative bg-muted rounded-xl p-8 transition-all duration-200 hover:shadow-md hover:-translate-y-[2px]">
+                  <h3 className="text-2xl font-bold text-foreground mb-4">{line.name}</h3>
+                  <p className="text-muted-foreground mb-6">{line.description}</p>
+                  <Link href={line.href}>
+                    <Button variant="outline" size="sm" className="group-hover:border-primary group-hover:text-primary">
+                      View Products
+                      <span className="ml-1">→</span>
+                    </Button>
+                  </Link>
                   <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-primary/10 to-transparent" />
                 </div>
               </div>
@@ -356,33 +367,33 @@ export default function HomePage() {
         <div className="absolute top-8 left-8 section-number">06</div>
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 id="testimonials-title" className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">What our clients say</h2>
+            <h2 id="testimonials-title" className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">What Our Customers Say</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
                 quote:
-                  "We are happy with the results. Your support and hard work are greatly appreciated. Looking forward to more successful projects.",
-                name: "James Rossetto",
-                title: "PROJECT MANAGER",
+                  "Buti na lang may ganito, quality na, abot-kaya pa. My AFFORDABED bunk bed is super sturdy and perfect for my kids' room.",
+                name: "Maria Santos",
+                title: "HOMEOWNER",
               },
               {
                 quote:
-                  "A warm, inviting yet clean look. The interior design really set it off and I fell in love with it.",
-                name: "Roanne Boldery",
-                title: "HOME OWNER",
+                  "Perfect for our rental property. Durable, affordable, and tenants love them! The premium platform bed looks amazing.",
+                name: "Juan Cruz",
+                title: "PROPERTY OWNER",
               },
               {
                 quote:
-                  "Quality materials and workmanship. ModuLux is a great partner for home decoration.",
-                name: "Mrs. Green",
-                title: "HOME OWNER",
+                  "Joson Furniture delivers on their promise of Filipino craft. The attention to detail in their premium line is impressive.",
+                name: "Ana Reyes",
+                title: "INTERIOR DESIGNER",
               },
             ].map((t, i) => (
               <blockquote key={i} className="relative bg-card p-8 rounded-xl border border-border/60 transition-all duration-200 hover:shadow-md hover:-translate-y-[2px]">
                 <svg aria-hidden="true" className="absolute -top-3 left-6 h-6 w-6 text-primary" viewBox="0 0 24 24" fill="currentColor"><path d="M7.17 6A5.17 5.17 0 0 0 2 11.17V22h8v-8H6.83A3.83 3.83 0 0 1 10.66 10c0-2.21-1.79-4-3.49-4zm10 0A5.17 5.17 0 0 0 12 11.17V22h8v-8h-3.17A3.83 3.83 0 0 1 20.66 10c0-2.21-1.79-4-3.49-4z"/></svg>
-                <p className="text-muted-foreground mb-6 leading-relaxed">“{t.quote}”</p>
+                <p className="text-muted-foreground mb-6 leading-relaxed">"{t.quote}"</p>
                 <footer className="flex items-center justify-between">
                   <div>
                     <div className="font-semibold text-foreground">{t.name}</div>

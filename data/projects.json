@@ -1,104 +1,104 @@
 [
   {
-    "id": "rizal-avenue-penthouse",
-    "title": "Puerto Princesa City, Rizal Avenue Penthouse Kitchen Project",
-    "location": "Rizal Avenue, Puerto Princesa City, Palawan",
-    "year": "2022",
-    "type": "Penthouse",
-    "description": "Modern kitchen cabinets and lavatory mirror cabinet installation for luxury penthouse",
+    "id": "san-juan-condo",
+    "title": "Premium Platform Bed Installation",
+    "location": "San Juan, Metro Manila",
+    "year": "2024",
+    "type": "Condo",
+    "description": "Modern premium platform bed for a minimalist condo bedroom. Clean lines and sturdy construction.",
     "image": "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228651/y3wqoymderb4sh87eh3j.jpg",
     "images": [
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228650/k692dzpodzn1jg8y5r8p.jpg",
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228649/buuafzgztbrlwllolvys.jpg"
     ],
     "services": [
-      "Kitchen Cabinets",
-      "Lavatory Mirror Cabinet"
+      "Premium Platform Bed",
+      "Delivery & Installation"
     ]
   },
   {
-    "id": "skylight-hotel-kitchen",
-    "title": "Puerto Princesa City, Rizal Avenue Kitchen Project",
-    "location": "Rizal Avenue, Palawan",
-    "year": "2022",
+    "id": "makati-hotel",
+    "title": "AFFORDABED Bunk Beds for Boutique Hotel",
+    "location": "Makati, Metro Manila",
+    "year": "2024",
     "type": "Commercial",
-    "description": "Complete kitchen cabinetry and countertop supply and installation for hotel project",
+    "description": "Durable AFFORDABED bunk beds perfect for a boutique hotel's dormitory-style rooms.",
     "image": "https://res.cloudinary.com/dbviya1rj/image/upload/v1763230412/momirivjqmguvgarjvak.jpg",
     "images": [
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763230413/sqhkgdoghtk0pyq1yivs.jpg",
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763230412/nh6ugnu01kg05x7ir637.jpg"
     ],
     "services": [
-      "Kitchen Cabinets",
-      "Countertop Installation"
+      "AFFORDABED Bunk Beds",
+      "Bulk Order"
     ]
   },
   {
-    "id": "wtei-inc-mansion",
-    "title": "Puerto Princesa City, Abueg Road Kitchen Bathroom and WIC Project",
-    "location": "Bancao Bancao, Puerto Princesa City, Palawan",
-    "year": "2022",
-    "type": "Mansion",
-    "description": "Lavatory cabinets and walk-in closet cabinets for luxury mansion",
+    "id": "quezon-family-home",
+    "title": "Premium Bunk Bed for Kids Room",
+    "location": "Quezon City, Metro Manila",
+    "year": "2023",
+    "type": "Residential",
+    "description": "Space-saving premium bunk bed for a growing family's home. Sturdy and safe for children.",
     "image": "https://res.cloudinary.com/dbviya1rj/image/upload/v1763230884/mnaxvkblij98d2yppmav.jpg",
     "images": [
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763230886/xltvl2buitsribfarsiv.jpg",
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763230885/unl7nmyksifzp3xdghvs.jpg"
     ],
     "services": [
-      "Lavatory Cabinets",
-      "Walk-in Closet"
+      "Premium Bunk Bed",
+      "Space-Saving Design"
     ]
   },
   {
-    "id": "garcia-mansion-kitchen",
-    "title": "Narra Palawan, Kitchen Project",
-    "location": "Narra, Palawan",
-    "year": "2022",
-    "type": "Mansion",
-    "description": "Modular kitchen and countertop supply and installation for residential mansion",
+    "id": "alabang-townhouse",
+    "title": "Ordinary Platform Bed Installation",
+    "location": "Alabang, Muntinlupa City",
+    "year": "2023",
+    "type": "Townhouse",
+    "description": "Quality ordinary platform bed for a modern townhouse master bedroom.",
     "image": "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228628/yxtlcshl1tr5rwexkhcs.jpg",
     "images": [
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228628/tcn9seit6len2caixjlq.jpg",
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228627/iq3yzfsvjai7mnnu1xk7.jpg"
     ],
     "services": [
-      "Modular Kitchen",
-      "Countertop Installation"
+      "Ordinary Platform Bed",
+      "Delivery & Installation"
     ]
   },
   {
-    "id": "mr-palanca-house",
-    "title": "Puerto Princesa City, Wescom Road Kitchen Project",
-    "location": "Wescom Road, Puerto Princesa City, Palawan",
+    "id": "bulacan-guest-house",
+    "title": "Multiple Bed Frames for Guest House",
+    "location": "Bocaue, Bulacan",
     "year": "2023",
-    "type": "Bungalow",
-    "description": "Complete kitchen renovation with modular cabinets and premium countertops",
+    "type": "Guest House",
+    "description": "Complete bedroom furniture solution for a cozy guest house. Mix of AFFORDABED and Premium frames.",
     "image": "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228570/bgcaoojrvuktnyyzsmlr.jpg",
     "images": [
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228570/cekghmc8mp6i7bsgwqwx.jpg",
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228570/e7rimmvdhiloiw3xkioh.jpg"
     ],
     "services": [
-      "Kitchen Cabinets",
-      "Countertop Installation"
+      "AFFORDABED Bed Frames",
+      "Premium Platform Beds"
     ]
   },
   {
-    "id": "contemporary-office-space",
-    "title": "Puerto Princesa City, Abueg Rd Kitchen Project",
-    "location": "Puerto Princesa City, Palawan",
-    "year": "2023",
-    "type": "Commercial",
-    "description": "Custom office furniture and storage solutions for modern workspace",
+    "id": "bgc-apartment",
+    "title": "Loft Bed for Studio Apartment",
+    "location": "Bonifacio Global City, Taguig",
+    "year": "2024",
+    "type": "Apartment",
+    "description": "Space-maximizing loft bed solution for a young professional's studio apartment.",
     "image": "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228546/neaukknuqfws6djd0m5t.jpg",
     "images": [
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228546/xs2kbkay8e5ekpopudd9.jpg",
       "https://res.cloudinary.com/dbviya1rj/image/upload/v1763228546/m0yfmysvqgdhwcw2epnb.jpg"
     ],
     "services": [
-      "Office Furniture",
-      "Storage Solutions"
+      "Loft Bed",
+      "Space-Saving Design"
     ]
   }
 ]

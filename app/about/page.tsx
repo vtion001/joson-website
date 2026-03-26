@@ -39,11 +39,11 @@ export default function AboutPage() {
         </div>
         <div className="container mx-auto px-4">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center max-w-4xl mx-auto">
-            <h1 id="about-title" className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance">About ModuLux</h1>
-            <p className="text-xl text-muted-foreground text-pretty mb-8">Your Vision, Built with Precision</p>
+            <h1 id="about-title" className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance">About Joson Furniture</h1>
+            <p className="text-xl text-muted-foreground text-pretty mb-8">Filipino Craft, World-Class Comfort</p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Link href="#story"><Button size="lg" className="transition-transform duration-200 ease-out hover:-translate-y-[1px]">Our Story<span className="ml-2">→</span></Button></Link>
-              <Link href="/projects"><Button variant="outline" size="lg" className="transition-transform duration-200 ease-out hover:-translate-y-[1px]">View Projects<span className="ml-2">→</span></Button></Link>
+              <Link href="/products"><Button variant="outline" size="lg" className="transition-transform duration-200 ease-out hover:-translate-y-[1px]">View Products<span className="ml-2">→</span></Button></Link>
             </div>
           </motion.div>
         </div>
@@ -55,22 +55,24 @@ export default function AboutPage() {
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
               <h2 className="text-4xl font-bold text-foreground mb-6 text-balance">Our Story</h2>
               <p className="text-lg text-muted-foreground mb-6 text-pretty">
-                Founded as ModuLux has been at the forefront of premium modular cabinet manufacturing in Bulacan for over 10 years of combined experience. What started as a small workshop has grown into the region's most trusted name in custom cabinetry and furniture solutions.
+                Joson Furniture started with a simple belief: every Filipino deserves a bed frame that feels solid, looks good, and does not cost a fortune. We are proudly from <strong>Batia, Bocaue, Bulacan</strong>, a place known for craftsmanship and hard work.
+              </p>
+              <p className="text-lg text-muted-foreground mb-6 text-pretty">
+                What began as a local mission to serve families in our community grew into something bigger. We kept hearing the same thing from customers: <em>"Buti na lang may ganito, quality na, abot-kaya pa."</em> That has been our fuel ever since.
               </p>
               <p className="text-lg text-muted-foreground text-pretty">
-                Our commitment to exceptional craftsmanship, innovative design, and customer satisfaction has made us
-                the preferred choice for homeowners, architects, and interior designers throughout the Philippines.
+                Today, we are proud to serve Filipino families across the Philippines with quality bed frames that combine tradition and innovation — bringing world-class comfort into every home.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm"><span className="size-2 rounded-full bg-primary mr-2" />Bespoke Craft</span>
-                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm"><span className="size-2 rounded-full bg-emerald-500 mr-2" />Sustainable Materials</span>
-                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm"><span className="size-2 rounded-full bg-blue-500 mr-2" />Turnkey Delivery</span>
+                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm"><span className="size-2 rounded-full bg-primary mr-2" />Filipino Craft</span>
+                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm"><span className="size-2 rounded-full bg-emerald-500 mr-2" />Bulacan Made</span>
+                <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-sm"><span className="size-2 rounded-full bg-blue-500 mr-2" />Affordable Quality</span>
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative">
-              <img src="/modern-luxury-kitchen-with-emerald-green-modular-c.png" alt="ModuLux Workshop" loading="lazy" decoding="async" className="w-full h-96 object-cover rounded-2xl shadow-lg" />
+              <img src="/IMG20230512120029.jpg" alt="Joson Furniture workshop in Bulacan" loading="lazy" decoding="async" className="w-full h-96 object-cover rounded-2xl shadow-lg" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/10 to-transparent rounded-2xl" />
-              <div className="absolute bottom-4 left-4 inline-flex items-center rounded-full bg-white/80 px-3 py-1 text-xs text-foreground">Workshop</div>
+              <div className="absolute bottom-4 left-4 inline-flex items-center rounded-full bg-white/80 px-3 py-1 text-xs text-foreground">Bulacan, Philippines</div>
             </motion.div>
           </div>
         </div>
@@ -87,9 +89,7 @@ export default function AboutPage() {
             >
               <h3 id="mission-title" className="text-3xl font-bold text-foreground mb-6">Our Mission</h3>
               <p className="text-lg text-muted-foreground text-pretty">
-                To design, manufacture, and deliver high-quality modular cabinets that meet the diverse needs and
-                preferences of our customers, while promoting sustainable practices and contributing to the growth of
-                the local economy.
+                To provide Filipino families with quality bed frames at affordable prices. We build comfort, reliability, and peace of mind into every piece we make.
               </p>
             </motion.div>
             <motion.div
@@ -100,8 +100,7 @@ export default function AboutPage() {
             >
               <h3 className="text-3xl font-bold text-foreground mb-6">Our Vision</h3>
               <p className="text-lg text-muted-foreground text-pretty">
-                To be the leading provider of innovative and sustainable modular cabinet solutions in the Philippines,
-                recognized for our quality, craftsmanship, and customer satisfaction.
+                To bring Bulacan-made bed frames into homes across the Philippines and eventually worldwide — while maintaining our promise: quality sleep setups affordable for everyone.
               </p>
             </motion.div>
           </div>
@@ -154,33 +153,28 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Customer Focus",
-                description:
-                  "We prioritize our customers' needs and strive to exceed their expectations in every interaction.",
+                title: "Filipino Pride",
+                description: "Celebrating Bulacan's craftsmanship heritage in every piece we make.",
               },
               {
-                title: "Quality",
-                description:
-                  "We are committed to delivering products and services that meet the highest standards of quality and durability.",
+                title: "Affordability",
+                description: "Quality furniture without the excessive price tag, accessible to every Filipino family.",
               },
               {
-                title: "Innovation",
-                description:
-                  "We embrace creativity and continuously seek new ways to improve our products, processes, and services.",
+                title: "Durability",
+                description: "Built to last, built for everyday use. Our frames are sturdy and long-lasting.",
               },
               {
-                title: "Sustainability",
-                description:
-                  "We are dedicated to promoting environmentally responsible practices and minimizing our impact on the planet.",
+                title: "Practicality",
+                description: "Designs made for real Philippine homes — space-saving solutions for smaller rooms.",
               },
               {
-                title: "Integrity",
-                description: "We conduct our business with honesty, transparency, and ethical behavior.",
+                title: "Trust",
+                description: "Reliable products, reliable service. We deliver on our promises.",
               },
               {
-                title: "Teamwork",
-                description:
-                  "We foster a collaborative and supportive work environment where every team member is valued and respected.",
+                title: "Customer First",
+                description: "Your home setup matters to us. We listen, improve, and deliver.",
               },
             ].map((value, index) => (
               <motion.div
@@ -194,6 +188,45 @@ export default function AboutPage() {
                 <p className="text-muted-foreground text-pretty">{value.description}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="about-testimonials" role="region" className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 id="about-testimonials" className="text-4xl font-bold text-foreground mb-6 text-balance">What Our Customers Say</h2>
+            <p className="text-xl text-muted-foreground text-pretty">Trusted by Filipino families across the Philippines.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { q: "Buti na lang may ganito, quality na, abot-kaya pa. My AFFORDABED bed frame is super sturdy!", n: "Maria Santos", title: "Homeowner" }, 
+              { q: "Perfect for our rental property. Durable, affordable, and tenants love them!", n: "Juan Cruz", title: "Property Owner" }, 
+              { q: "The premium bunk bed looks amazing. Joson delivers on their Filipino craft promise.", n: "Ana Reyes", title: "Interior Designer" }
+            ].map((t, i) => (
+              <motion.blockquote key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative bg-card p-8 rounded-xl border border-border/60">
+                <Quote className="absolute -top-3 left-6 w-6 h-6 text-primary" />
+                <p className="text-muted-foreground mb-6 leading-relaxed">"{t.q}"</p>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="font-medium text-foreground">{t.n}</span>
+                    <span className="text-sm text-muted-foreground ml-2">- {t.title}</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-primary"><Star /><Star /><Star /><Star /><Star className="opacity-50" /></div>
+                </div>
+              </motion.blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-card">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-3xl font-bold text-foreground mb-4">Ready to upgrade your home?</h3>
+          <p className="text-muted-foreground mb-8">Get a free quote for your next bed frame today.</p>
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link href="/contact"><Button size="lg">Get Free Quote<span className="ml-2">→</span></Button></Link>
+            <Link href="/products"><Button size="lg" variant="outline">View Products<span className="ml-2">→</span></Button></Link>
           </div>
         </div>
       </section>

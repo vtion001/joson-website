@@ -20,10 +20,10 @@ export function Header() {
         </div>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="hover:scale-105 transition-transform duration-200">
-            <Link href="/" aria-label="ModuLux Home">
+            <Link href="/" aria-label="Joson Furniture Home">
               <img
-                src="https://res.cloudinary.com/dbviya1rj/image/upload/v1757004631/nlir90vrzv0qywleruvv.png"
-                alt="ModuLux Logo"
+                src="https://josonfurniture.com/cdn/shop/files/Untitled_design_-_2025-12-04T231503.522.png"
+                alt="Joson Furniture Logo"
                 className="h-10 w-auto"
               />
             </Link>
@@ -37,17 +37,15 @@ export function Header() {
                 href: "/products",
                 hasDropdown: true,
                 dropdownItems: [
-                  { name: "Kitchen Cabinets", href: "/products/kitchen-cabinets" },
-                  { name: "Wardrobes", href: "/products/wardrobes" },
-                  { name: "Bathroom Vanities", href: "/products/bathroom-vanities" },
-                  { name: "Walk-in Closets", href: "/products/walk-in-closets" },
-                  { name: "Bespoke Furniture", href: "/products/bespoke-furniture" },
+                  { name: "AFFORDABED Bed Frame", href: "/products" },
+                  { name: "AFFORDABED Bunk Bed", href: "/products" },
+                  { name: "Platform Bed", href: "/products" },
+                  { name: "Loft Bed", href: "/products" },
+                  { name: "Canopy Bed", href: "/products" },
+                  { name: "Sofa Bed", href: "/products" },
                 ],
               },
-              { name: "Services", href: "/services" },
-              { name: "Projects", href: "/projects" },
               { name: "About", href: "/about" },
-              { name: "Blog", href: "/blog" },
               { name: "Contact", href: "/contact" },
             ].map((item) => (
               <div

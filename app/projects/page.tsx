@@ -88,7 +88,7 @@ export default function ProjectsPage() {
           >
             <h1 id="projects-title" className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance">Our Projects</h1>
             <p className="text-xl text-muted-foreground mb-8 text-pretty">
-              Discover our portfolio of exceptional modular cabinet installations across Palawan and beyond
+              See Joson Furniture bed frames in homes across the Philippines. From condos to houses, our quality frames deliver comfort and style.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <Link href="#projects-grid"><Button size="lg" className="transition-transform duration-200 ease-out hover:-translate-y-[1px]">Browse Projects<span className="ml-2">→</span></Button></Link>

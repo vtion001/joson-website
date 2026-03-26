@@ -200,13 +200,13 @@ export default function ContactPage() {
               <div className="rounded-xl border border-border/50 bg-card/60 p-6">
                 <div className="text-lg font-semibold mb-3">Quick Contact</div>
                 <div className="space-y-2 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-2"><Phone className="w-4 h-4" /><a href="tel:+639566549968" className="hover:text-primary">+63 956 654 9968</a></div>
-                  <div className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:admin@modulux.local" className="hover:text-primary">admin@modulux.local</a></div>
+                  <div className="flex items-center gap-2"><Phone className="w-4 h-4" /><a href="tel:+639171338888" className="hover:text-primary">+63 917 133 8888</a></div>
+                  <div className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:josonfurnitures@gmail.com" className="hover:text-primary">josonfurnitures@gmail.com</a></div>
                   <div className="flex items-center gap-2"><Clock className="w-4 h-4" />Mon–Sat, 9:00 AM – 6:00 PM</div>
-                  <div className="flex items-center gap-2"><MapPin className="w-4 h-4" />Bulacan, Philippines</div>
+                  <div className="flex items-center gap-2"><MapPin className="w-4 h-4" />Batia, Bocaue, Bulacan</div>
                 </div>
-                <a href="/projects" className="mt-4 inline-flex items-center gap-2 text-primary text-sm">
-                  View Projects <ArrowRight className="w-4 h-4" />
+                <a href="/products" className="mt-4 inline-flex items-center gap-2 text-primary text-sm">
+                  View Products <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
               <div className="rounded-xl border border-border/50 bg-card/60 p-6">
@@ -217,12 +217,12 @@ export default function ContactPage() {
                     <div className="text-xs text-muted-foreground">Quote Turnaround</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">10yr</div>
-                    <div className="text-xs text-muted-foreground">Warranty Coverage</div>
+                    <div className="text-2xl font-bold text-foreground">100%</div>
+                    <div className="text-xs text-muted-foreground">Filipino Made</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-foreground">150+</div>
-                    <div className="text-xs text-muted-foreground">Projects Completed</div>
+                    <div className="text-2xl font-bold text-foreground">300+</div>
+                    <div className="text-xs text-muted-foreground">Happy Customers</div>
                   </div>
                 </div>
               </div>
@@ -240,12 +240,12 @@ export default function ContactPage() {
             className="grid grid-cols-1 lg:grid-cols-3 gap-6"
           >
             <div className="rounded-xl border border-border/50 bg-card/60 p-6">
-              <div className="text-lg font-semibold mb-3">Why Choose ModuLux</div>
+              <div className="text-lg font-semibold mb-3">Why Choose Joson</div>
               <div className="space-y-3">
                 {[
-                  "Premium materials and craftsmanship",
-                  "Tailored designs for your space",
-                  "Professional installation and aftercare",
+                  "Quality bed frames at affordable prices",
+                  "Space-saving designs for Filipino homes",
+                  "Proudly made in Bulacan, Philippines",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-accent/20 text-accent rounded-full flex items-center justify-center mt-0.5">
@@ -259,13 +259,13 @@ export default function ContactPage() {
             <div className="rounded-xl border border-border/50 bg-card/60 p-6">
               <div className="text-lg font-semibold mb-3">Contact Details</div>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-center gap-2"><Phone className="w-4 h-4" /><a href="tel:+639566549968" className="hover:text-primary">+63 956 654 9968</a></div>
-                <div className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:admin@modulux.local" className="hover:text-primary">admin@modulux.local</a></div>
+                <div className="flex items-center gap-2"><Phone className="w-4 h-4" /><a href="tel:+639171338888" className="hover:text-primary">+63 917 133 8888</a></div>
+                <div className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:josonfurnitures@gmail.com" className="hover:text-primary">josonfurnitures@gmail.com</a></div>
                 <div className="flex items-center gap-2"><Clock className="w-4 h-4" />Mon–Sat, 9:00 AM – 6:00 PM</div>
-                <div className="flex items-center gap-2"><MapPin className="w-4 h-4" />Bulacan, Philippines</div>
+                <div className="flex items-center gap-2"><MapPin className="w-4 h-4" />Batia, Bocaue, Bulacan, 3018</div>
               </div>
-              <a href="/projects" className="mt-4 inline-flex items-center gap-2 text-primary text-sm">
-                View Projects <ArrowRight className="w-4 h-4" />
+              <a href="/products" className="mt-4 inline-flex items-center gap-2 text-primary text-sm">
+                View Products <ArrowRight className="w-4 h-4" />
               </a>
             </div>
             <div className="rounded-xl border border-border/50 bg-card/60 p-6">
