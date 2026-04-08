@@ -71,7 +71,7 @@ export function SocialPreviewModal({
       <div className="flex items-center gap-2 mb-3">
         <div className="w-8 h-8 rounded-full bg-muted" />
         <div>
-          <div className="text-sm font-medium">ModuLux</div>
+          <div className="text-sm font-medium">Joson Furniture</div>
           <div className="text-xs text-muted-foreground">Just now</div>
         </div>
       </div>
@@ -91,11 +91,11 @@ export function SocialPreviewModal({
     <div className="max-w-sm mx-auto">
       <div className="flex items-center gap-2 mb-3">
         <div className="w-8 h-8 rounded-full bg-muted" />
-        <div className="text-sm font-medium">modulux</div>
+        <div className="text-sm font-medium">josonfurniture</div>
       </div>
       <MediaBox ratio="aspect-square" />
       <div className="mt-3 text-sm">
-        <span className="font-medium">modulux</span> {content}
+        <span className="font-medium">josonfurniture</span> {content}
       </div>
       {limit && (
         <div className="mt-2 text-xs text-muted-foreground">{count}/{limit}</div>
@@ -107,7 +107,7 @@ export function SocialPreviewModal({
     <div className="max-w-xl mx-auto">
       <div className="flex items-center gap-2 mb-3">
         <div className="w-8 h-8 rounded-full bg-muted" />
-        <div className="text-sm font-medium">ModuLux</div>
+        <div className="text-sm font-medium">Joson Furniture</div>
         <Badge p="twitter" />
       </div>
       <div className="text-sm text-foreground whitespace-pre-wrap">{content}</div>
@@ -127,7 +127,7 @@ export function SocialPreviewModal({
       <div className="flex items-center gap-2 mb-3">
         <div className="w-8 h-8 rounded-md bg-muted" />
         <div>
-          <div className="text-sm font-medium">ModuLux</div>
+          <div className="text-sm font-medium">Joson Furniture</div>
           <div className="text-xs text-muted-foreground">Company • Now</div>
         </div>
       </div>

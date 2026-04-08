@@ -1,11 +1,20 @@
 import { NextResponse } from "next/server"
 import path from "path"
 import { readFile, writeFile } from "fs/promises"
+import { cookies } from "next/headers"
+import { verifySession } from "@/lib/auth"
 
 const filePath = path.join(process.cwd(), "data", "inquiries.json")
 
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {
   try {
+    const cookieStore = cookies()
+    const token = cookieStore.get("admin_session")?.value
+    const session = token ? verifySession(token) : null
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
     const id = params.id
     const payload = await req.json()
     const raw = await readFile(filePath, "utf-8").catch(() => "[]")

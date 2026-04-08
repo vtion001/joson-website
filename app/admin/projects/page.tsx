@@ -73,15 +73,19 @@ async function addProject(formData: FormData) {
 
 async function deleteProject(formData: FormData) {
   "use server"
-  const id = String(formData.get("id") || "").trim()
-  if (!id) return
-  const raw = await readFile(filePath, "utf-8")
-  const list = JSON.parse(raw)
-  const next = list.filter((p: any) => p.id !== id)
-  await writeFile(filePath, JSON.stringify(next, null, 2))
-  revalidatePath("/admin/projects")
-  revalidatePath("/projects")
-  revalidatePath("/")
+  try {
+    const id = String(formData.get("id") || "").trim()
+    if (!id) return
+    const raw = await readFile(filePath, "utf-8")
+    const list = JSON.parse(raw)
+    const next = list.filter((p: any) => p.id !== id)
+    await writeFile(filePath, JSON.stringify(next, null, 2))
+    revalidatePath("/admin/projects")
+    revalidatePath("/projects")
+    revalidatePath("/")
+  } catch (e) {
+    console.error("deleteProject error:", e)
+  }
 }
 
 export default async function AdminProjectsPage() {
@@ -177,9 +181,9 @@ export default async function AdminProjectsPage() {
             />
           </div>
           <div className="hidden md:flex items-center gap-2 flex-wrap">
-            <button className="px-3 py-2 rounded-md border border-border/40 text-sm hover:border-primary/60 transition-all duration-200 ease-out transform hover:shadow-md hover:-translate-y-[1px]">All</button>
-            <button className="px-3 py-2 rounded-md border border-border/40 text-sm hover:border-primary/60 transition-all duration-200 ease-out transform hover:shadow-md hover:-translate-y-[1px]">Residential</button>
-            <button className="px-3 py-2 rounded-md border border-border/40 text-sm hover:border-primary/60 transition-all duration-200 ease-out transform hover:shadow-md hover:-translate-y-[1px]">Commercial</button>
+            <button aria-label="Filter by all" className="px-3 py-2 rounded-md border border-border/40 text-sm hover:border-primary/60 transition-all duration-200 ease-out transform hover:shadow-md hover:-translate-y-[1px]">All</button>
+            <button aria-label="Filter by residential" className="px-3 py-2 rounded-md border border-border/40 text-sm hover:border-primary/60 transition-all duration-200 ease-out transform hover:shadow-md hover:-translate-y-[1px]">Residential</button>
+            <button aria-label="Filter by commercial" className="px-3 py-2 rounded-md border border-border/40 text-sm hover:border-primary/60 transition-all duration-200 ease-out transform hover:shadow-md hover:-translate-y-[1px]">Commercial</button>
           </div>
         </div>
 

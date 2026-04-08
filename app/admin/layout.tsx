@@ -11,6 +11,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const sessionCookie = cookies().get("admin_session")?.value
   const verified = sessionCookie ? verifySession(sessionCookie) : null
 
+  if (!verified) {
+    redirect("/admin/login")
+  }
+
   async function logout() {
     "use server"
     cookies().delete("admin_session")

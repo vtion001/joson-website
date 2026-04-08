@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server"
 
+const globalAny: any = globalThis as any
+const rate: { count: number; resetAt: number } = (globalAny.__aiAutofillRate ||= { count: 0, resetAt: Date.now() + 60_000 })
+
 function clean(s: string) {
   return String(s || "").trim()
 }
@@ -34,6 +37,14 @@ export async function POST(req: Request) {
     const kw = clean(keywords)
     const len = clean(length) || "medium"
 
+    const now = Date.now()
+    if (now > rate.resetAt) {
+      rate.count = 0
+      rate.resetAt = now + 60_000
+    }
+    if (rate.count >= 30) return NextResponse.json({ error: "Rate limited" }, { status: 429 })
+    rate.count++
+
     if (key) {
       const prompt = `You will generate structured blog metadata from a description and optional keywords. Return ONLY a compact JSON object with keys: title, category, author, date, readTime, excerpt. Rules: title 6-12 words, category 1-3 words, author a team or name, date in format like "January 8, 2025", readTime like "5 min read", excerpt 1 sentence under 200 characters. Inputs:\nDescription: ${desc}\nKeywords: ${kw}\nLength: ${len}`
       const res = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -62,7 +73,7 @@ export async function POST(req: Request) {
 
     const title = kw ? `${capitalize(kw.split(/,|\s+/).filter(Boolean).slice(0,3).join(" "))}` : (desc ? desc.split(/\.|\n/)[0].slice(0, 60) : "")
     const category = kw ? capitalize(kw.split(/,|\s+/).filter(Boolean)[0] || "") : ""
-    const author = "ModuLux Design Team"
+    const author = "Joson Furniture Team"
     const date = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
     const excerpt = makeExcerpt(desc)
     const readTime = estimateReadTime(desc || excerpt, len)

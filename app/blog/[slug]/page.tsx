@@ -52,7 +52,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{post.title}</h1>
           <div className="flex items-center text-muted-foreground">
-            <span>By {post.author || "ModuLux"}</span>
+            <span>By {post.author || "Joson Furniture"}</span>
             <span className="mx-2">•</span>
             <span>{post.date || ""}</span>
           </div>

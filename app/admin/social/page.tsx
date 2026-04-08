@@ -52,10 +52,10 @@ function getMonthMatrix(date: Date = new Date()) {
 
 // Mock data for demonstration - in real implementation this would come from your data files
 const mockChannels = [
-  { id: "modulux", name: "ModuLux", color: "bg-purple-500" },
-  { id: "modulux-design", name: "ModuLux Design", color: "bg-blue-500" },
-  { id: "modulux-build", name: "ModuLux Build", color: "bg-green-500" },
-  { id: "modulux-blog", name: "ModuLux Blog", color: "bg-orange-500" },
+  { id: "joson", name: "Joson Furniture", color: "bg-purple-500" },
+  { id: "joson-design", name: "Joson Design", color: "bg-blue-500" },
+  { id: "joson-build", name: "Joson Build", color: "bg-green-500" },
+  { id: "joson-blog", name: "Joson Blog", color: "bg-orange-500" },
   { id: "newsletter", name: "Newsletter", color: "bg-yellow-500" },
 ]
 
@@ -76,7 +76,7 @@ const mockPosts = [
     platforms: ["instagram"],
     schedule: "2025-02-03 20:41",
     status: "scheduled",
-    channel: "modulux",
+    channel: "joson",
     time: "20:41",
     metrics: { comments: 2, likes: 8 }
   },
@@ -86,7 +86,7 @@ const mockPosts = [
     platforms: ["blog"],
     schedule: "2025-02-04 10:00",
     status: "published",
-    channel: "modulux-blog",
+    channel: "joson-blog",
     time: "10:00",
     metrics: { comments: 5, likes: 25 }
   },
@@ -96,7 +96,7 @@ const mockPosts = [
     platforms: ["instagram"],
     schedule: "2025-02-04 14:30",
     status: "scheduled",
-    channel: "modulux",
+    channel: "joson",
     time: "14:30",
     metrics: { comments: 2, likes: 12 }
   },
@@ -106,7 +106,7 @@ const mockPosts = [
     platforms: ["facebook"],
     schedule: "2025-02-04 16:15",
     status: "scheduled",
-    channel: "modulux",
+    channel: "joson",
     time: "16:15",
     metrics: { comments: 3, likes: 18 }
   },
@@ -116,7 +116,7 @@ const mockPosts = [
     platforms: ["twitter"],
     schedule: "2025-02-04 18:45",
     status: "scheduled",
-    channel: "modulux",
+    channel: "joson",
     time: "18:45",
     metrics: { comments: 1, likes: 7 }
   },
@@ -136,7 +136,7 @@ const mockPosts = [
     platforms: ["instagram"],
     schedule: "2025-02-05 19:20",
     status: "scheduled",
-    channel: "modulux-build",
+    channel: "joson-build",
     time: "19:20",
     metrics: { comments: 6, likes: 24 }
   },
@@ -146,7 +146,7 @@ const mockPosts = [
     platforms: ["facebook"],
     schedule: "2025-02-06 11:15",
     status: "scheduled",
-    channel: "modulux",
+    channel: "joson",
     time: "11:15",
     metrics: { comments: 2, likes: 11 }
   },
@@ -156,7 +156,7 @@ const mockPosts = [
     platforms: ["instagram"],
     schedule: "2025-02-07 20:42",
     status: "scheduled",
-    channel: "modulux",
+    channel: "joson",
     time: "20:42",
     metrics: { comments: 2, likes: 16 }
   },
@@ -166,7 +166,7 @@ const mockPosts = [
     platforms: ["facebook"],
     schedule: "2025-02-07 20:43",
     status: "scheduled",
-    channel: "modulux-design",
+    channel: "joson-design",
     time: "20:43",
     metrics: { comments: 1, likes: 8 }
   },
@@ -176,7 +176,7 @@ const mockPosts = [
     platforms: ["instagram"],
     schedule: "2025-02-08 12:42",
     status: "scheduled",
-    channel: "modulux",
+    channel: "joson",
     time: "12:42",
     metrics: { comments: 3, likes: 14 }
   },
@@ -186,7 +186,7 @@ const mockPosts = [
     platforms: ["instagram", "facebook"],
     schedule: "2025-02-08 15:30",
     status: "scheduled",
-    channel: "modulux-build",
+    channel: "joson-build",
     time: "15:30",
     metrics: { comments: 4, likes: 21 }
   },
@@ -196,7 +196,7 @@ const mockPosts = [
     platforms: ["blog", "newsletter"],
     schedule: "2025-02-09 17:34",
     status: "scheduled",
-    channel: "modulux-blog",
+    channel: "joson-blog",
     time: "17:34",
     metrics: { comments: 5, likes: 19 }
   },
@@ -206,7 +206,7 @@ const mockPosts = [
     platforms: ["instagram"],
     schedule: "2025-02-09 20:42",
     status: "scheduled",
-    channel: "modulux",
+    channel: "joson",
     time: "20:42",
     metrics: { comments: 2, likes: 13 }
   }
@@ -231,10 +231,10 @@ const statusColors = {
 
 // Channel colors matching the photo
 const channelColors = {
-  "modulux": "bg-purple-500",
-  "modulux-design": "bg-blue-500", 
-  "modulux-build": "bg-green-500",
-  "modulux-blog": "bg-orange-500",
+  "joson": "bg-purple-500",
+  "joson-design": "bg-blue-500",
+  "joson-build": "bg-green-500",
+  "joson-blog": "bg-orange-500",
   "newsletter": "bg-yellow-500"
 }
 
@@ -275,7 +275,9 @@ async function addPost(prev: any, formData: FormData) {
 async function sendNow(prev: any, formData: FormData) {
   "use server"
   const id = String(formData.get("id") || "")
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || ""}/api/social/send`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id }) })
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+  if (!baseUrl) throw new Error("NEXT_PUBLIC_BASE_URL environment variable must be set")
+  const res = await fetch(`${baseUrl}/api/social/send`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id }) })
   revalidatePath("/admin/social")
   return { ok: res.ok }
 }
@@ -439,7 +441,7 @@ export default async function AdminSocialPage({ searchParams }: { searchParams?:
                   <p className="text-sm md:text-base/relaxed opacity-90">{currentMonth}</p>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
-                  <a href="/api/oauth/google/authorize" className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white/10 border border-white/20 text-sm text-white transition-all duration-200 ease-out transform hover:bg-primary/25 hover:-translate-y-[1px]" aria-label="Connect">
+                  <a href="/api/oauth/google/authorize" className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white/10 border border-white/20 text-sm text-white transition-all duration-200 ease-out transform hover:bg-primary/25 hover:-translate-y-[1px]" aria-label="Connect Google account">
                     Connect
                   </a>
                   <a href="/admin/login" className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-white/10 border border-white/20 text-sm text-white transition-all duration-200 ease-out hover:bg-primary/25">Account</a>

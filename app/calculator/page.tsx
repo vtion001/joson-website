@@ -418,7 +418,7 @@ export default function CalculatorPage() {
                   <button className="w-full bg-secondary text-white py-3 px-6 rounded-md font-medium hover:bg-secondary/90 transition-colors duration-200"
                     onClick={()=>{
                       const body = `Estimate Total: ₱${estimate?.toLocaleString()}\nSubtotal: ₱${(subtotal||0).toLocaleString()}\nTax: ₱${(tax||0).toLocaleString()}`
-                      window.location.href = `mailto:?subject=ModuLux Estimate&body=${encodeURIComponent(body)}`
+                      window.location.href = `mailto:?subject=Joson Furniture Estimate&body=${encodeURIComponent(body)}`
                     }}
                   >
                     Request Detailed Quote

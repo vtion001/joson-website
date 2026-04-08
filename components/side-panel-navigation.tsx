@@ -306,7 +306,7 @@ export function SidePanelNavigation() {
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">M</span>
             </div>
-            <span className="font-bold text-gray-900">ModuLux</span>
+            <span className="font-bold text-gray-900">Joson Furniture</span>
           </Link>
           
           <button

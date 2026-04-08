@@ -58,7 +58,7 @@ export function AdminSidePanel(): JSX.Element {
 
   return (
     <SidePanelNavigationEnhanced
-      brandName="ModuLux Admin"
+      brandName="Joson Furniture Admin"
       brandInitial="A"
       breadcrumbItems={["Dashboard", "Admin"]}
       navigation={navigation}

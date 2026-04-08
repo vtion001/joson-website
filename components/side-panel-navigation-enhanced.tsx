@@ -183,7 +183,7 @@ export function SidePanelNavigationEnhanced({
 
   const navData = navigation ?? navigationData
   const utilData = utility ?? utilityItems
-  const brandText = brandName ?? "ModuLux"
+  const brandText = brandName ?? "Joson Furniture"
   const brandInitialText = brandInitial ?? "M"
   const crumbs = breadcrumbItems ?? ["Dashboard", "CMS"]
 

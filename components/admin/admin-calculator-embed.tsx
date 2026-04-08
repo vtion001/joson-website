@@ -360,7 +360,7 @@ export function AdminCalculatorEmbed(): JSX.Element {
                 </div>
                 <div className="pt-4 border-t border-border/40">
                   <p className="text-xs text-muted-foreground mb-4">* Approximate estimate for planning purposes.</p>
-                  <button className="w-full bg-secondary text-white py-3 px-6 rounded-md font-medium hover:bg-secondary/90" onClick={()=>{const body=`Estimate Total: ₱${estimate?.toLocaleString()}\nSubtotal: ₱${(subtotal||0).toLocaleString()}\nTax: ₱${(tax||0).toLocaleString()}`; window.location.href=`mailto:?subject=ModuLux Estimate&body=${encodeURIComponent(body)}`}}>Request Detailed Quote</button>
+                  <button className="w-full bg-secondary text-white py-3 px-6 rounded-md font-medium hover:bg-secondary/90" onClick={()=>{const body=`Estimate Total: ₱${estimate?.toLocaleString()}\nSubtotal: ₱${(subtotal||0).toLocaleString()}\nTax: ₱${(tax||0).toLocaleString()}`; window.location.href=`mailto:?subject=Joson Furniture Estimate&body=${encodeURIComponent(body)}`}}>Request Detailed Quote</button>
                 </div>
               </div>
             ) : (

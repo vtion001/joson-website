@@ -22,7 +22,7 @@ export function Header() {
           <div className="hover:scale-105 transition-transform duration-200">
             <Link href="/" aria-label="Joson Furniture Home">
               <img
-                src="https://josonfurniture.com/cdn/shop/files/Untitled_design_-_2025-12-04T231503.522.png"
+                src="https://res.cloudinary.com/dbviya1rj/image/upload/q_auto/f_auto/v1773613973/q1ckzznmcv9chhnkjyzy.png"
                 alt="Joson Furniture Logo"
                 className="h-10 w-auto"
               />

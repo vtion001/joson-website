@@ -49,7 +49,7 @@ export default function BlogPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 to-secondary/5 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">ModuLux Design Blog</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Joson Furniture Blog</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Discover the latest trends, tips, and insights in modular cabinet design and home organization
           </p>
@@ -96,7 +96,7 @@ export default function BlogPage() {
                   <p className="text-muted-foreground mb-4 line-clamp-3">{post.excerpt}</p>
                   <div className="flex items-center justify-between">
                     <div className="text-sm text-muted-foreground">
-                      <p className="font-medium">{post.author || "ModuLux"}</p>
+                      <p className="font-medium">{post.author || "Joson Furniture"}</p>
                       <p>{post.date || ""}</p>
                     </div>
                     <Link
@@ -116,7 +116,7 @@ export default function BlogPage() {
       {/* Newsletter Signup */}
       <section className="py-16 bg-muted/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">Stay Updated with ModuLux</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-4">Stay Updated with Joson Furniture</h2>
           <p className="text-muted-foreground mb-8">
             Subscribe to our newsletter for the latest design trends, tips, and exclusive offers
           </p>

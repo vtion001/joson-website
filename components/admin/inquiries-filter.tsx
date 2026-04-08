@@ -2,7 +2,8 @@
 import { useMemo, useState } from "react"
 import { InquiryItem } from "@/components/admin/inquiry-item"
 
-type Inquiry = { id: string; name: string; email: string; phone: string; message: string; attachments?: any[]; date: string; status?: string; tags?: string[] }
+interface Attachment { name?: string; url?: string }
+type Inquiry = { id: string; name: string; email: string; phone: string; message: string; attachments?: Attachment[]; date: string; status?: string; tags?: string[] }
 
 export function InquiriesFilter({ inquiries }: { inquiries: Inquiry[] }) {
   const [from, setFrom] = useState<string>("")

@@ -12,45 +12,53 @@ const filePath = path.join(process.cwd(), "data", "blog.json")
 
 async function addPost(formData: FormData) {
   "use server"
-  const id = String(formData.get("id") || "").trim()
-  const title = String(formData.get("title") || "").trim()
-  const excerpt = String(formData.get("excerpt") || "").trim()
-  const description = String(formData.get("description") || "").trim()
-  const image = String(formData.get("image") || "").trim()
-  const author = String(formData.get("author") || "").trim()
-  const date = String(formData.get("date") || "").trim()
-  const readTime = String(formData.get("readTime") || "").trim()
-  const category = String(formData.get("category") || "").trim()
-  if (!id || !title) return
-  const raw = await readFile(filePath, "utf-8")
-  const list = JSON.parse(raw)
-  if (list.find((p: any) => p.id === id)) return
-  list.unshift({
-    id,
-    title,
-    excerpt,
-    description,
-    image,
-    author,
-    date: date || new Date().toISOString(),
-    readTime,
-    category,
-  })
-  await writeFile(filePath, JSON.stringify(list, null, 2))
-  revalidatePath("/admin/blog")
-  revalidatePath("/blog")
+  try {
+    const id = String(formData.get("id") || "").trim()
+    const title = String(formData.get("title") || "").trim()
+    const excerpt = String(formData.get("excerpt") || "").trim()
+    const description = String(formData.get("description") || "").trim()
+    const image = String(formData.get("image") || "").trim()
+    const author = String(formData.get("author") || "").trim()
+    const date = String(formData.get("date") || "").trim()
+    const readTime = String(formData.get("readTime") || "").trim()
+    const category = String(formData.get("category") || "").trim()
+    if (!id || !title) return
+    const raw = await readFile(filePath, "utf-8")
+    const list = JSON.parse(raw)
+    if (list.find((p: any) => p.id === id)) return
+    list.unshift({
+      id,
+      title,
+      excerpt,
+      description,
+      image,
+      author,
+      date: date || new Date().toISOString(),
+      readTime,
+      category,
+    })
+    await writeFile(filePath, JSON.stringify(list, null, 2))
+    revalidatePath("/admin/blog")
+    revalidatePath("/blog")
+  } catch (e) {
+    console.error("addPost error:", e)
+  }
 }
 
 async function deletePost(formData: FormData) {
   "use server"
-  const id = String(formData.get("id") || "").trim()
-  if (!id) return
-  const raw = await readFile(filePath, "utf-8")
-  const list = JSON.parse(raw)
-  const next = list.filter((p: any) => p.id !== id)
-  await writeFile(filePath, JSON.stringify(next, null, 2))
-  revalidatePath("/admin/blog")
-  revalidatePath("/blog")
+  try {
+    const id = String(formData.get("id") || "").trim()
+    if (!id) return
+    const raw = await readFile(filePath, "utf-8")
+    const list = JSON.parse(raw)
+    const next = list.filter((p: any) => p.id !== id)
+    await writeFile(filePath, JSON.stringify(next, null, 2))
+    revalidatePath("/admin/blog")
+    revalidatePath("/blog")
+  } catch (e) {
+    console.error("deletePost error:", e)
+  }
 }
 
 export default async function AdminBlogPage() {

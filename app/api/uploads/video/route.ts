@@ -1,10 +1,18 @@
 import { NextResponse } from "next/server"
 import { uploadVideo } from "@/lib/cloudinary"
+import { cookies } from "next/headers"
+import { verifySession } from "@/lib/auth"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
 
 export async function POST(req: Request) {
+  const cookieStore = cookies()
+  const token = cookieStore.get("admin_session")?.value
+  const session = token ? verifySession(token) : null
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
   try {
     const form = await req.formData()
     const file = form.get("video") as File | null
@@ -18,7 +26,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Unsupported file type" }, { status: 415 })
     }
 
-    const maxBytes = 200 * 1024 * 1024
+    const maxBytes = (process.env.MAX_VIDEO_SIZE_BYTES ? parseInt(process.env.MAX_VIDEO_SIZE_BYTES) : 200) * 1024 * 1024
     if (file.size > maxBytes) {
       return NextResponse.json({ ok: false, error: "File too large (max 200MB)" }, { status: 413 })
     }

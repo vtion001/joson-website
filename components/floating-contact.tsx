@@ -24,7 +24,7 @@ export function FloatingContact() {
               Call Now
             </a>
             <a
-              href="mailto:info@modulux.com"
+              href="mailto:info@josonfurniture.com"
               className="bg-white shadow-lg rounded-full px-4 py-2 text-sm font-medium text-primary hover:bg-primary hover:text-white transition-colors duration-200 border border-primary/20"
             >
               Email Us

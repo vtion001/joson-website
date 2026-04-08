@@ -555,7 +555,7 @@ export default function ProposalPage() {
               <Link href="/contact">Contact Us</Link>
             </Button>
             <Button size="lg" variant="ghost" asChild>
-              <a href="mailto:info@modulux.design">Email: info@modulux.design</a>
+              <a href="mailto:info@josonfurniture.com">Email: info@josonfurniture.com</a>
             </Button>
           </div>
         </div>

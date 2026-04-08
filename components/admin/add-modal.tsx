@@ -5,7 +5,7 @@ export function AddModal({ trigger, title, description, children }: { trigger: R
   const [open, setOpen] = useState(false)
   return (
     <>
-      <button type="button" onClick={() => setOpen(true)} className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-all duration-200 ease-out transform hover:shadow-md hover:-translate-y-[1px]">
+      <button type="button" onClick={() => setOpen(true)} aria-label={typeof trigger === 'string' ? trigger : 'Open modal'} className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-md hover:bg-primary/90 transition-all duration-200 ease-out transform hover:shadow-md hover:-translate-y-[1px]">
         {trigger}
       </button>
       {open && (
@@ -17,7 +17,7 @@ export function AddModal({ trigger, title, description, children }: { trigger: R
                 <div className="text-lg font-semibold">{title}</div>
                 {description && <div className="text-sm text-muted-foreground">{description}</div>}
               </div>
-              <button type="button" onClick={() => setOpen(false)} className="px-3 py-2 rounded-md border text-sm">Close</button>
+              <button type="button" onClick={() => setOpen(false)} aria-label="Close dialog" className="px-3 py-2 rounded-md border text-sm">Close</button>
             </div>
             <div className="space-y-4">{children}</div>
           </div>

@@ -11,7 +11,7 @@ const reviews = [
     rating: 5,
     date: "December 2024",
     review:
-      "ModuLux transformed our kitchen completely! The quality of their cabinets is exceptional, and the installation team was professional and efficient. Highly recommended!",
+      "Joson Furniture transformed our kitchen completely! The quality of their cabinets is exceptional, and the installation team was professional and efficient. Highly recommended!",
     project: "Kitchen Renovation",
     image: "/placeholder.svg?height=60&width=60&text=MS",
   },
@@ -33,7 +33,7 @@ const reviews = [
     rating: 5,
     date: "October 2024",
     review:
-      "The team at ModuLux exceeded our expectations. From design to installation, everything was seamless. Our bathroom vanity is both beautiful and functional.",
+      "The team at Joson Furniture exceeded our expectations. From design to installation, everything was seamless. Our bathroom vanity is both beautiful and functional.",
     project: "Bathroom Renovation",
     image: "/placeholder.svg?height=60&width=60&text=JL",
   },
@@ -80,7 +80,7 @@ export function ReviewsSection() {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">What Our Clients Say</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our satisfied customers have to say about their ModuLux
+            Don't just take our word for it. Here's what our satisfied customers have to say about their Joson Furniture
             experience.
           </p>
         </div>

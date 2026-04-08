@@ -1,0 +1,43 @@
+name: Test on PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npx vitest run --reporter=json --output=output/test-reports/unit-results.json
+
+      - name: Run e2e tests
+        run: npm run test:e2e
+
+      - name: Authenticate GitHub CLI
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh auth status || gh auth login --with-token <<< "$GH_TOKEN"
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          if result=$(gh pr comment "$PR_NUMBER" --body="Tests failed. See logs." 2>&1); then
+            echo "Comment posted"
+          else
+            echo "Could not post comment: $result"
+          fi

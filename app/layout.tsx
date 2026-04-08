@@ -15,6 +15,7 @@ import { Breadcrumb } from "@/components/breadcrumb"
 import { AccessibilitySkipLink } from "@/components/accessibility-skip-link"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "sonner"
+import { ErrorBoundary } from "@/components/error-boundary"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     siteName: "Joson Furniture",
     images: [
       {
-        url: "https://josonfurniture.com/cdn/shop/files/Untitled_design_-_2025-12-04T231503.522.png",
+        url: "https://res.cloudinary.com/dbviya1rj/image/upload/q_auto/f_auto/v1773613973/q1ckzznmcv9chhnkjyzy.png",
         width: 32,
         height: 32,
         alt: "Joson Furniture Logo",
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Joson Furniture - Filipino Craft, World-Class Comfort",
     description: "Where Filipino artistry meets timeless design.",
-    images: ["https://josonfurniture.com/cdn/shop/files/Untitled_design_-_2025-12-04T231503.522.png"],
+    images: ["https://res.cloudinary.com/dbviya1rj/image/upload/q_auto/f_auto/v1773613973/q1ckzznmcv9chhnkjyzy.png"],
   },
   robots: {
     index: true,
@@ -89,7 +90,7 @@ export default function RootLayout({
               description:
                 "Filipino furniture brand blending tradition and innovation. Shop bed frames, bunk beds, sofa beds and more.",
               url: "https://josonfurniture.com",
-              logo: "https://josonfurniture.com/cdn/shop/files/Untitled_design_-_2025-12-04T231503.522.png",
+              logo: "https://res.cloudinary.com/dbviya1rj/image/upload/q_auto/f_auto/v1773613973/q1ckzznmcv9chhnkjyzy.png",
               contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+63-917-133-8888",
@@ -112,7 +113,9 @@ export default function RootLayout({
           <ConditionalHeader />
           <Breadcrumb />
           <main id="main-content" role="main">
-            <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
+            <ErrorBoundary>
+              <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
+            </ErrorBoundary>
           </main>
           <ConditionalFooter />
           <FloatingContact />

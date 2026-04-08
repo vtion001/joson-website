@@ -66,7 +66,7 @@ export default function ContactPage() {
                     <a
                       href="https://res.cloudinary.com/dbviya1rj/image/upload/v1763251599/jqcxpbnwpvfuvpcippln.jpg"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="block"
                     >
                       <img
@@ -201,7 +201,7 @@ export default function ContactPage() {
                 <div className="text-lg font-semibold mb-3">Quick Contact</div>
                 <div className="space-y-2 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2"><Phone className="w-4 h-4" /><a href="tel:+639171338888" className="hover:text-primary">+63 917 133 8888</a></div>
-                  <div className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:josonfurnitures@gmail.com" className="hover:text-primary">josonfurnitures@gmail.com</a></div>
+                  <div className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:info@josonfurniture.com" className="hover:text-primary">josonfurnitures@gmail.com</a></div>
                   <div className="flex items-center gap-2"><Clock className="w-4 h-4" />Mon–Sat, 9:00 AM – 6:00 PM</div>
                   <div className="flex items-center gap-2"><MapPin className="w-4 h-4" />Batia, Bocaue, Bulacan</div>
                 </div>
@@ -260,7 +260,7 @@ export default function ContactPage() {
               <div className="text-lg font-semibold mb-3">Contact Details</div>
               <div className="space-y-2 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2"><Phone className="w-4 h-4" /><a href="tel:+639171338888" className="hover:text-primary">+63 917 133 8888</a></div>
-                <div className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:josonfurnitures@gmail.com" className="hover:text-primary">josonfurnitures@gmail.com</a></div>
+                <div className="flex items-center gap-2"><Mail className="w-4 h-4" /><a href="mailto:info@josonfurniture.com" className="hover:text-primary">josonfurnitures@gmail.com</a></div>
                 <div className="flex items-center gap-2"><Clock className="w-4 h-4" />Mon–Sat, 9:00 AM – 6:00 PM</div>
                 <div className="flex items-center gap-2"><MapPin className="w-4 h-4" />Batia, Bocaue, Bulacan, 3018</div>
               </div>

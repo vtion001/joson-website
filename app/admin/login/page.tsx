@@ -23,8 +23,11 @@ export default function AdminLoginPage({ searchParams }: { searchParams?: Record
             "use server"
             const email = String(formData.get("email") || "").trim().toLowerCase()
             const password = String(formData.get("password") || "")
-            const allowedEmail = (process.env.ADMIN_EMAIL || "admin@modulux.local").toLowerCase()
-            const allowedPassword = process.env.ADMIN_PASSWORD || "modulux123!"
+            const allowedEmail = process.env.ADMIN_EMAIL
+            const allowedPassword = process.env.ADMIN_PASSWORD
+            if (!allowedEmail || !allowedPassword) {
+              throw new Error("ADMIN_EMAIL and ADMIN_PASSWORD environment variables must be configured")
+            }
             const ok = email === allowedEmail && password === allowedPassword
             if (!ok) {
               redirect("/admin/login?error=invalid")
@@ -41,7 +44,7 @@ export default function AdminLoginPage({ searchParams }: { searchParams?: Record
           }} className="space-y-3">
             <div>
               <label className="text-xs text-muted-foreground block mb-1">Email</label>
-              <input name="email" type="email" placeholder="admin@modulux.local" className="w-full p-3 border border-border/40 rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary/20" />
+              <input name="email" type="email" placeholder="admin@josonfurniture.com" className="w-full p-3 border border-border/40 rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary/20" />
             </div>
             <div>
               <label className="text-xs text-muted-foreground block mb-1">Password</label>

@@ -2,7 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import productsData from "@/data/products.json"
 import { projects } from "@/lib/projects-data"
+
+type ProductItem = { id: string; name: string; category: string; image?: string }
 
 export default function HomePage() {
   return (
@@ -215,8 +218,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section 03 - Our Projects */}
-      <section aria-labelledby="projects-title" role="region" className="relative py-24 bg-card overflow-hidden">
+      {/* Section 03 - Our Bed Frames */}
+      <section aria-labelledby="bedframes-title" role="region" className="relative py-24 bg-card overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-primary/10 blur-3xl" />
           <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-muted/30 blur-2xl" />
@@ -224,18 +227,18 @@ export default function HomePage() {
         <div className="absolute top-8 left-8 section-number">03</div>
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 id="projects-title" className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">Our Projects</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">Over 300 custom cabinetry projects delivered nationwide.</p>
+            <h2 id="bedframes-title" className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">Our Bed Frames</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">Handcrafted in Bulacan, delivered nationwide. Filipino-made quality at prices that respect your budget.</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {projects.slice(0, 6).map((project) => (
-              <Link key={project.id} href={`/projects`} aria-label={project.title} className="group">
+            {(productsData as ProductItem[]).slice(0, 6).map((product) => (
+              <Link key={product.id} href="/products" aria-label={product.name} className="group">
                 <article className="cursor-pointer">
                   <div className="relative overflow-hidden rounded-2xl">
                     <img
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
+                      src={product.image || "/placeholder.svg"}
+                      alt={product.name}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-64 object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
@@ -243,15 +246,18 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-90 group-hover:opacity-80 transition-opacity" />
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center rounded-full bg-white/80 text-foreground/80 px-3 py-1 text-xs">{project.location}</span>
-                        <span className="inline-flex items-center rounded-full bg-primary/90 text-primary-foreground px-3 py-1 text-xs">Cabinetry</span>
+                        <span className="inline-flex items-center rounded-full bg-primary/90 text-primary-foreground px-3 py-1 text-xs font-medium">
+                          {product.category}
+                        </span>
                       </div>
-                      <span className="inline-flex items-center rounded-md bg-white/80 text-foreground px-2 py-1 text-xs">View<span className="ml-1">→</span></span>
+                      <span className="inline-flex items-center rounded-md bg-white/80 text-foreground px-2 py-1 text-xs">
+                        View<span className="ml-1">→</span>
+                      </span>
                     </div>
                   </div>
                   <div className="mt-4">
-                    <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
-                    <p className="text-muted-foreground text-sm">{project.location}</p>
+                    <h3 className="text-lg font-semibold text-foreground">{product.name}</h3>
+                    <p className="text-muted-foreground text-sm">Handcrafted bed frame</p>
                   </div>
                 </article>
               </Link>
@@ -259,9 +265,9 @@ export default function HomePage() {
           </div>
 
           <div className="text-center">
-            <Link href="/projects">
+            <Link href="/products">
               <Button size="lg" className="transition-transform duration-200 ease-out hover:-translate-y-[1px]">
-                Browse Projects
+                View All Products
                 <span className="ml-2">→</span>
               </Button>
             </Link>

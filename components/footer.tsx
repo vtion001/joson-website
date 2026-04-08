@@ -30,7 +30,7 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <motion.div whileHover={{ scale: 1.03 }} className="flex items-center">
               <img
-                src="https://josonfurniture.com/cdn/shop/files/Untitled_design_-_2025-12-04T231503.522.png"
+                src="https://res.cloudinary.com/dbviya1rj/image/upload/q_auto/f_auto/v1773613973/q1ckzznmcv9chhnkjyzy.png"
                 alt="Joson Furniture logo"
                 loading="lazy"
                 decoding="async"

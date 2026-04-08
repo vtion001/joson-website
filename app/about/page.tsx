@@ -254,7 +254,7 @@ export default function AboutPage() {
 
       <section className="py-20 bg-card">
         <div className="container mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold text-foreground mb-4">Ready to work with ModuLux?</h3>
+          <h3 className="text-3xl font-bold text-foreground mb-4">Ready to work with Joson Furniture?</h3>
           <p className="text-muted-foreground mb-8">Discuss materials, timelines, and budgets with our team.</p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link href="/contact"><Button size="lg">Get Free Quote<span className="ml-2">→</span></Button></Link>

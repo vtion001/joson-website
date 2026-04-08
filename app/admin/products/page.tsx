@@ -19,45 +19,57 @@ const defaults = [
 
 async function seedDefaults() {
   "use server"
-  const raw = await readFile(filePath, "utf-8").catch(() => "[]")
-  let list = [] as any[]
-  try { list = JSON.parse(raw || "[]") } catch {}
-  const byId = new Map(list.map((p) => [p.id, p]))
-  const merged = [...list]
-  for (const d of defaults) {
-    if (!byId.has(d.id)) merged.push({ ...d })
+  try {
+    const raw = await readFile(filePath, "utf-8").catch(() => "[]")
+    let list = [] as any[]
+    try { list = JSON.parse(raw || "[]") } catch {}
+    const byId = new Map(list.map((p) => [p.id, p]))
+    const merged = [...list]
+    for (const d of defaults) {
+      if (!byId.has(d.id)) merged.push({ ...d })
+    }
+    await writeFile(filePath, JSON.stringify(merged, null, 2))
+    revalidatePath("/admin/products")
+    revalidatePath("/products")
+  } catch (e) {
+    console.error("seedDefaults error:", e)
   }
-  await writeFile(filePath, JSON.stringify(merged, null, 2))
-  revalidatePath("/admin/products")
-  revalidatePath("/products")
 }
 
 async function addProduct(formData: FormData) {
   "use server"
-  const id = String(formData.get("id") || "").trim()
-  const name = String(formData.get("name") || "").trim()
-  const category = String(formData.get("category") || "").trim()
-  const image = String(formData.get("image") || "").trim()
-  if (!id || !name) return
-  const raw = await readFile(filePath, "utf-8")
-  const list = JSON.parse(raw)
-  if (list.find((p: any) => p.id === id)) return
-  list.unshift({ id, name, category, image })
-  await writeFile(filePath, JSON.stringify(list, null, 2))
-  revalidatePath("/admin/products")
-  revalidatePath("/products")
+  try {
+    const id = String(formData.get("id") || "").trim()
+    const name = String(formData.get("name") || "").trim()
+    const category = String(formData.get("category") || "").trim()
+    const image = String(formData.get("image") || "").trim()
+    if (!id || !name) return
+    const raw = await readFile(filePath, "utf-8")
+    const list = JSON.parse(raw)
+    if (list.find((p: any) => p.id === id)) return
+    list.unshift({ id, name, category, image })
+    await writeFile(filePath, JSON.stringify(list, null, 2))
+    revalidatePath("/admin/products")
+    revalidatePath("/products")
+  } catch (e) {
+    console.error("addProduct error:", e)
+  }
 }
 
 async function deleteProduct(formData: FormData) {
   "use server"
-  const id = String(formData.get("id") || "").trim()
-  if (!id) return
-  const raw = await readFile(filePath, "utf-8")
-  const list = JSON.parse(raw)
-  const next = list.filter((p: any) => p.id !== id)
-  await writeFile(filePath, JSON.stringify(next, null, 2))
-  revalidatePath("/admin/products")
-  revalidatePath("/products")
+  try {
+    const id = String(formData.get("id") || "").trim()
+    if (!id) return
+    const raw = await readFile(filePath, "utf-8")
+    const list = JSON.parse(raw)
+    const next = list.filter((p: any) => p.id !== id)
+    await writeFile(filePath, JSON.stringify(next, null, 2))
+    revalidatePath("/admin/products")
+    revalidatePath("/products")
+  } catch (e) {
+    console.error("deleteProduct error:", e)
+  }
 }
 
 export default async function AdminProductsPage() {

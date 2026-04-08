@@ -3,18 +3,22 @@
 import type React from "react"
 
 import { useState } from "react"
+import { toast } from "sonner"
 
 export function LiveChat() {
   const [isOpen, setIsOpen] = useState(false)
   const [message, setMessage] = useState("")
+  const [isSending, setIsSending] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (message.trim()) {
+    if (message.trim() || isSending) {
+      setIsSending(true)
       // In a real implementation, this would send the message to a chat service
-      alert(`Message sent: ${message}`)
+      toast.success(`Message sent: ${message}`)
       setMessage("")
       setIsOpen(false)
+      setIsSending(false)
     }
   }
 
@@ -35,8 +39,8 @@ export function LiveChat() {
 
           <div className="p-4 h-64 overflow-y-auto bg-gray-50">
             <div className="bg-white rounded-lg p-3 shadow-sm mb-3 border border-gray-100">
-              <p className="text-sm font-medium text-gray-700 mb-1">ModuLux Support</p>
-              <p className="text-sm text-gray-600">Hello! How can we help you with your modular cabinet needs today?</p>
+              <p className="text-sm font-medium text-gray-700 mb-1">Joson Furniture Support</p>
+              <p className="text-sm text-gray-600">Hello! How can we help you with your furniture needs today?</p>
             </div>
           </div>
 
@@ -51,9 +55,10 @@ export function LiveChat() {
               />
               <button
                 type="submit"
-                className="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 active:scale-95"
+                disabled={isSending}
+                className="bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send
+                {isSending ? "Sending..." : "Send"}
               </button>
             </div>
           </form>

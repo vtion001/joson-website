@@ -4,7 +4,20 @@ import { createPortal } from "react-dom"
 import { Mail, Phone, Clock, Paperclip, Tag as TagIcon, Save as SaveIcon, Reply as ReplyIcon, X, Send, CheckCircle, Hourglass, Circle, Wand2, Bot, UserPlus } from "lucide-react"
 import { toast } from "sonner"
 
-export function InquiryItem({ inquiry }: { inquiry: any }): React.ReactElement {
+interface Inquiry {
+  id: string
+  name?: string
+  email?: string
+  phone?: string
+  company?: string
+  message?: string
+  date?: string | number
+  status?: string
+  tags?: string[]
+  attachments?: Array<{ name?: string; url?: string }>
+}
+
+export function InquiryItem({ inquiry }: { inquiry: Inquiry }): React.ReactElement {
   const [status, setStatus] = useState(inquiry.status || "new")
   const [tags, setTags] = useState<string>((Array.isArray(inquiry.tags) ? inquiry.tags : []).join(", "))
   const [openReply, setOpenReply] = useState(false)
@@ -15,6 +28,7 @@ export function InquiryItem({ inquiry }: { inquiry: any }): React.ReactElement {
   const [busy, setBusy] = useState(false)
   const [showPreview, setShowPreview] = useState(true)
   const [crmBusy, setCrmBusy] = useState(false)
+  const [aiBusy, setAiBusy] = useState(false)
   const toRef = useRef<HTMLInputElement | null>(null)
   const modalRef = useRef<HTMLDivElement | null>(null)
 
@@ -50,13 +64,17 @@ export function InquiryItem({ inquiry }: { inquiry: any }): React.ReactElement {
         }
       }
       document.addEventListener("keydown", onKeyDown)
-      return () => { document.body.style.overflow = prev }
+      return () => {
+        document.removeEventListener("keydown", onKeyDown)
+        document.body.style.overflow = prev
+      }
     }
   }, [openReply])
 
   const aiRewrite = async () => {
     const base = (text || "").trim()
-    if (!base) return
+    if (!base || aiBusy) return
+    setAiBusy(true)
     try {
       const res = await fetch("/api/ai/rewrite", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ mode: "rewrite", text: base, keywords: `${inquiry?.name||""} inquiry`, length: "medium" }) })
       if (res.ok) {
@@ -65,11 +83,17 @@ export function InquiryItem({ inquiry }: { inquiry: any }): React.ReactElement {
         setText(v)
         return
       }
-    } catch {}
-    setText(base)
+      setText(base)
+    } catch {
+      setText(base)
+    } finally {
+      setAiBusy(false)
+    }
   }
 
   const aiReply = async () => {
+    if (aiBusy) return
+    setAiBusy(true)
     const name = String(inquiry.name || "").trim() || "there"
     const msg = String(inquiry.message || "").trim()
     const attachments = Array.isArray(inquiry.attachments) ? inquiry.attachments : []
@@ -85,10 +109,13 @@ export function InquiryItem({ inquiry }: { inquiry: any }): React.ReactElement {
           return
         }
       }
-    } catch {}
-    const body = `Hi ${name},\n\nThanks for reaching out${msg ? ` about: \"${msg}\"` : ""}. We’d be happy to provide a detailed quotation. Could you share:\n\n• Approximate dimensions and materials\n• Budget range and preferred timeline\n• Any reference photos or plans\n\nWe can also hop on a quick call to align requirements and next steps.\n\nLooking forward to your reply.\n\nBest regards,\n`
-    setSubject(subject || `Re: ${msg.slice(0, 60)}`)
-    setText(body)
+    } catch {
+      const body = `Hi ${name},\n\nThanks for reaching out${msg ? ` about: "${msg}"` : ""}. We’d be happy to provide a detailed quotation. Could you share:\n\n• Approximate dimensions and materials\n• Budget range and preferred timeline\n• Any reference photos or plans\n\nWe can also hop on a quick call to align requirements and next steps.\n\nLooking forward to your reply.\n\nBest regards,\n`
+      setSubject(subject || `Re: ${msg.slice(0, 60)}`)
+      setText(body)
+    } finally {
+      setAiBusy(false)
+    }
   }
 
   const saveMeta = async () => {
@@ -166,7 +193,7 @@ export function InquiryItem({ inquiry }: { inquiry: any }): React.ReactElement {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="text-xs text-muted-foreground inline-flex items-center gap-1"><Clock className="w-3 h-3" />{new Date(inquiry.date).toLocaleString()}</div>
+          <div className="text-xs text-muted-foreground inline-flex items-center gap-1"><Clock className="w-3 h-3" />{inquiry.date ? new Date(inquiry.date).toLocaleString() : "—"}</div>
           <button type="button" onClick={captureToCRM} disabled={crmBusy} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border text-xs transition-all hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"><UserPlus className="w-3.5 h-3.5" />Capture to CRM</button>
         </div>
       </div>
@@ -175,8 +202,8 @@ export function InquiryItem({ inquiry }: { inquiry: any }): React.ReactElement {
         <div className="mt-4">
           <div className="text-xs text-muted-foreground mb-1 inline-flex items-center gap-1"><Paperclip className="w-3 h-3" />Attachments</div>
           <div className="flex flex-wrap gap-2">
-            {inquiry.attachments.map((a: any, i: number) => (
-              <a key={i} href={a.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border text-xs transition-all hover:shadow-sm">
+            {inquiry.attachments.map((a, i: number) => (
+              <a key={i} href={a.url} target="_blank" rel="noopener noreferrer" aria-label={`Open attachment ${a.name}`} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border text-xs transition-all hover:shadow-sm">
                 <span className="truncate max-w-[180px]">{a.name}</span>
               </a>
             ))}
@@ -201,7 +228,7 @@ export function InquiryItem({ inquiry }: { inquiry: any }): React.ReactElement {
         </div>
       </div>
       <div className="mt-3 flex gap-2">
-        <button type="button" onClick={saveMeta} disabled={busy} className="inline-flex items-center gap-2 px-3 py-2 rounded-md border transition-all hover:shadow-md"><SaveIcon className="w-4 h-4" />Save</button>
+        <button type="button" onClick={saveMeta} disabled={busy} className="inline-flex items-center gap-2 px-3 py-2 rounded-md border transition-all hover:shadow-md disabled:opacity-70">{busy ? <><span className="animate-spin w-4 h-4 border-2 border-current border-t-transparent rounded-full" />Saving...</> : <><SaveIcon className="w-4 h-4" />Save</>}</button>
         <button type="button" onClick={() => setOpenReply(true)} className="inline-flex items-center gap-2 px-3 py-2 rounded-md border transition-all hover:shadow-md" aria-label="Reply to inquiry"><ReplyIcon className="w-4 h-4" />Reply</button>
       </div>
       {openReply && createPortal(
@@ -214,8 +241,8 @@ export function InquiryItem({ inquiry }: { inquiry: any }): React.ReactElement {
                 <div className="text-xs md:text-sm opacity-90">To {inquiry.name} • {inquiry.email}</div>
               </div>
               <div className="flex items-center gap-2">
-                <button type="button" onClick={() => setShowPreview(v => !v)} className="px-3 py-2 rounded-md border border-white/20 text-xs md:text-sm hover:bg-white/10 transition-all">{showPreview ? "Hide Preview" : "Show Preview"}</button>
-                <button type="button" onClick={() => setOpenReply(false)} className="px-3 py-2 rounded-md border border-white/20 text-xs md:text-sm"><X className="w-4 h-4" /> Close</button>
+                <button type="button" onClick={() => setShowPreview(v => !v)} aria-label={showPreview ? "Hide preview" : "Show preview"} className="px-3 py-2 rounded-md border border-white/20 text-xs md:text-sm hover:bg-white/10 transition-all">{showPreview ? "Hide Preview" : "Show Preview"}</button>
+                <button type="button" onClick={() => setOpenReply(false)} aria-label="Close reply dialog" className="px-3 py-2 rounded-md border border-white/20 text-xs md:text-sm"><X className="w-4 h-4" /> Close</button>
               </div>
             </div>
             <div className="bg-card border-x border-b border-border rounded-b-2xl p-6">
@@ -249,8 +276,8 @@ export function InquiryItem({ inquiry }: { inquiry: any }): React.ReactElement {
                       <div className="flex items-center justify-between mb-2">
                         <div className="text-sm font-medium text-foreground">Preview</div>
                         <div className="flex items-center gap-2">
-                          <button type="button" onClick={aiRewrite} disabled={!String(text||"").trim()} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border text-xs transition-all hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"><Wand2 className="w-3.5 h-3.5" />AI Rewrite</button>
-                          <button type="button" onClick={aiReply} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border text-xs transition-all hover:shadow-sm"><Bot className="w-3.5 h-3.5" />AI Reply</button>
+                          <button type="button" onClick={aiRewrite} disabled={!String(text||"").trim() || aiBusy} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border text-xs transition-all hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"><Wand2 className="w-3.5 h-3.5" />{aiBusy ? "Working..." : "AI Rewrite"}</button>
+                          <button type="button" onClick={aiReply} disabled={aiBusy} className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border text-xs transition-all hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed"><Bot className="w-3.5 h-3.5" />{aiBusy ? "Working..." : "AI Reply"}</button>
                         </div>
                       </div>
                       <div className="text-xs text-muted-foreground mb-2">Subject</div>

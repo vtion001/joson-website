@@ -11,7 +11,7 @@ export function StatCard({ title, value, icon, href, subtext }: { title: string;
         <div className="text-4xl font-bold mb-2">{value}</div>
         {subtext && <div className="text-xs text-muted-foreground mb-3">{subtext}</div>}
         {href && (
-          <Link href={href} className="inline-flex items-center gap-2 text-primary text-sm">
+          <Link href={href} aria-label={`Manage ${title}`} className="inline-flex items-center gap-2 text-primary text-sm">
             Manage
           </Link>
         )}

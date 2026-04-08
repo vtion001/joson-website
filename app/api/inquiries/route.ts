@@ -1,9 +1,18 @@
 import { NextResponse } from "next/server"
 import path from "path"
 import { mkdir, readFile, writeFile } from "fs/promises"
+import { atomicWrite, safeJsonParse } from "@/lib/file-utils"
+import { z } from "zod"
 
 const dataDir = path.join(process.cwd(), "data")
 const filePath = path.join(dataDir, "inquiries.json")
+
+const inquirySchema = z.object({
+  name: z.string().min(1).max(200),
+  email: z.string().email(),
+  phone: z.string().min(1).max(50),
+  message: z.string().min(1).max(5000),
+})
 
 export async function POST(req: Request) {
   try {
@@ -12,6 +21,12 @@ export async function POST(req: Request) {
     const email = String(form.get("email") || "").trim()
     const phone = String(form.get("phone") || "").trim()
     const message = String(form.get("message") || "").trim()
+
+    const parsed = inquirySchema.safeParse({ name, email, phone, message })
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Invalid input: " + parsed.error.message }, { status: 400 })
+    }
+
     const files = form.getAll("attachments")
     const ts = Date.now()
     const uploadsDir = path.join(process.cwd(), "public", "uploads")
@@ -30,15 +45,18 @@ export async function POST(req: Request) {
       saved.push({ url: `/uploads/${fileName}`, name: f.name, type, size: f.size })
     }
     await mkdir(dataDir, { recursive: true })
-    let list: any[] = []
+    let list: unknown[] = []
     try {
       const raw = await readFile(filePath, "utf-8")
-      list = JSON.parse(raw)
-    } catch {}
+      list = safeJsonParse(raw, [])
+    } catch {
+      list = []
+    }
+    if (!Array.isArray(list)) list = []
     const id = `inq_${ts}_${Math.random().toString(36).slice(2)}`
     const rec = { id, name, email, phone, message, attachments: saved, date: new Date(ts).toISOString(), status: "new", tags: [] }
     list.unshift(rec)
-    await writeFile(filePath, JSON.stringify(list, null, 2))
+    await atomicWrite(filePath, list)
     return NextResponse.json({ ok: true, id })
   } catch (e: any) {
     return NextResponse.json({ ok: false, error: e.message || "Failed to submit" }, { status: 400 })

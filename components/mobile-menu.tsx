@@ -72,7 +72,7 @@ export function MobileMenu() {
         <div className="flex items-center justify-between p-4 border-b border-border/40">
           <img
             src="https://res.cloudinary.com/dbviya1rj/image/upload/v1757004631/nlir90vrzv0qywleruvv.png"
-            alt="ModuLux Logo"
+            alt="Joson Furniture Logo"
             className="h-8 w-auto"
           />
           <button
