@@ -67,7 +67,7 @@ function formatReport(report: TroubleReport): string {
 ${report.testName}
 
 ## What Failed
-${report.whatFailed || '(not specified)'}
+${(report as any).whatFailed || '(not specified)'}
 
 ## Expected
 ${report.expected}

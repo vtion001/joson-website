@@ -55,7 +55,7 @@ describe('lib/file-utils.ts', () => {
 
     it('returns fallback for partial JSON', () => {
       const input = '{"name": "test"'
-      const fallback = []
+      const fallback: object[] = []
       expect(safeJsonParse(input, fallback)).toEqual(fallback)
     })
 

@@ -62,7 +62,7 @@ export default async function AdminClientsPage() {
               <p className="text-xs text-gray-500">View all your client information.</p>
             </div>
             <div className="flex items-center gap-2">
-              <a className="px-3 py-1.5 text-sm border rounded" href="/data/clients.json" download>
+              <a className="px-3 py-1.5 text-sm border rounded" href="/api/clients/export" download>
                 Export
               </a>
               <SaveForm action={addClient} className="flex items-center gap-2">

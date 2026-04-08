@@ -112,7 +112,7 @@ export default async function AdminCRMPage() {
                 <p className="text-sm md:text-base/relaxed opacity-90">Manage leads, contacts, deals and pipelines</p>
               </div>
               <div className="flex items-center gap-2 flex-wrap">
-                <a className="px-3 py-2 rounded-md border border-white/20 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40" href="/data/crm.json" download aria-label="Export CRM data">Export</a>
+                <a className="px-3 py-2 rounded-md border border-white/20 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40" href="/api/crm/export" download aria-label="Export CRM data">Export</a>
               </div>
             </div>
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
