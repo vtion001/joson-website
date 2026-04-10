@@ -11,10 +11,6 @@ Joson Furniture Website — a Next.js 14 + TypeScript e-commerce site for a Fili
 - `AGENTS.md` — Detailed code patterns, component conventions, accessibility guidelines, and import order for implementation work.
 - `coordination.md` — Task coordination, branch strategy, commit conventions, and multi-agent communication protocols.
 
-## Project Name
-
-`package.json` name is `"my-v0-project"` — should be `"joson-website"`.
-
 ## Path Alias
 
 `@/*` maps to the repo root. Use it for all imports:
@@ -32,18 +28,22 @@ npm run start        # Production server
 npm run lint         # ESLint with Next.js core-web-vitals rules (ESLint 9 flat config)
 npm run test:e2e     # Playwright e2e tests
 npm run start:e2e    # Start prod server on port 3010 (no auth, for manual testing)
-npx playwright test tests/<file>.spec.ts           # Run single test file
-npx playwright test --grep "test name"             # Run tests matching name
-npm run test:estimator    # Run estimator cost calculation tests
-npm run test:fabricators  # Run fabricators script tests
+
+# Run single test file or by name
+npx playwright test tests/<file>.spec.ts
+npx playwright test --grep "test name"
+
+# Node.js script tests (not npm test)
+node scripts/test-estimator.js
+node scripts/test-fabricators.js
 ```
 
 ## Architecture
 
 ### App Router Structure
-- `app/` — Next.js 14 App Router pages
 - `app/page.tsx` — Home page
-- `app/products/` — Product catalog pages (wardrobes, kitchen-cabinets, etc.)
+- `app/products/[category]/` — Product catalog pages (wardrobes, kitchen-cabinets, etc.)
+- `app/products/[category]/[id]/` — Product detail pages
 - `app/projects/` — Project showcase with dynamic `[id]` routes
 - `app/calculator/` — Cost estimator page
 - `app/admin/` — Admin CMS dashboard (protected by auth)
@@ -51,17 +51,18 @@ npm run test:fabricators  # Run fabricators script tests
 - `app/blog/` — Blog with dynamic `[slug]` routes
 
 ### Authentication
-- **Edge-compatible**: `middleware.ts` uses Web Crypto API (`crypto.subtle`) for session verification at the edge
-- **Server-side**: `lib/auth.ts` uses Node.js `crypto` for the same operations in Server Components
+- **Edge**: `middleware.ts` uses Web Crypto API (`crypto.subtle`) for session verification at the edge
+- **Server**: `lib/auth.ts` uses Node.js `crypto` for Server Components
 - Session is a HMAC-SHA256 signed cookie (`admin_session`)
 - Auth is skipped when `SKIP_AUTH=1` env var is set (e2e testing)
 - Admin login page at `/admin/login` bypasses auth check (it's the login form itself)
 
 ### Data Storage
 - All data stored as JSON files in `/data/` directory
-- Key files: `products.json`, `projects.json`, `blog.json`, `inquiries.json`, `crm.json`, `conversations.json`, `fabricators.json`, `calculator-pricing.json`
+- Core files: `products.json`, `projects.json`, `blog.json`, `inquiries.json`, `crm.json`, `conversations.json`, `fabricators.json`, `calculator-pricing.json`
+- Additional: `ai-rewrite-history.json`, `email.json`, `social-providers.json`, `social.json`
 - API routes read/write these files directly with `fs/promises`
-- `lib/file-utils.ts` provides `atomicWrite()` with a file-based lock to prevent race conditions during concurrent writes
+- `lib/file-utils.ts` provides `atomicWrite()` with a file-based lock to prevent race conditions
 - No external database — files are the source of truth
 
 ### Image Handling
@@ -80,21 +81,14 @@ npm run test:fabricators  # Run fabricators script tests
 ### Components
 - `components/ui/` — shadcn/ui component library (Button, Card, Dialog, etc.)
 - `components/admin/` — Admin-specific components (side panel, toasts, estimator panel)
-- `components/header.tsx` / `components/footer.tsx` — Site-wide navigation and footer
-- `components/search-modal.tsx` — Global search overlay
-- `components/live-chat.tsx` — Customer chat widget
 - `components/conditional-header.tsx` / `components/conditional-footer.tsx` — Conditional rendering: admin header/footer on `/admin/*` routes, public header/footer on all other routes
 
 ### Utilities
 - `lib/utils.ts` — `cn()` helper (clsx + tailwind-merge)
 - `lib/auth.ts` — Session sign/verify with HMAC-SHA256 (Node.js crypto)
 - `lib/cloudinary.ts` — Cloudinary configuration and signature generation
-- `lib/estimator.js` — Cost estimation logic (pure JS, shared between Next.js browser context and Node.js scripts — do not convert to TypeScript)
+- `lib/estimator.js` — Cost estimation logic (pure JS, shared between browser and Node.js scripts — **do not convert to TypeScript**)
 - `lib/file-utils.ts` — Atomic file writes with locking, safe JSON parsing
-
-### Storybook
-- `.storybook/` — Storybook configuration (devDependencies installed, no npm script configured)
-- `stories/` — Story stories
 
 ## Environment Variables
 

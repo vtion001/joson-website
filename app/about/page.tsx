@@ -70,7 +70,7 @@ export default function AboutPage() {
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative">
-              <img src="/IMG20230512120029.jpg" alt="Joson Furniture workshop in Bulacan" loading="lazy" decoding="async" className="w-full h-96 object-cover rounded-2xl shadow-lg" />
+              <img src="https://res.cloudinary.com/dbviya1rj/image/upload/v1775691664/b4dprppedgffyckfwtcq.png" alt="Joson Furniture workshop in Bulacan" loading="lazy" decoding="async" className="w-full h-96 object-cover rounded-2xl shadow-lg" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/10 to-transparent rounded-2xl" />
               <div className="absolute bottom-4 left-4 inline-flex items-center rounded-full bg-white/80 px-3 py-1 text-xs text-foreground">Bulacan, Philippines</div>
             </motion.div>
