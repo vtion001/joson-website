@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Award, Users, Globe, Calendar, Quote, Star } from "lucide-react"
+import { Award, Users, Globe, Calendar } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
@@ -192,73 +192,132 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-labelledby="about-testimonials" role="region" className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 id="about-testimonials" className="text-4xl font-bold text-foreground mb-6 text-balance">What Our Customers Say</h2>
-            <p className="text-xl text-muted-foreground text-pretty">Trusted by Filipino families across the Philippines.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { q: "Buti na lang may ganito, quality na, abot-kaya pa. My AFFORDABED bed frame is super sturdy!", n: "Maria Santos", title: "Homeowner" }, 
-              { q: "Perfect for our rental property. Durable, affordable, and tenants love them!", n: "Juan Cruz", title: "Property Owner" }, 
-              { q: "The premium bunk bed looks amazing. Joson delivers on their Filipino craft promise.", n: "Ana Reyes", title: "Interior Designer" }
-            ].map((t, i) => (
-              <motion.blockquote key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative bg-card p-8 rounded-xl border border-border/60">
-                <Quote className="absolute -top-3 left-6 w-6 h-6 text-primary" />
-                <p className="text-muted-foreground mb-6 leading-relaxed">"{t.q}"</p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="font-medium text-foreground">{t.n}</span>
-                    <span className="text-sm text-muted-foreground ml-2">- {t.title}</span>
+      {/* Final CTA — merged "Get a Quote" + "View Projects" */}
+      <section aria-labelledby="cta-title" role="region" className="relative py-32 overflow-hidden bg-black">
+        {/* Noise grain overlay */}
+        <div className="pointer-events-none absolute inset-0 opacity-[0.04]" aria-hidden="true">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <filter id="noise-cta">
+              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+              <feColorMatrix type="saturate" values="0" />
+            </filter>
+            <rect width="100%" height="100%" filter="url(#noise-cta)" />
+          </svg>
+        </div>
+
+        {/* Geometric decorations */}
+        <div className="absolute top-0 right-0 w-96 h-96 pointer-events-none" aria-hidden="true">
+          <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full opacity-[0.05]">
+            <circle cx="200" cy="200" r="180" stroke="white" strokeWidth="1" />
+            <circle cx="200" cy="200" r="140" stroke="white" strokeWidth="0.5" />
+            <circle cx="200" cy="200" r="100" stroke="white" strokeWidth="0.5" />
+            <line x1="0" y1="200" x2="400" y2="200" stroke="white" strokeWidth="0.3" />
+            <line x1="200" y1="0" x2="200" y2="400" stroke="white" strokeWidth="0.3" />
+          </svg>
+        </div>
+        <div className="absolute bottom-0 left-0 w-72 h-72 pointer-events-none" aria-hidden="true">
+          <svg viewBox="0 0 288 288" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full opacity-[0.04]">
+            <polygon points="144,0 288,288 0,288" stroke="white" strokeWidth="1" fill="none" />
+            <polygon points="144,50 238,238 50,238" stroke="white" strokeWidth="0.5" fill="none" />
+          </svg>
+        </div>
+
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+            {/* Left — Get a Quote */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="inline-flex items-center gap-2 mb-6">
+                <span className="w-8 h-px bg-white/40" />
+                <span className="text-xs font-semibold tracking-[0.3em] uppercase text-white/50">Get Started</span>
+              </div>
+              <h2 id="cta-title" className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+                Ready to upgrade your home?
+              </h2>
+              <p className="text-lg text-white/40 leading-relaxed mb-10 max-w-lg">
+                Tell us about your space, your budget, and your vision. We will craft a furniture plan that fits — no pressure, no compromises.
+              </p>
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="bg-white text-black hover:bg-white/90 border-0 transition-all duration-200 ease-out hover:-translate-y-[1px] hover:shadow-xl hover:shadow-white/10 px-10 py-7 text-base font-semibold rounded-xl"
+                >
+                  Get a Free Quote
+                  <span className="ml-2">→</span>
+                </Button>
+              </Link>
+              <p className="mt-4 text-sm text-white/25">Usually responds within 2 hours</p>
+            </motion.div>
+
+            {/* Divider */}
+            <div className="hidden lg:flex justify-center" aria-hidden="true">
+              <div className="w-px h-48 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+            </div>
+
+            {/* Right — View Projects */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+              className="relative"
+            >
+              {/* Glass card */}
+              <div className="relative rounded-2xl border border-white/10 bg-white/5 p-10 backdrop-blur-sm overflow-hidden group hover:border-white/20 transition-all duration-500">
+                {/* Inner glow on hover */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-white/[0.04] to-transparent" />
+
+                {/* Corner accent */}
+                <div className="absolute -top-8 -right-8 w-24 h-24 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity">
+                  <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="96" cy="0" r="96" stroke="white" strokeWidth="0.5" />
+                  </svg>
+                </div>
+
+                <div className="relative z-10">
+                  <div className="inline-flex items-center gap-2 mb-6">
+                    <span className="w-8 h-px bg-white/40" />
+                    <span className="text-xs font-semibold tracking-[0.3em] uppercase text-white/50">Portfolio</span>
                   </div>
-                  <div className="flex items-center gap-1 text-primary"><Star /><Star /><Star /><Star /><Star className="opacity-50" /></div>
+                  <h3 className="text-3xl font-bold text-white mb-4 leading-snug">
+                    See what we have built
+                  </h3>
+                  <p className="text-base text-white/40 leading-relaxed mb-8">
+                    Browse completed projects across Metro Manila, Bulacan, Cavite, and beyond — from single bed frames to full-home installations.
+                  </p>
+
+                  <div className="space-y-3 mb-8">
+                    {[
+                      { label: "Residential Homes", count: "200+" },
+                      { label: "Commercial Spaces", count: "50+" },
+                      { label: "Interior Design Partners", count: "30+" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center justify-between border-b border-white/5 pb-3">
+                        <span className="text-sm text-white/40">{item.label}</span>
+                        <span className="text-sm font-semibold text-white/70">{item.count}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Link href="/projects">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="w-full border-white/20 text-white/70 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all duration-200 ease-out hover:-translate-y-[1px] px-8 py-6 text-base rounded-xl"
+                    >
+                      View Our Projects
+                      <span className="ml-2">→</span>
+                    </Button>
+                  </Link>
                 </div>
-              </motion.blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
+              </div>
+            </motion.div>
 
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold text-foreground mb-4">Ready to upgrade your home?</h3>
-          <p className="text-muted-foreground mb-8">Get a free quote for your next bed frame today.</p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/contact"><Button size="lg">Get Free Quote<span className="ml-2">→</span></Button></Link>
-            <Link href="/products"><Button size="lg" variant="outline">View Products<span className="ml-2">→</span></Button></Link>
-          </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="about-testimonials" role="region" className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 id="about-testimonials" className="text-4xl font-bold text-foreground mb-6 text-balance">Testimonials</h2>
-            <p className="text-xl text-muted-foreground text-pretty">Trusted by homeowners and professionals across the Philippines.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[{ q: "Attention to detail and timely delivery.", n: "Project Manager" }, { q: "Design and build quality are exceptional.", n: "Home Owner" }, { q: "Reliable partner for complex cabinetry projects.", n: "Architect" }].map((t, i) => (
-              <motion.blockquote key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative bg-card p-8 rounded-xl border border-border/60">
-                <Quote className="absolute -top-3 left-6 w-6 h-6 text-primary" />
-                <p className="text-muted-foreground mb-6 leading-relaxed">“{t.q}”</p>
-                <div className="flex items-center justify-between">
-                  <span className="font-medium text-foreground">{t.n}</span>
-                  <div className="flex items-center gap-1 text-primary"><Star /><Star /><Star /><Star /><Star className="opacity-50" /></div>
-                </div>
-              </motion.blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold text-foreground mb-4">Ready to work with Joson Furniture?</h3>
-          <p className="text-muted-foreground mb-8">Discuss materials, timelines, and budgets with our team.</p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/contact"><Button size="lg">Get Free Quote<span className="ml-2">→</span></Button></Link>
-            <Link href="/projects"><Button size="lg" variant="outline">View Projects<span className="ml-2">→</span></Button></Link>
           </div>
         </div>
       </section>
