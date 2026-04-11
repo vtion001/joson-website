@@ -91,8 +91,8 @@ export function Header() {
 
                 {item.hasDropdown && (
                   <div
-                    className={`absolute top-full left-0 mt-2 w-56 bg-background/95 backdrop-blur-xl border border-border/50 rounded-lg shadow-lg overflow-hidden transition-all duration-200 ${
-                      isProductsOpen ? "opacity-100 visible" : "opacity-0 invisible"
+                    className={`absolute top-full left-0 mt-2 z-50 w-56 bg-background/95 backdrop-blur-xl border border-border/50 rounded-lg shadow-xl overflow-hidden transition-all duration-200 ${
+                      isProductsOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
                     }`}
                     role="menu"
                     aria-label="Products submenu"
