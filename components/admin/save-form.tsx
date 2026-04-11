@@ -1,6 +1,12 @@
 "use client"
 import * as React from "react"
-import { useFormStatus } from "react-dom"
+
+interface FormStatusContextValue {
+  pending: boolean
+  setPending: (pending: boolean) => void
+}
+
+const FormStatusContext = React.createContext<FormStatusContextValue | null>(null)
 
 interface SaveFormProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,13 +21,28 @@ interface SubmitButtonProps {
 }
 
 export const SaveForm = ({ action, children, className }: SaveFormProps) => {
+  const [pending, setPending] = React.useState(false)
+
+  const handleAction = async (formData: FormData) => {
+    setPending(true)
+    try {
+      await action(formData)
+    } finally {
+      setPending(false)
+    }
+  }
+
   return (
-    <form action={action as (formData: FormData) => void | Promise<void>} className={className}>{children}</form>
+    <FormStatusContext.Provider value={{ pending, setPending }}>
+      <form action={handleAction} className={className}>{children}</form>
+    </FormStatusContext.Provider>
   )
 }
 
 export const SubmitButton = ({ children, className }: SubmitButtonProps) => {
-  const { pending } = useFormStatus()
+  const context = React.useContext(FormStatusContext)
+  const pending = context?.pending ?? false
+
   return (
     <button
       type="submit"
