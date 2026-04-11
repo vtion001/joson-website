@@ -3,42 +3,182 @@
     "id": "affordabed-bed-frame",
     "name": "AFFORDABED - Bed Frame",
     "category": "AFFORDABED",
-    "image": "/Gemini_Generated_Image_etnbuoetnbuoetnb.png"
+    "image": "/Gemini_Generated_Image_etnbuoetnbuoetnb.png",
+    "description": "A sturdy and affordable bed frame built for everyday use. Perfect for starter homes and budget-conscious families. Made with solid Philippine mahogany wood.",
+    "priceRange": "₱3,500 - ₱8,000",
+    "leadTime": "3-5 days",
+    "ready": true,
+    "features": [
+      "Solid mahogany wood construction",
+      "Non-toxic lacquer finish",
+      "Available in Single, Double, Queen sizes",
+      "Easy assembly with hardware included",
+      "3-year structural warranty"
+    ],
+    "specs": {
+      "material": "Philippine Mahogany",
+      "finish": "Non-toxic lacquer (Natural, Walnut, White)",
+      "hardware": "Stainless steel bolts",
+      "thickness": "2-inch solid wood slats",
+      "sizes": "Single, Double, Queen, King",
+      "installation": "DIY or pro assembly",
+      "warranty": "3 years structural"
+    }
   },
   {
     "id": "affordabed-bunk-bed",
     "name": "AFFORDABED - Bunk Bed",
     "category": "AFFORDABED",
-    "image": "/Gemini_Generated_Image_rexyzurexyzurexy.png"
+    "image": "/Gemini_Generated_Image_rexyzurexyzurexy.png",
+    "description": "Space-saving bunk bed design ideal for siblings' rooms, dormitories, and small homes. Built with safety rails and sturdy ladder. Maximizes floor space while providing two sleeping areas.",
+    "priceRange": "₱6,500 - ₱12,000",
+    "leadTime": "4-7 days",
+    "ready": true,
+    "features": [
+      "Safety rails on both sides",
+      "Sturdy attached ladder",
+      "Converts to two separate beds",
+      "Space-saving vertical design",
+      "Anti-slip stairs and rails"
+    ],
+    "specs": {
+      "material": "Philippine Mahogany",
+      "finish": "Non-toxic lacquer (Natural, Walnut)",
+      "hardware": "Stainless steel bolts",
+      "thickness": "2-inch wood slats",
+      "sizes": "Twin x Twin, Twin x Full",
+      "installation": "Professional assembly recommended",
+      "warranty": "3 years structural"
+    }
   },
   {
     "id": "premium-bunk-bed",
     "name": "Premium Maze Bunk Bed",
     "category": "Premium",
-    "image": "/IMG20230713121455.jpg"
+    "image": "/IMG20230713121455.jpg",
+    "description": "Our signature maze-inspired bunk bed with a unique modern design. Features hidden storage compartments and a sleek aesthetic that elevates any bedroom. A statement piece for design-conscious homeowners.",
+    "priceRange": "₱18,000 - ₱35,000",
+    "leadTime": "7-14 days",
+    "ready": true,
+    "features": [
+      "Maze-inspired modern design",
+      "Hidden storage compartments",
+      "LED-ready headboard slots",
+      "Premium soft-close hinges",
+      "5-year comprehensive warranty"
+    ],
+    "specs": {
+      "material": "Premium Kiln-dried Hardwood",
+      "finish": "Catalyzed lacquer (8 colors)",
+      "hardware": "Blum soft-close hinges",
+      "thickness": "3-inch reinforced slats",
+      "sizes": "Twin x Twin, Twin x Full, Custom",
+      "installation": "White-glove delivery & assembly",
+      "warranty": "5 years structural + 2 years finish"
+    }
   },
   {
     "id": "premium-platform-bed",
     "name": "Premium Modern Platform Bed",
     "category": "Premium",
-    "image": "/IMG20231014093159.jpg"
+    "image": "/IMG20231014093159.jpg",
+    "description": "Low-profile platform bed with Japanese-inspired minimalism. Features under-bed clearance for storage drawers and a clean silhouette. The perfect foundation for a modern bedroom sanctuary.",
+    "priceRange": "₱22,000 - ₱45,000",
+    "leadTime": "10-14 days",
+    "ready": true,
+    "features": [
+      "Japanese-inspired low-profile design",
+      "Under-bed storage clearance (8 inches)",
+      "Integrated headboard with padding",
+      "Solid hardwood construction",
+      "5-year warranty included"
+    ],
+    "specs": {
+      "material": "Kiln-dried oak or mahogany",
+      "finish": "Matte catalyzed lacquer",
+      "hardware": "European soft-close runners",
+      "thickness": "4-inch platform rails",
+      "sizes": "Queen, King, California King",
+      "installation": "White-glove delivery & assembly",
+      "warranty": "5 years structural"
+    }
   },
   {
     "id": "premium-leaf-bed",
     "name": "Premium Leaf Bed",
     "category": "Premium",
-    "image": "/IMG20250801141310.jpg"
+    "image": "/IMG20250801141310.jpg",
+    "description": "Artisan-crafted bed frame featuring organic leaf motifs carved into the headboard and footboard. Each piece is unique — hand-finished by our master craftsmen in our Bulacan workshop.",
+    "priceRange": "₱28,000 - ₱55,000",
+    "leadTime": "14-21 days",
+    "ready": true,
+    "features": [
+      "Hand-carved leaf motifs",
+      "Artisan hand-finished",
+      "Solid one-piece construction",
+      "Custom size availability",
+      "Lifetime frame warranty"
+    ],
+    "specs": {
+      "material": "Select grade hardwood",
+      "finish": "Hand-rubbed natural oil",
+      "hardware": "Solid brass decorative accents",
+      "thickness": "Custom 4-6 inch posts",
+      "sizes": "Queen, King (custom sizes available)",
+      "installation": "White-glove delivery & assembly",
+      "warranty": "Lifetime structural warranty"
+    }
   },
   {
     "id": "ordinary-bunk-bed",
     "name": "Ordinary Bunk Bed",
     "category": "Ordinary",
-    "image": "/IMG20240705133104.jpg"
+    "image": "/IMG20240705133104.jpg",
+    "description": "Simple and practical bunk bed for functional spaces. Built for durability over aesthetics — ideal for rentals, staff housing, and practical family needs. No-frills design that gets the job done.",
+    "priceRange": "₱5,000 - ₱9,500",
+    "leadTime": "3-5 days",
+    "ready": true,
+    "features": [
+      "Practical functional design",
+      "Steel-reinforced corners",
+      "Easy-to-clean surfaces",
+      "Stackable configuration",
+      "1-year structural warranty"
+    ],
+    "specs": {
+      "material": "Treated rubberwood",
+      "finish": "Laminated wood grain",
+      "hardware": "Zinc-plated steel bolts",
+      "thickness": "1.5-inch standard slats",
+      "sizes": "Twin x Twin only",
+      "installation": "Customer assembly",
+      "warranty": "1 year structural"
+    }
   },
   {
     "id": "ordinary-platform-bed",
     "name": "Ordinary Classic Platform Bed",
     "category": "Ordinary",
-    "image": "/IMG20240808130056.jpg"
+    "image": "/IMG20240808130056.jpg",
+    "description": "Traditional platform bed design at an accessible price point. Clean lines and solid construction provide a reliable foundation for any mattress. Perfect for starter homes and apartment furniture.",
+    "priceRange": "₱4,500 - ₱8,500",
+    "leadTime": "2-4 days",
+    "ready": true,
+    "features": [
+      "Traditional platform design",
+      "Solid wood slat support",
+      "Minimalist aesthetic",
+      "No box spring required",
+      "1-year warranty"
+    ],
+    "specs": {
+      "material": "Treated rubberwood",
+      "finish": "Laminated (Oak, Walnut, White)",
+      "hardware": "Standard bolts",
+      "thickness": "2-inch support rails",
+      "sizes": "Single, Double, Queen",
+      "installation": "Simple assembly",
+      "warranty": "1 year structural"
+    }
   }
 ]

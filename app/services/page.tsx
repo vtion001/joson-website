@@ -1,183 +1,197 @@
 "use client"
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Ruler, Settings, Sparkles, Wrench, Hammer, PaintBucket, Quote, Star } from "lucide-react"
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
 import Link from "next/link"
+import { motion } from "framer-motion"
+import { Hammer, Paintbrush, Bed, Check, ArrowRight, Truck, Shield, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function ServicesPage() {
-  const servicesRef = useRef(null)
-  const servicesInView = useInView(servicesRef, { once: true, margin: "-100px" })
+  const services = [
+    {
+      id: "modular-cabinets",
+      icon: Hammer,
+      title: "Modular Cabinet Services",
+      description: "Custom-built modular cabinets designed to maximize your space. Perfect for kitchens, wardrobes, bathrooms, and walk-in closets. Our expert craftsmen deliver precision and quality in every piece.",
+      features: [
+        "Free on-site measurement and consultation",
+        "3D design visualization before production",
+        "Premium hardware and soft-close mechanisms",
+        "Professional installation by experienced craftsmen",
+        "1-year warranty on all cabinet work",
+      ],
+      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop",
+    },
+    {
+      id: "powder-coating",
+      icon: Paintbrush,
+      title: "Powder Coating Services",
+      description: "Professional powder coating for metal furniture and fixtures. Provides a durable, corrosion-resistant finish that lasts longer than traditional paint. Perfect for bed frames, metal fixtures, and outdoor furniture.",
+      features: [
+        "Wide range of color options including black, gold, and custom metallic finishes",
+        "Durable scratch-resistant coating",
+        "Eco-friendly and lead-free process",
+        "Quick turnaround time",
+        "Ideal for bed frames, metal fixtures, and outdoor furniture",
+      ],
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
+    },
+    {
+      id: "bed-frame-manufacturing",
+      icon: Bed,
+      title: "Bed Frame Manufacturing",
+      description: "Crafted in our Bulacan workshop, our bed frames combine traditional Filipino craftsmanship with modern design. From affordable AFFORDABED to premium collections — built to last generations.",
+      features: [
+        "Solid hardwood and metal frame options",
+        "Custom sizes: Single, Double, Queen, King",
+        "Bunk beds, loft beds, platform beds, and canopy beds",
+        "Built to last generations",
+        "Proudly made in Batia, Bocaue, Bulacan",
+      ],
+      image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=600&h=400&fit=crop",
+    },
+  ]
+
+  const highlights = [
+    { icon: Truck, title: "Metro Manila & Bulacan Delivery", description: "We deliver and install across key locations" },
+    { icon: Shield, title: "1-Year Warranty", description: "Quality guaranteed on all products" },
+    { icon: Clock, title: "7-14 Days Lead Time", description: "Efficient production without compromising quality" },
+  ]
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero */}
-      <section aria-labelledby="services-title" role="region" className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(800px circle at 10% 10%, rgba(16,185,129,.08) 0%, transparent 60%), radial-gradient(600px circle at 90% 90%, rgba(99,102,241,.08) 0%, transparent 55%)" }} />
+    <main className="min-h-screen bg-background">
+      <section aria-labelledby="services-title" role="region" className="relative py-24 bg-gradient-to-br from-primary/5 to-accent/5 overflow-hidden">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-primary/10 blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-muted/30 blur-2xl" />
         </div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <motion.h1 id="services-title" className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            Precision Cabinetry Services
-          </motion.h1>
-          <motion.p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto text-pretty" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
-            End‑to‑end solutions from design and fabrication to installation. Engineered for quality, timelines, and sustainability.
-          </motion.p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="#services-grid"><Button size="lg" className="transition-transform duration-200 ease-out hover:-translate-y-[1px]">Explore Services<span className="ml-2">→</span></Button></Link>
-            <Link href="/contact"><Button variant="outline" size="lg" className="transition-transform duration-200 ease-out hover:-translate-y-[1px]">Get a Free Quote<span className="ml-2">→</span></Button></Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="services-grid" className="py-20 bg-card relative overflow-hidden" ref={servicesRef}>
-        <div className="absolute inset-0 opacity-5">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 25% 25%, #D4AF37 2px, transparent 2px)`,
-              backgroundSize: "50px 50px",
-            }}
-          />
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.h2 className="text-3xl md:text-4xl font-bold text-center text-primary mb-6" initial={{ opacity: 0, y: 50 }} animate={servicesInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }}>Our Services</motion.h2>
-          <motion.p className="text-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto" initial={{ opacity: 0, y: 30 }} animate={servicesInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.2 }}>
-            Comprehensive solutions covering design, fabrication, assembly, and installation.
-          </motion.p>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                icon: Ruler,
-                title: "CNC Router Cutting & Engraving",
-                description:
-                  "Precision cutting services for all contractors, architects, and interior designers. Our CNC Router Machine processes materials with precision, enabling seamless finishes in engineered materials like melamine marine plywood.",
-              },
-              {
-                icon: PaintBucket,
-                title: "Edge Banding Services",
-                description:
-                  "Professional edge banding service that provides the finishing touch your project needs. Our machine ensures quality finish and seamless adhesion that will last.",
-              },
-              {
-                icon: Settings,
-                title: "Kitchen Design & Manufacturing",
-                description:
-                  "Complete kitchen design, manufacturing, and installation services. From planning and budgeting to design and implementation, we deliver superior results on time and within budget.",
-              },
-              {
-                icon: Hammer,
-                title: "Assembly & Installation",
-                description:
-                  "Professional assembly and installation services for all our modular cabinet solutions. Our experienced team ensures perfect fits and flawless installations.",
-              },
-              {
-                icon: Sparkles,
-                title: "Countertop Fabrication",
-                description:
-                  "Custom countertop fabrication and installation services. We handle material selection, precise measurements, cutting, shaping, and final installation for functional and aesthetic surfaces.",
-              },
-              {
-                icon: Wrench,
-                title: "Bespoke Furniture",
-                description:
-                  "Custom furniture solutions including wardrobes, walk-in closets, bathroom lavatories, toilet partitions, and other bespoke furniture tailored to your specific needs.",
-              },
-            ].map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 50 }}
-                animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-              >
-                <Card className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 border-border/60 bg-background/50 backdrop-blur-sm relative overflow-hidden h-full">
-                  <motion.div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <CardContent className="p-8 text-center relative z-10 h-full flex flex-col">
-                    <motion.div
-                      className="w-16 h-16 mx-auto mb-6 bg-accent/10 rounded-full flex items-center justify-center group-hover:bg-accent/20 transition-all duration-300"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                    >
-                      <service.icon className="w-8 h-8 text-accent" />
-                    </motion.div>
-                    <h3 className="text-xl font-semibold text-primary mb-4">{service.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed flex-grow">{service.description}</p>
-                    <div className="mt-6">
-                      <Link href="/projects"><Button variant="ghost" className="p-0 h-auto">View case studies<span className="ml-2">→</span></Button></Link>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
+        <div className="container mx-auto px-4">
           <motion.div
-            className="mt-20 text-center"
             initial={{ opacity: 0, y: 30 }}
-            animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
           >
-            <h2 className="text-3xl font-bold text-primary mb-8">We Specialize In</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {[
-                "Kitchen Cabinets",
-                "Wardrobes",
-                "Walk-in Closets",
-                "Bathroom Lavatories",
-                "Toilet Partitions",
-                "Bespoke Furniture",
-              ].map((specialty, index) => (
-                <motion.div
-                  key={specialty}
-                  className="bg-background/80 backdrop-blur-sm border border-accent/20 rounded-lg p-4 hover:border-accent/50 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <span className="text-accent font-medium">{specialty}</span>
-                </motion.div>
-              ))}
-            </div>
+            <h1 id="services-title" className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance">
+              Our Services
+            </h1>
+            <p className="text-xl text-muted-foreground text-pretty mb-8">
+              From custom modular cabinets to powder coating and bed frame manufacturing — we bring your vision to life with quality Filipino craftsmanship.
+            </p>
+            <div className="mx-auto h-px w-24 bg-gradient-to-r from-primary to-accent opacity-80" />
           </motion.div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section aria-labelledby="testimonials-title" role="region" className="py-20 bg-background">
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 id="testimonials-title" className="text-3xl md:text-4xl font-bold text-foreground mb-3">What clients say</h2>
-            <p className="text-muted-foreground">Results backed by craftsmanship and service.</p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[{ q: "The installation was flawless and on time.", n: "Project Manager" }, { q: "Design to delivery exceeded expectations.", n: "Home Owner" }, { q: "Precision fabrication made the difference.", n: "Architect" }].map((t, i) => (
-              <motion.blockquote key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative bg-card p-8 rounded-xl border border-border/60">
-                <Quote className="absolute -top-3 left-6 w-6 h-6 text-primary" />
-                <p className="text-muted-foreground mb-6 leading-relaxed">“{t.q}”</p>
-                <div className="flex items-center justify-between">
-                  <span className="font-medium text-foreground">{t.n}</span>
-                  <div className="flex items-center gap-1 text-primary"><Star /><Star /><Star /><Star /><Star className="opacity-50" /></div>
+          <div className="grid md:grid-cols-3 gap-8 mb-20">
+            {highlights.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex items-center gap-4 p-6 bg-card border border-border/50 rounded-xl"
+              >
+                <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                  <item.icon className="w-6 h-6 text-primary" />
                 </div>
-              </motion.blockquote>
+                <div>
+                  <h3 className="font-semibold text-foreground">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="space-y-24">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.id}
+                id={service.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+              >
+                <div className={index % 2 === 1 ? "lg:order-2" : ""}>
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-xl mb-6">
+                    <service.icon className="w-8 h-8" />
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+                    {service.title}
+                  </h2>
+                  <p className="text-lg text-muted-foreground mb-6 text-pretty">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-3 mb-8">
+                    {service.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
+                          <Check className="w-3 h-3 text-primary" />
+                        </div>
+                        <span className="text-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href="/contact">
+                    <Button className="group">
+                      Get a Quote
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </div>
+                <div className={`relative ${index % 2 === 1 ? "lg:order-1" : ""}`}>
+                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-xl opacity-50" />
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="relative w-full h-80 object-cover rounded-2xl shadow-2xl"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-2xl" />
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-20 bg-card">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-3xl font-bold text-foreground mb-4">Ready to start your cabinetry project?</h3>
-          <p className="text-muted-foreground mb-8">Talk to our team about timelines, materials, and budgets.</p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/contact"><Button size="lg">Get Free Quote<span className="ml-2">→</span></Button></Link>
-            <Link href="/projects"><Button size="lg" variant="outline">View Projects<span className="ml-2">→</span></Button></Link>
-          </div>
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <h2 className="text-4xl font-bold text-foreground mb-6 text-balance">
+              Ready to start your project?
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8 text-pretty">
+              Contact us today for a free consultation. Our team is ready to help you bring your ideas to life.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" className="transition-transform duration-200 ease-out hover:-translate-y-[1px]">
+                  Get Free Consultation
+                  <span className="ml-2">→</span>
+                </Button>
+              </Link>
+              <Link href="/products">
+                <Button size="lg" variant="outline" className="transition-transform duration-200 ease-out hover:-translate-y-[1px]">
+                  View Products
+                  <span className="ml-2">→</span>
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
-    </div>
+    </main>
   )
 }

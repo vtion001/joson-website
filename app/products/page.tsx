@@ -9,7 +9,8 @@ const filePath = path.join(process.cwd(), "data", "products.json")
 
 export default async function ProductsPage() {
   const raw = await readFile(filePath, "utf-8").catch(() => "[]")
-  const items = JSON.parse(raw) as Array<{ id: string; name: string; category?: string; image?: string }>
+  type Product = { id: string; name: string; category?: string; image?: string; description?: string; priceRange?: string; leadTime?: string; ready?: boolean; features?: string[]; specs?: Record<string, string> }
+  const items = JSON.parse(raw) as Product[]
   const fallback = [
     { id: "affordabed-bed-frame", name: "AFFORDABED Bed Frame", category: "AFFORDABED", image: "/Gemini_Generated_Image_etnbuoetnbuoetnb.png" },
     { id: "affordabed-bunk-bed", name: "AFFORDABED Bunk Bed", category: "AFFORDABED", image: "/Gemini_Generated_Image_rexyzurexyzurexy.png" },

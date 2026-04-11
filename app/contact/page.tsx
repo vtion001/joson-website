@@ -5,19 +5,16 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { MapPin, Info, Phone, Mail, Clock, Check, ArrowRight } from "lucide-react"
-import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { useState } from "react"
 
 export default function ContactPage() {
-  const contactRef = useRef(null)
-  const contactInView = useInView(contactRef, { once: true, margin: "-100px" })
   const [pending, setPending] = useState(false)
   const [status, setStatus] = useState<{ ok: boolean; message: string } | null>(null)
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Contact Section */}
-      <section aria-labelledby="contact-title" role="region" className="relative py-20 bg-background overflow-hidden" ref={contactRef}>
+      <section aria-labelledby="contact-title" role="region" className="relative py-20 bg-background overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-24 -left-24 w-80 h-80 rounded-full bg-primary/10 blur-3xl" />
           <div className="absolute -bottom-24 -right-24 w-72 h-72 rounded-full bg-muted/30 blur-2xl" />
@@ -27,7 +24,8 @@ export default function ContactPage() {
             id="contact-title"
             className="text-4xl md:text-5xl font-bold text-center text-foreground mb-4"
             initial={{ opacity: 0, y: 50 }}
-            animate={contactInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             Contact Us
@@ -36,7 +34,8 @@ export default function ContactPage() {
           <motion.p
             className="text-lg md:text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
-            animate={contactInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Get In Touch
@@ -45,7 +44,8 @@ export default function ContactPage() {
           <motion.div
             className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-8"
             initial={{ opacity: 0, y: 50 }}
-            animate={contactInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Card className="border-border/50 shadow-2xl bg-card/60 backdrop-blur-sm">
@@ -235,7 +235,8 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="grid grid-cols-1 lg:grid-cols-3 gap-6"
           >

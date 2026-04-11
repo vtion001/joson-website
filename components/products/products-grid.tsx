@@ -1,13 +1,26 @@
 "use client"
-import { useMemo, useState } from "react"
+import { useMemo, useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { motion } from "framer-motion"
 import ProductCard from "./product-card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
-type Product = { id: string; name: string; category?: string; image?: string }
+type Product = {
+  id: string
+  name: string
+  category?: string
+  image?: string
+  description?: string
+  priceRange?: string
+  leadTime?: string
+  ready?: boolean
+  features?: string[]
+  specs?: Record<string, string>
+}
 
 export default function ProductsGrid({ products }: { products: Product[] }) {
+  const searchParams = useSearchParams()
   const categories = useMemo(() => {
     const set = new Set<string>()
     products.forEach((p) => p.category && set.add(p.category))
@@ -16,6 +29,13 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
 
   const [query, setQuery] = useState("")
   const [active, setActive] = useState<string | null>(null)
+
+  useEffect(() => {
+    const category = searchParams.get("category")
+    if (category) {
+      setActive(decodeURIComponent(category))
+    }
+  }, [searchParams])
 
   const filtered = useMemo(() => {
     return products.filter((p) => {

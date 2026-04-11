@@ -222,26 +222,26 @@ export default function AboutPage() {
           </svg>
         </div>
 
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-            {/* Left — Get a Quote */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="inline-flex items-center gap-2 mb-6">
-                <span className="w-8 h-px bg-white/40" />
-                <span className="text-xs font-semibold tracking-[0.3em] uppercase text-white/50">Get Started</span>
-              </div>
-              <h2 id="cta-title" className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
-                Ready to upgrade your home?
-              </h2>
-              <p className="text-lg text-white/40 leading-relaxed mb-10 max-w-lg">
-                Tell us about your space, your budget, and your vision. We will craft a furniture plan that fits — no pressure, no compromises.
-              </p>
+        <div className="container mx-auto px-4 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center gap-2 mb-6">
+              <span className="w-8 h-px bg-white/40" />
+              <span className="text-xs font-semibold tracking-[0.3em] uppercase text-white/50">Get Started</span>
+              <span className="w-8 h-px bg-white/40" />
+            </div>
+            <h2 id="cta-title" className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight tracking-tight">
+              Ready to upgrade your home?
+            </h2>
+            <p className="text-lg text-white/40 leading-relaxed mb-10 max-w-2xl mx-auto">
+              Tell us about your space, your budget, and your vision. We will craft a furniture plan that fits — no pressure, no compromises.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link href="/contact">
                 <Button
                   size="lg"
@@ -251,74 +251,19 @@ export default function AboutPage() {
                   <span className="ml-2">→</span>
                 </Button>
               </Link>
-              <p className="mt-4 text-sm text-white/25">Usually responds within 2 hours</p>
-            </motion.div>
-
-            {/* Divider */}
-            <div className="hidden lg:flex justify-center" aria-hidden="true">
-              <div className="w-px h-48 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+              <Link href="/projects">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white/20 text-white/70 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all duration-200 ease-out hover:-translate-y-[1px] px-10 py-7 text-base rounded-xl"
+                >
+                  View Our Work
+                  <span className="ml-2">→</span>
+                </Button>
+              </Link>
             </div>
-
-            {/* Right — View Projects */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-              className="relative"
-            >
-              {/* Glass card */}
-              <div className="relative rounded-2xl border border-white/10 bg-white/5 p-10 backdrop-blur-sm overflow-hidden group hover:border-white/20 transition-all duration-500">
-                {/* Inner glow on hover */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-white/[0.04] to-transparent" />
-
-                {/* Corner accent */}
-                <div className="absolute -top-8 -right-8 w-24 h-24 pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity">
-                  <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="96" cy="0" r="96" stroke="white" strokeWidth="0.5" />
-                  </svg>
-                </div>
-
-                <div className="relative z-10">
-                  <div className="inline-flex items-center gap-2 mb-6">
-                    <span className="w-8 h-px bg-white/40" />
-                    <span className="text-xs font-semibold tracking-[0.3em] uppercase text-white/50">Portfolio</span>
-                  </div>
-                  <h3 className="text-3xl font-bold text-white mb-4 leading-snug">
-                    See what we have built
-                  </h3>
-                  <p className="text-base text-white/40 leading-relaxed mb-8">
-                    Browse completed projects across Metro Manila, Bulacan, Cavite, and beyond — from single bed frames to full-home installations.
-                  </p>
-
-                  <div className="space-y-3 mb-8">
-                    {[
-                      { label: "Residential Homes", count: "200+" },
-                      { label: "Commercial Spaces", count: "50+" },
-                      { label: "Interior Design Partners", count: "30+" },
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center justify-between border-b border-white/5 pb-3">
-                        <span className="text-sm text-white/40">{item.label}</span>
-                        <span className="text-sm font-semibold text-white/70">{item.count}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <Link href="/projects">
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="w-full border-white/20 text-white/70 hover:text-white hover:border-white/40 hover:bg-white/5 transition-all duration-200 ease-out hover:-translate-y-[1px] px-8 py-6 text-base rounded-xl"
-                    >
-                      View Our Projects
-                      <span className="ml-2">→</span>
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-
-          </div>
+            <p className="mt-6 text-sm text-white/25">Usually responds within 2 hours</p>
+          </motion.div>
         </div>
       </section>
     </main>
