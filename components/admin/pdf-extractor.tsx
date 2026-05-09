@@ -245,7 +245,7 @@ export function PDFExtractor() {
               )}
             </button>
             <span className="text-xs text-muted-foreground">
-              Uses Claude AI vision • Results in 5–15 seconds
+              Uses Google Gemini AI (free) • Results in 5–15 seconds
             </span>
           </div>
         </div>
@@ -258,9 +258,10 @@ export function PDFExtractor() {
           <div>
             <p className="font-medium text-red-800 dark:text-red-200">Extraction failed</p>
             <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
-            {error.includes("ANTHROPIC_API_KEY") && (
+            {error.includes("GEMINI_API_KEY") && (
               <p className="text-xs text-red-500 mt-1">
-                Add <code className="bg-red-100 px-1 rounded">ANTHROPIC_API_KEY</code> to your .env.local file.
+                Add <code className="bg-red-100 px-1 rounded">GEMINI_API_KEY</code> to your .env.local. Get free key at{" "}
+                <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" className="underline">aistudio.google.com/apikey</a>
               </p>
             )}
           </div>
@@ -274,6 +275,9 @@ export function PDFExtractor() {
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-green-600" />
               <span className="font-medium">{result.rooms.length} room{result.rooms.length !== 1 ? "s" : ""} detected</span>
+              <span className="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-1.5 py-0.5 rounded">
+                Gemini AI
+              </span>
             </div>
             <div className={`text-sm font-medium ${confidenceColor(result.confidence)}`}>
               {Math.round(result.confidence * 100)}% confidence
