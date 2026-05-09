@@ -7,7 +7,10 @@ export function AdminSidePanel(): JSX.Element {
   const navigation: NavSection[] = [
     {
       title: "OVERVIEW",
-      items: [{ title: "Dashboard", href: "/admin", iconName: "dashboard" }],
+      items: [
+        { title: "Dashboard", href: "/admin", iconName: "dashboard" },
+        { title: "Builder Dashboard", href: "/admin/dashboard", iconName: "bar-chart-2" },
+      ],
     },
     {
       title: "CONTENT",

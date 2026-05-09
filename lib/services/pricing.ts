@@ -160,8 +160,8 @@ export async function getEstimates(opts?: { status?: string; limit?: number }): 
   const limit = opts?.limit ?? 100
   const rows = await query<Estimate & { estimate_data: string | null }>(
     `SELECT * FROM estimates WHERE ${conditions.join(" AND ")}
-     ORDER BY created_at DESC LIMIT ?`,
-    [...params, limit]
+     ORDER BY created_at DESC LIMIT ${Number(limit)}`,
+    params
   )
   return rows.map((r) => ({
     ...r,
@@ -246,4 +246,24 @@ export async function updateFloorPlanAnalysis(
   vals.push(id)
   await execute(`UPDATE floor_plan_analyses SET ${fields.join(", ")} WHERE id = ?`, vals)
   return getFloorPlanAnalysisById(id) as Promise<FloorPlanAnalysis>
+}
+
+// ─── Dashboard Analytics ──────────────────────────────────────────────────────
+
+export interface MonthlyRevenue {
+  month:   string
+  revenue: number
+}
+
+export async function getRevenueByMonth(limit = 6): Promise<MonthlyRevenue[]> {
+  const rows = await query<{ month: string; revenue: number }>(
+    `SELECT DATE_FORMAT(created_at, '%Y-%m') as month, SUM(total_amount) as revenue
+     FROM estimates
+     WHERE status IN ('approved', 'project') AND total_amount IS NOT NULL
+     GROUP BY month
+     ORDER BY month DESC
+     LIMIT ${Number(limit)}`
+  )
+  // Reverse so oldest month comes first for chart display
+  return rows.reverse()
 }

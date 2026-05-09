@@ -1,0 +1,51 @@
+import { NextResponse } from "next/server"
+import { query } from "@/lib/db"
+
+export async function GET() {
+  try {
+    // Monthly revenue (last 6 months)
+    const revenueRows = await query<{ month: string; revenue: number }>(
+      `SELECT DATE_FORMAT(created_at, '%Y-%m') as month, SUM(total_amount) as revenue
+       FROM estimates
+       WHERE status IN ('approved', 'project') AND total_amount IS NOT NULL
+       GROUP BY month
+       ORDER BY month DESC
+       LIMIT 6`
+    )
+    const revenueByMonth = revenueRows.reverse()
+
+    // Estimates by status for this month
+    const now = new Date()
+    const monthStart = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`
+    const statusRows = await query<{ status: string; count: number; total: number }>(
+      `SELECT status, COUNT(*) as count, COALESCE(SUM(total_amount), 0) as total
+       FROM estimates
+       WHERE DATE(created_at) >= ?
+       GROUP BY status`,
+      [monthStart]
+    )
+
+    // Approved projects this month
+    const approvedRow = await query<{ count: number; total: number }>(
+      `SELECT COUNT(*) as count, COALESCE(SUM(total_amount), 0) as total
+       FROM estimates
+       WHERE status IN ('approved', 'project') AND DATE(created_at) >= ?`,
+      [monthStart]
+    )
+
+    // Active projects (status = project)
+    const activeProjects = await query<{ count: number }>(
+      `SELECT COUNT(*) as count FROM estimates WHERE status = 'project'`
+    )
+
+    return NextResponse.json({
+      revenueByMonth,
+      statusBreakdown: statusRows,
+      approvedThisMonth: approvedRow[0] ?? { count: 0, total: 0 },
+      activeProjects: activeProjects[0]?.count ?? 0,
+    })
+  } catch (err) {
+    console.error("[GET /api/dashboard]", err)
+    return NextResponse.json({ error: "Failed to fetch dashboard data" }, { status: 500 })
+  }
+}
