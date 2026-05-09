@@ -29,9 +29,12 @@ export function AdminSidePanel(): JSX.Element {
       ],
     },
     {
-      title: "TOOLS",
+      title: "BUILDER SYSTEM",
       items: [
+        { title: "Inventory", href: "/admin/inventory", iconName: "package" },
         { title: "Calculator Pricing", href: "/admin/calculator-pricing", iconName: "calculator" },
+        { title: "PDF Extractor", href: "/admin/pdf-extractor", iconName: "file-text" },
+        { title: "Proposals", href: "/admin/proposals", iconName: "file-text" },
         { title: "Fabricators", href: "/admin/fabricators", iconName: "wrench" },
       ],
     },
