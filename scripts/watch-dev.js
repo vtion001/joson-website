@@ -42,16 +42,16 @@ const PAGE_MAP = [
   { patterns: ["components/admin/admin-estimator-panel.tsx"], pages: [{ url: "/admin", label: "Dashboard" }] },
   { patterns: ["components/admin/admin-side-panel.tsx"], pages: [{ url: "/admin", label: "Dashboard" }] },
   // Admin — individual pages
-  { patterns: ["app/admin/inquiries/page.tsx"], pages: [{ url: "/admin/inquiries", label: "Inquiries" }] },
+
   { patterns: ["app/admin/projects/page.tsx"], pages: [{ url: "/admin/projects", label: "Projects" }] },
   { patterns: ["app/admin/products/page.tsx"], pages: [{ url: "/admin/products", label: "Products" }] },
   { patterns: ["app/admin/blog/page.tsx"], pages: [{ url: "/admin/blog", label: "Blog" }] },
   { patterns: ["app/admin/fabricators/page.tsx"], pages: [{ url: "/admin/fabricators", label: "Fabricators" }] },
   { patterns: ["app/admin/crm/page.tsx"], pages: [{ url: "/admin/crm", label: "CRM" }] },
   { patterns: ["app/admin/clients/page.tsx"], pages: [{ url: "/admin/clients", label: "Clients" }] },
-  { patterns: ["app/admin/social/page.tsx"], pages: [{ url: "/admin/social", label: "Social Planner" }] },
+
   { patterns: ["app/admin/email/page.tsx"], pages: [{ url: "/admin/email", label: "Email" }] },
-  { patterns: ["app/admin/conversations/page.tsx"], pages: [{ url: "/admin/conversations", label: "Conversations" }] },
+
   { patterns: ["app/admin/settings/page.tsx"], pages: [{ url: "/admin/settings", label: "Settings" }] },
   { patterns: ["app/admin/help/page.tsx"], pages: [{ url: "/admin/help", label: "Help" }] },
   { patterns: ["app/admin/project-management/page.tsx"], pages: [{ url: "/admin/project-management", label: "Project Mgmt" }] },
