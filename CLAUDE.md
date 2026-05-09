@@ -36,6 +36,9 @@ npx playwright test --grep "test name"
 # Node.js script tests (not npm test)
 node scripts/test-estimator.js
 node scripts/test-fabricators.js
+
+# Dev Watcher — auto-screenshots on code change + Telegram delivery
+node scripts/watch-dev.js   # Start watcher (dev server must be running first)
 ```
 
 ## Architecture
