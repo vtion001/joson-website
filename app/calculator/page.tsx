@@ -122,6 +122,8 @@ export default function CalculatorPage() {
       setEstimate(data.total)
       setSubtotal(data.breakdown?.subtotal ?? null)
       setTax(data.breakdown?.tax ?? null)
+      // Save to localStorage so Proposals page can pick it up
+      localStorage.setItem("joson_last_estimate", JSON.stringify(data))
     } catch {
       toast.error("Connection error. Please try again.")
     }
