@@ -3,7 +3,7 @@ import { readFile } from "fs/promises"
 import Link from "next/link"
 import { AnalyticsDashboard } from "@/components/admin/analytics-dashboard"
 import { StatCard } from "@/components/admin/stat-card"
-import { FolderOpen, FileText, Package, MessageSquare } from "lucide-react"
+import { FolderOpen, FileText, Package, MessageSquare, Plus, ExternalLink } from "lucide-react"
 import { RecentInquiries } from "@/components/admin/recent-inquiries"
 
 const dataDir = path.join(process.cwd(), "data")
@@ -27,13 +27,31 @@ export default async function AdminDashboardPage() {
         <StatCard title="Products" value={products.length} icon={<Package className="w-24 h-24" />} href="/admin/products" />
         <StatCard title="Inquiries" value={inquiries.length} icon={<MessageSquare className="w-24 h-24" />} href="/admin/inquiries" />
       </div>
-      <div className="flex items-center justify-between bg-primary/5 border border-primary/20 rounded-lg p-4">
-        <div className="text-sm text-foreground">Quick access</div>
+      <div className="flex items-center gap-3 flex-wrap">
+        <Link
+          href="/admin/projects"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium transition-all duration-200 hover:bg-primary/90 hover:-translate-y-[1px]"
+        >
+          <Plus className="w-4 h-4" /> New Project
+        </Link>
+        <Link
+          href="/admin/products"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-border text-foreground text-sm font-medium hover:border-primary/40 hover:text-primary transition-all duration-200"
+        >
+          <Package className="w-4 h-4" /> Manage Products
+        </Link>
+        <Link
+          href="/admin/inquiries"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-border text-foreground text-sm font-medium hover:border-primary/40 hover:text-primary transition-all duration-200"
+        >
+          <MessageSquare className="w-4 h-4" /> View Inquiries
+        </Link>
         <Link
           href="/proposal"
-          className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-primary text-primary-foreground text-sm transition-all duration-200 ease-out transform hover:bg-primary/90 hover:-translate-y-[1px]"
+          target="_blank"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-border text-foreground text-sm font-medium hover:border-primary/40 hover:text-primary transition-all duration-200 ml-auto"
         >
-          Business Proposal (public)
+          <ExternalLink className="w-4 h-4" /> Business Proposal
         </Link>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

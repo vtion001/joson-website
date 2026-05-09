@@ -13,6 +13,7 @@ import { LiveChat } from "@/components/live-chat"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Breadcrumb } from "@/components/breadcrumb"
 import { AccessibilitySkipLink } from "@/components/accessibility-skip-link"
+import { FloatingElements } from "@/components/floating-elements"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "sonner"
 import { ErrorBoundary } from "@/components/error-boundary"
@@ -118,8 +119,7 @@ export default function RootLayout({
             </ErrorBoundary>
           </main>
           <ConditionalFooter />
-          <FloatingContact />
-          <LiveChat />
+          <FloatingElements />
           <ScrollToTop />
           <Toaster position="top-right" richColors closeButton />
         </ThemeProvider>

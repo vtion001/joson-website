@@ -66,9 +66,9 @@ export function AnalyticsDashboard({ projects, blog, products, inquiries }: { pr
       <div className="h-[320px]">
         {chart === "line" && (
           <ResponsiveContainer>
-            <LineChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+            <LineChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 30 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="label" tick={{ fontSize: 12 }} />
+              <XAxis dataKey="label" tick={{ fontSize: 11 }} interval={0} angle={-35} textAnchor="end" />
               <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
               <Tooltip />
               <Line type="monotone" dataKey="value" stroke="var(--chart-1)" strokeWidth={2} dot={{ r: 2 }} />
@@ -77,9 +77,9 @@ export function AnalyticsDashboard({ projects, blog, products, inquiries }: { pr
         )}
         {chart === "bar" && (
           <ResponsiveContainer>
-            <BarChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
+            <BarChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 30 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="label" tick={{ fontSize: 12 }} />
+              <XAxis dataKey="label" tick={{ fontSize: 11 }} interval={0} angle={-35} textAnchor="end" />
               <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
               <Tooltip />
               <Bar dataKey="value" fill="var(--chart-2)" />

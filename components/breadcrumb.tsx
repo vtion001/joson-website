@@ -5,8 +5,11 @@ import { usePathname } from "next/navigation"
 
 export function Breadcrumb() {
   const pathname = usePathname()
-  const pathSegments = pathname.split("/").filter(Boolean)
 
+  // Suppress breadcrumb in admin — sidebar handles navigation context
+  if (pathname?.startsWith("/admin")) return null
+
+  const pathSegments = pathname.split("/").filter(Boolean)
   if (pathSegments.length === 0) return null
 
   const breadcrumbItems = [
