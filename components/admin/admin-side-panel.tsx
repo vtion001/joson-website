@@ -13,8 +13,6 @@ export function AdminSidePanel(): JSX.Element {
       title: "CONTENT",
       items: [
         { title: "Projects", href: "/admin/projects", iconName: "folder" },
-        { title: "Blog", href: "/admin/blog", iconName: "file" },
-        { title: "Products", href: "/admin/products", iconName: "package" },
       ],
     },
     {
@@ -45,15 +43,6 @@ export function AdminSidePanel(): JSX.Element {
   const utility = [
     { title: "Settings", href: "/admin/settings", iconName: "settings" },
     { title: "Help", href: "/admin/help", iconName: "help" },
-    {
-      title: "Business Roadmap",
-      href: "/roadmap",
-      iconName: "file",
-      children: [
-        { title: "Business Proposal", href: "/proposal", iconName: "file" },
-        { title: "Pitch Deck", href: "/pitch-deck", iconName: "file" },
-      ],
-    },
   ]
 
   return (
