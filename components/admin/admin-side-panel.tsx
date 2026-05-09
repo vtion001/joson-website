@@ -18,10 +18,7 @@ export function AdminSidePanel(): JSX.Element {
     {
       title: "COMMUNICATION",
       items: [
-        { title: "Inquiries", href: "/admin/inquiries", iconName: "mail" },
         { title: "Email", href: "/admin/email", iconName: "mail" },
-        { title: "Social Planner", href: "/admin/social", iconName: "calendar" },
-        { title: "Conversations", href: "/admin/conversations", iconName: "message" },
       ],
     },
     {
