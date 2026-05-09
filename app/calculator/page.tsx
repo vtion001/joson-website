@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { estimateCabinetCost } from "@/lib/estimator"
 import { LazyImage } from "@/components/lazy-image"
 import { toast } from "sonner"
 
@@ -71,8 +70,7 @@ export default function CalculatorPage() {
   const [estimate, setEstimate] = useState<number | null>(null)
   const [subtotal, setSubtotal] = useState<number | null>(null)
   const [tax, setTax] = useState<number | null>(null)
-  const [baseRates, setBaseRates] = useState<{ base: number; hanging: number; tall: number } | null>(null)
-  const [tiers, setTiers] = useState<{ luxury: number; premium: number; standard: number } | null>(null)
+  const [pricingLoaded] = useState(false)
   const [cabinetCategory, setCabinetCategory] = useState<string>("base")
   const [tier, setTier] = useState<string>("luxury")
 
@@ -85,18 +83,7 @@ export default function CalculatorPage() {
   const [taxRate, setTaxRate] = useState(0.12)
   const [discount, setDiscount] = useState(0)
 
-  useEffect(() => {
-    ;(async () => {
-      try {
-        const res = await fetch("/data/calculator-pricing.json")
-        const cfg = await res.json()
-        if (cfg?.baseRates) setBaseRates(cfg.baseRates)
-        if (cfg?.tierMultipliers) setTiers(cfg.tierMultipliers)
-      } catch {}
-    })()
-  }, [])
-
-  const calculateEstimate = () => {
+  const calculateEstimate = async () => {
     try {
       if (!formData.projectType || !formData.cabinetType) return
       const activeUnits = units
@@ -110,26 +97,33 @@ export default function CalculatorPage() {
           tier: u.tier || tier,
         }))
       const legacyLm = parseFloat(formData.linearMeter)
-      const useLegacy = !activeUnits.length && !isNaN(legacyLm) && legacyLm > 0
-      const res = estimateCabinetCost({
-        projectType: formData.projectType,
-        cabinetType: formData.cabinetType,
-        linearMeter: useLegacy ? legacyLm : undefined,
-        installation: formData.installation,
-        cabinetCategory,
-        tier,
-        baseRates: baseRates || undefined,
-        tierMultipliers: tiers || undefined,
-        units: activeUnits,
-        discount,
-        applyTax,
-        taxRate,
+      const res = await fetch("/api/estimate/calculate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          projectType: formData.projectType,
+          cabinetType: formData.cabinetType,
+          linearMeter: !activeUnits.length && !isNaN(legacyLm) && legacyLm > 0 ? legacyLm : undefined,
+          installation: formData.installation,
+          cabinetCategory,
+          tier,
+          units: activeUnits,
+          discount,
+          applyTax,
+          taxRate,
+        }),
       })
-      setEstimate(res.total)
-      setSubtotal(res.breakdown?.subtotal ?? null)
-      setTax(res.breakdown?.tax ?? null)
-    } catch (e) {
-      toast.error("Invalid inputs. Please check your configuration.")
+      if (!res.ok) {
+        const err = await res.json()
+        toast.error(err.error || "Calculation failed")
+        return
+      }
+      const data = await res.json()
+      setEstimate(data.total)
+      setSubtotal(data.breakdown?.subtotal ?? null)
+      setTax(data.breakdown?.tax ?? null)
+    } catch {
+      toast.error("Connection error. Please try again.")
     }
   }
 
