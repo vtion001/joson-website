@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test"
 
-const BASE = process.env.PLAYWRIGHT_BASE_URL || "http://localhost:3000"
+const BASE = process.env.E2E_BASE_URL || 'http://localhost:3001'
+
 
 test.describe("Admin Login", () => {
   test("login page loads with HTTP 200", async ({ page }) => {

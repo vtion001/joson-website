@@ -1,8 +1,23 @@
 import { NextRequest, NextResponse } from "next/server"
+import { cookies } from "next/headers"
+import { verifySession } from "@/lib/auth"
 import { estimateCabinetCost } from "@/lib/estimator"
 import { getCabinetPricingConfig } from "@/lib/services/pricing"
 
+async function authCheck() {
+  if (process.env.SKIP_AUTH === "1") return null
+  const cookieStore = cookies()
+  const token = cookieStore.get("admin_session")?.value
+  const session = token ? verifySession(token) : null
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
+  return null
+}
+
 export async function POST(req: NextRequest) {
+  const auth = await authCheck()
+  if (auth) return auth
   try {
     const body = await req.json()
 
@@ -38,9 +53,8 @@ export async function POST(req: NextRequest) {
     })
 
     return NextResponse.json(result)
-  } catch (err) {
-    console.error("[POST /api/estimate/calculate]", err)
-    const message = err instanceof Error ? err.message : "Calculation failed"
-    return NextResponse.json({ error: message }, { status: 400 })
+  } catch {
+    console.error("[POST /api/estimate/calculate]")
+    return NextResponse.json({ error: "Internal server error" }, { status: 400 })
   }
 }

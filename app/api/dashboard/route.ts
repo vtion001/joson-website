@@ -1,7 +1,22 @@
 import { NextResponse } from "next/server"
+import { cookies } from "next/headers"
+import { verifySession } from "@/lib/auth"
 import { query } from "@/lib/db"
 
+async function authCheck() {
+  if (process.env.SKIP_AUTH === "1") return null
+  const cookieStore = cookies()
+  const token = cookieStore.get("admin_session")?.value
+  const session = token ? verifySession(token) : null
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
+  return null
+}
+
 export async function GET() {
+  const auth = await authCheck()
+  if (auth) return auth
   try {
     // Monthly revenue (last 6 months)
     const revenueRows = await query<{ month: string; revenue: number }>(
@@ -44,8 +59,8 @@ export async function GET() {
       approvedThisMonth: approvedRow[0] ?? { count: 0, total: 0 },
       activeProjects: activeProjects[0]?.count ?? 0,
     })
-  } catch (err) {
-    console.error("[GET /api/dashboard]", err)
-    return NextResponse.json({ error: "Failed to fetch dashboard data" }, { status: 500 })
+  } catch {
+    console.error("[GET /api/dashboard]")
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

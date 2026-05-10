@@ -30,52 +30,58 @@ export interface CabinetPricingConfig {
 
 export async function getCabinetPricingConfig(): Promise<CabinetPricingConfig> {
   const now = Date.now()
+  let flat: Record<string, Record<string, number>> = {}
+
   if (_cache && now - _cacheTs < CACHE_TTL_MS) {
-    return {
-      baseRates:              _cache.get("base_rates")               || {},
-      feeInclusiveRates:      _cache.get("fee_inclusive_rates")     || {},
-      tierMultipliers:        _cache.get("tier_multipliers")         || {},
-      cabinetTypeMultipliers: _cache.get("cabinet_type_multipliers") || {},
-      materialMultipliers:    _cache.get("material_multipliers")     || {},
-      finishMultipliers:      _cache.get("finish_multipliers")       || {},
-      hardwareMultipliers:    _cache.get("hardware_multipliers")     || {},
-      installationRate:       (_cache.get("installation_rate")?.[0] as unknown as number) || 0.3,
-      taxRate:                (_cache.get("tax_rate")?.[0] as unknown as number) || 0.12,
-      projectTypeMultipliers: _cache.get("project_type_multipliers") || {},
+    flat = {
+      base_rates:               _cache.get("base_rates")               || {},
+      fee_inclusive_rates:      _cache.get("fee_inclusive_rates")       || {},
+      tier_multipliers:         _cache.get("tier_multipliers")          || {},
+      cabinet_type_multipliers: _cache.get("cabinet_type_multipliers")  || {},
+      material_multipliers:     _cache.get("material_multipliers")      || {},
+      finish_multipliers:       _cache.get("finish_multipliers")       || {},
+      hardware_multipliers:     _cache.get("hardware_multipliers")      || {},
+      installation_rate:        _cache.get("installation_rate")         || {},
+      tax_rate:                 _cache.get("tax_rate")                  || {},
+      project_type_multipliers: _cache.get("project_type_multipliers")  || {},
     }
+  } else {
+    const rows = await query<PricingConfig>(
+      "SELECT key_name, config_json, description FROM cabinet_pricing_config"
+    )
+    _cache = new Map()
+
+    for (const row of rows) {
+      const parsed = typeof row.config_json === "string"
+        ? JSON.parse(row.config_json) as Record<string, number | string>
+        : row.config_json as Record<string, number | string>
+      const numVal: Record<string, number> = {}
+      for (const [k, v] of Object.entries(parsed)) {
+        numVal[k] = typeof v === "string" ? parseFloat(v) : v
+      }
+      _cache.set(row.key_name, numVal as Record<string, number>)
+      flat[row.key_name] = numVal as Record<string, number>
+    }
+    _cacheTs = now
   }
 
-  const rows = await query<PricingConfig>(
-    "SELECT key_name, config_json, description FROM cabinet_pricing_config"
-  )
-
-  _cache = new Map()
-  const flat: Record<string, Record<string, number>> = {}
-
-  for (const row of rows) {
-    const parsed = typeof row.config_json === "string"
-      ? JSON.parse(row.config_json) as Record<string, number | string>
-      : row.config_json as Record<string, number | string>
-    const numVal: Record<string, number> = {}
-    for (const [k, v] of Object.entries(parsed)) {
-      numVal[k] = typeof v === "string" ? parseFloat(v) : v
-    }
-    _cache.set(row.key_name, numVal as Record<string, number>)
-    flat[row.key_name] = numVal as Record<string, number>
+  const getRate = (key: string, fallback: number): number => {
+    const record = flat[key]
+    const val = record?.[0]
+    return typeof val === "number" ? val : fallback
   }
-  _cacheTs = now
 
   return {
     baseRates:              flat["base_rates"]               || {},
-    feeInclusiveRates:      flat["fee_inclusive_rates"]       || {},
-    tierMultipliers:        flat["tier_multipliers"]          || {},
-    cabinetTypeMultipliers: flat["cabinet_type_multipliers"]  || {},
-    materialMultipliers:    flat["material_multipliers"]      || {},
-    finishMultipliers:      flat["finish_multipliers"]        || {},
-    hardwareMultipliers:    flat["hardware_multipliers"]      || {},
-    installationRate:       flat["installation_rate"]?.[0] as unknown as number  || 0.3,
-    taxRate:                flat["tax_rate"]?.[0] as unknown as number          || 0.12,
-    projectTypeMultipliers: flat["project_type_multipliers"] || {},
+    feeInclusiveRates:      flat["fee_inclusive_rates"]     || {},
+    tierMultipliers:        flat["tier_multipliers"]         || {},
+    cabinetTypeMultipliers: flat["cabinet_type_multipliers"]|| {},
+    materialMultipliers:    flat["material_multipliers"]     || {},
+    finishMultipliers:      flat["finish_multipliers"]       || {},
+    hardwareMultipliers:    flat["hardware_multipliers"]     || {},
+    installationRate:      getRate("installation_rate", 0.3),
+    taxRate:               getRate("tax_rate", 0.12),
+    projectTypeMultipliers: flat["project_type_multipliers"]|| {},
   }
 }
 
@@ -103,7 +109,7 @@ export async function updatePricingConfig(
 
 export interface Estimate {
   id:            string
-  reference_no: string
+  reference_no:  string
   client_name:   string | null
   client_email:  string | null
   client_phone:  string | null
@@ -173,12 +179,16 @@ export async function getEstimates(opts?: { status?: string; limit?: number }): 
   }))
 }
 
+const ESTIMATE_UPDATE_ALLOWLIST = [
+  "client_name", "client_email", "client_phone", "status", "notes", "valid_until",
+] as const
+
 export async function updateEstimate(id: string, data: Partial<Estimate>): Promise<Estimate> {
   const fields: string[] = []
   const vals: QueryParam[]  = []
   for (const [k, v] of Object.entries(data)) {
     if (k === "id" || k === "reference_no" || k === "created_at" || k === "updated_at") continue
-    if (k === "estimate_data") { fields.push("estimate_data = ?"); vals.push(v ? JSON.stringify(v) : null); continue }
+    if (!ESTIMATE_UPDATE_ALLOWLIST.includes(k as typeof ESTIMATE_UPDATE_ALLOWLIST[number])) continue
     if (v !== undefined) { fields.push(`${k} = ?`); vals.push(v as QueryParam) }
   }
   if (!fields.length) return getEstimateById(id) as Promise<Estimate>
@@ -190,16 +200,16 @@ export async function updateEstimate(id: string, data: Partial<Estimate>): Promi
 // ─── Floor Plan Analysis ─────────────────────────────────────────────────────
 
 export interface FloorPlanAnalysis {
-  id:             string
-  estimate_id:    string | null
-  file_name:      string | null
-  file_path:      string | null
+  id:              string
+  estimate_id:     string | null
+  file_name:       string | null
+  file_path:       string | null
   ai_raw_response: Record<string, unknown> | null
-  parsed_rooms:   Record<string, unknown>[] | null
-  confidence:     number | null
-  status:         string
-  error_message:  string | null
-  created_at:     string
+  parsed_rooms:    Record<string, unknown>[] | null
+  confidence:      number | null
+  status:          string
+  error_message:   string | null
+  created_at:      string
 }
 
 export async function createFloorPlanAnalysis(

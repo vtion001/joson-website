@@ -1,4 +1,17 @@
 import { NextRequest, NextResponse } from "next/server"
+import { cookies } from "next/headers"
+import { verifySession } from "@/lib/auth"
+
+async function authCheck() {
+  if (process.env.SKIP_AUTH === "1") return null
+  const cookieStore = cookies()
+  const token = cookieStore.get("admin_session")?.value
+  const session = token ? verifySession(token) : null
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
+  return null
+}
 
 export const runtime = "nodejs"
 export const maxDuration = 60
@@ -110,6 +123,8 @@ async function extractWithClaude(base64Data: string, mimeType: string): Promise<
 
 // ── Route Handler ─────────────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
+  const auth = await authCheck()
+  if (auth) return auth
   try {
     const formData = await req.formData()
     const imageData = formData.get("image") as string | null
@@ -149,9 +164,8 @@ export async function POST(req: NextRequest) {
       summary:    parsed.summary || "",
       confidence: parsed.confidence || 0,
     })
-  } catch (err) {
-    console.error("[POST /api/pdf-extract]", err)
-    const message = err instanceof Error ? err.message : "Extraction failed"
-    return NextResponse.json({ error: message }, { status: 500 })
+  } catch {
+    console.error("[POST /api/pdf-extract]")
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

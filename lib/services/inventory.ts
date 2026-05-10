@@ -76,14 +76,16 @@ export async function createSupplier(data: Omit<Supplier, "id" | "created_at" | 
   return getSupplierById(id) as Promise<Supplier>
 }
 
+const SUPPLIER_UPDATE_ALLOWLIST = [
+  "name", "contact_person", "email", "phone", "address", "notes",
+] as const
+
 export async function updateSupplier(id: string, data: Partial<Supplier>): Promise<Supplier> {
   const fields: string[] = []
   const vals: QueryParam[]  = []
-
-  const boolFields = ["contact_person","phone","email","address","notes"]
   for (const [k, v] of Object.entries(data)) {
     if (k === "id" || k === "created_at" || k === "updated_at") continue
-    if (k === "is_active") { fields.push("is_active = ?"); vals.push(v ? 1 : 0); continue }
+    if (!SUPPLIER_UPDATE_ALLOWLIST.includes(k as typeof SUPPLIER_UPDATE_ALLOWLIST[number])) continue
     if (v !== undefined) { fields.push(`${k} = ?`); vals.push(v) }
   }
   if (!fields.length) return getSupplierById(id) as Promise<Supplier>
@@ -172,15 +174,20 @@ export async function createMaterial(
   return getMaterialById(id) as Promise<Material>
 }
 
+const MATERIAL_UPDATE_ALLOWLIST = [
+  "name", "category", "unit", "sell_price", "cost_price", "supplier_id",
+  "stock_qty", "min_stock_level", "in_stock", "is_active",
+] as const
+
 export async function updateMaterial(id: string, data: Partial<Material>): Promise<Material> {
   const current = await getMaterialById(id)
   if (!current) throw new Error(`Material ${id} not found`)
 
   const fields: string[] = []
   const vals: QueryParam[]  = []
-
   for (const [k, v] of Object.entries(data)) {
     if (k === "id" || k === "created_at" || k === "updated_at" || k === "supplier_name") continue
+    if (!MATERIAL_UPDATE_ALLOWLIST.includes(k as typeof MATERIAL_UPDATE_ALLOWLIST[number])) continue
     if (k === "in_stock" || k === "is_active") { fields.push(`${k} = ?`); vals.push(v ? 1 : 0); continue }
     if (v !== undefined) { fields.push(`${k} = ?`); vals.push(v) }
   }

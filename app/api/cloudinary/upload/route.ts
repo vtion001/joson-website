@@ -1,7 +1,22 @@
 import { NextResponse } from "next/server"
+import { cookies } from "next/headers"
+import { verifySession } from "@/lib/auth"
 import { uploadImage } from "@/lib/cloudinary"
 
+async function authCheck() {
+  if (process.env.SKIP_AUTH === "1") return null
+  const cookieStore = cookies()
+  const token = cookieStore.get("admin_session")?.value
+  const session = token ? verifySession(token) : null
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+  }
+  return null
+}
+
 export async function POST(req: Request) {
+  const auth = await authCheck()
+  if (auth) return auth
   try {
     const { image, folder } = await req.json()
 
@@ -18,7 +33,8 @@ export async function POST(req: Request) {
 
     const url = await uploadImage(image, folder || "joson-furniture/products")
     return NextResponse.json({ url })
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message || "Upload failed" }, { status: 500 })
+  } catch {
+    console.error("[POST /api/cloudinary/upload]")
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
