@@ -165,11 +165,11 @@ export async function getEstimates(opts?: { status?: string; limit?: number }): 
   const conditions = ["1=1"]
   const params: QueryParam[] = []
   if (opts?.status) { conditions.push("status = ?"); params.push(opts.status) }
-  const limit = opts?.limit ?? 100
+  const limit = Math.min(Math.max(Number(opts?.limit) || 100, 1), 1000)
   const rows = await query<Estimate & { estimate_data: string | null }>(
     `SELECT * FROM estimates WHERE ${conditions.join(" AND ")}
-     ORDER BY created_at DESC LIMIT ${Number(limit)}`,
-    params
+     ORDER BY created_at DESC LIMIT ${limit}`,
+     params
   )
   return rows.map((r) => ({
     ...r,
@@ -270,13 +270,14 @@ export interface MonthlyRevenue {
 }
 
 export async function getRevenueByMonth(limit = 6): Promise<MonthlyRevenue[]> {
+  const safeLimit = Math.min(Math.max(Number(limit) || 6, 1), 24)
   const rows = await query<{ month: string; revenue: number }>(
     `SELECT DATE_FORMAT(created_at, '%Y-%m') as month, SUM(total_amount) as revenue
      FROM estimates
      WHERE status IN ('approved', 'project') AND total_amount IS NOT NULL
      GROUP BY month
      ORDER BY month DESC
-     LIMIT ${Number(limit)}`
+     LIMIT ${safeLimit}`
   )
   // Reverse so oldest month comes first for chart display
   return rows.reverse()

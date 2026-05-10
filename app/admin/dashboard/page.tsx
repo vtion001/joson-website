@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react"
 import { RefreshCw, Loader2, AlertTriangle, CheckCircle2, TrendingUp, FileText, Users, BarChart2 } from "lucide-react"
+import { toast } from "sonner"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -395,6 +396,7 @@ export default function BuilderDashboardPage() {
       setSuppliers(supplierData)
     } catch (err) {
       console.error("Dashboard fetch error:", err)
+      toast.error("Failed to load dashboard data. Please refresh.")
     } finally {
       setLoading(false)
     }

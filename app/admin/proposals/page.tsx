@@ -296,8 +296,8 @@ function SaveEstimateDialog({
           <Button
             onClick={async () => {
               setSaving(true)
-              await onSave()
-              setSaving(false)
+              try { await onSave() }
+              finally { setSaving(false) }
             }}
             disabled={saving}
           >
@@ -325,6 +325,7 @@ export default function ProposalsPage() {
     try {
       const res = await fetch("/api/estimates?limit=100")
       if (res.ok) setEstimates(await res.json())
+      else toast.error("Failed to load estimates. Please refresh.")
     } finally {
       setLoading(false)
     }
@@ -352,7 +353,11 @@ export default function ProposalsPage() {
       }),
     })
 
-    if (!res.ok) throw new Error(await res.text())
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}))
+      toast.error(err.error || "Failed to save estimate.")
+      return
+    }
     const estimate = await res.json()
     toast.success(`Estimate ${estimate.reference_no} saved!`)
     setSaveOpen(false)
@@ -362,13 +367,17 @@ export default function ProposalsPage() {
   }
 
   const handleStatusChange = async (id: string, status: string) => {
-    await fetch(`/api/estimates/${id}`, {
+    const res = await fetch(`/api/estimates/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
     })
-    toast.success(`Status updated to ${STATUS_LABELS[status] || status}`)
-    await fetchEstimates()
+    if (res.ok) {
+      toast.success(`Status updated to ${STATUS_LABELS[status] || status}`)
+      await fetchEstimates()
+    } else {
+      toast.error("Failed to update status. Please try again.")
+    }
   }
 
   return (
