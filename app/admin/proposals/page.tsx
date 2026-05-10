@@ -347,7 +347,7 @@ export default function ProposalsPage() {
         subtotal:    calcData?.breakdown?.subtotal || null,
         tax_amount:  calcData?.breakdown?.tax || null,
         discount_amount: calcData?.breakdown?.discount || 0,
-        valid_until: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+        valid_until: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 19).replace("T", " "),
         estimate_data: calcData || null,
       }),
     })

@@ -241,7 +241,6 @@ export async function getPriceHistory(limit = 100): Promise<PriceHistoryEntry[]>
      FROM material_price_history ph
      JOIN materials m ON ph.material_id = m.id
      ORDER BY ph.changed_at DESC
-     LIMIT ?`,
-    [limit]
+     LIMIT ${Number(limit)}`
   )
 }

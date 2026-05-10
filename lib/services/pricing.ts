@@ -149,7 +149,9 @@ export async function getEstimateById(id: string): Promise<Estimate | null> {
   if (!row) return null
   return {
     ...row,
-    estimate_data: row.estimate_data ? JSON.parse(row.estimate_data as unknown as string) : null,
+    estimate_data: row.estimate_data
+      ? (typeof row.estimate_data === "string" ? JSON.parse(row.estimate_data) : row.estimate_data)
+      : null,
   }
 }
 
@@ -165,7 +167,9 @@ export async function getEstimates(opts?: { status?: string; limit?: number }): 
   )
   return rows.map((r) => ({
     ...r,
-    estimate_data: r.estimate_data ? JSON.parse(r.estimate_data as unknown as string) : null,
+    estimate_data: r.estimate_data
+      ? (typeof r.estimate_data === "string" ? JSON.parse(r.estimate_data) : r.estimate_data)
+      : null,
   }))
 }
 
