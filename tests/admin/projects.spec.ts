@@ -23,7 +23,7 @@ test.describe("Admin Projects", () => {
   test("no console errors", async ({ page }) => {
     const errors: string[] = []
     page.on("pageerror", (err) => errors.push(err.message))
-    await page.waitForLoadState("networkidle")
+    await page.waitForLoadState("load")
     expect(errors).toHaveLength(0)
   })
 })

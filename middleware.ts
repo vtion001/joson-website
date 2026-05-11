@@ -38,7 +38,7 @@ export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname
   if (!pathname.startsWith("/admin")) return NextResponse.next()
   if (process.env.SKIP_AUTH === "1") return NextResponse.next()
-  if (pathname.startsWith("/admin/login")) return NextResponse.next()
+  if (pathname.startsWith("/admin/login") || pathname.startsWith("/admin/logout")) return NextResponse.next()
   const cookie = req.cookies.get("admin_session")?.value
   const verified = cookie ? await verifySessionEdge(cookie) : null
   if (!verified) {

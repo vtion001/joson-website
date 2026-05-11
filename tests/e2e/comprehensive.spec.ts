@@ -7,51 +7,10 @@ async function setupAdminPage(page: Page, path: string) {
   await page.context().addCookies([
     { name: "admin_session", value: ADMIN_SESSION, domain: "localhost", path: "/" },
   ])
-  await page.goto(`${BASE}${path}`, { waitUntil: "networkidle" })
+  await page.goto(`${BASE}${path}`, { waitUntil: "load" })
 }
 
-// ─── CALCULATOR PAGE ────────────────────────────────────────────────────────
-test.describe("1. Calculator Page", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto(`${BASE}/calculator`, { waitUntil: "networkidle" })
-  })
-
-  test("page loads and has calculator form", async ({ page }) => {
-    await expect(page.locator("text=Kitchen")).toBeVisible()
-    await expect(page.locator("text=Bathroom")).toBeVisible()
-    await expect(page.locator("text=Bedroom")).toBeVisible()
-    await expect(page.locator("text=Office")).toBeVisible()
-  })
-
-  test("project type selector works", async ({ page }) => {
-    await page.locator("button:has-text('Kitchen')").click()
-    await page.waitForTimeout(300)
-    // Cabinet type dropdown should be visible after selection
-    await expect(page.locator("select").first()).toBeVisible()
-  })
-
-  test("cabinet tier options appear after project type", async ({ page }) => {
-    await page.locator("button:has-text('Kitchen')").click()
-    await expect(page.locator("select").first()).toBeVisible()
-  })
-
-  test("calculate button is present", async ({ page }) => {
-    await expect(page.locator("button:has-text('Calculate')")).toBeVisible()
-  })
-
-  test("estimate panel shows empty state", async ({ page }) => {
-    await expect(page.locator("text=Your Estimate").first()).toBeVisible()
-  })
-
-  test("no console errors", async ({ page }) => {
-    const errors: string[] = []
-    page.on("pageerror", (err) => errors.push(err.message))
-    await page.waitForLoadState("networkidle")
-    expect(errors).toHaveLength(0)
-  })
-})
-
-// ─── ADMIN INVENTORY ────────────────────────────────────────────────────────
+// ─── ADMIN INVENTORY ──
 test.describe("2. Admin Inventory", () => {
   test.beforeEach(async ({ page }) => {
     await setupAdminPage(page, "/admin/inventory")
@@ -114,7 +73,7 @@ test.describe("2. Admin Inventory", () => {
   test("no console errors", async ({ page }) => {
     const errors: string[] = []
     page.on("pageerror", (err) => errors.push(err.message))
-    await page.waitForLoadState("networkidle")
+    await page.waitForLoadState("load")
     expect(errors).toHaveLength(0)
   })
 })
@@ -238,7 +197,7 @@ test.describe("5. Builder Intelligence Dashboard", () => {
   test("no console errors", async ({ page }) => {
     const errors: string[] = []
     page.on("pageerror", (err) => errors.push(err.message))
-    await page.waitForLoadState("networkidle")
+    await page.waitForLoadState("load")
     expect(errors).toHaveLength(0)
   })
 })

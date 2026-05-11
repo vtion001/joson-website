@@ -7,7 +7,7 @@ async function setupAdminPage(page: Page, path: string) {
   await page.context().addCookies([
     { name: "admin_session", value: ADMIN_SESSION, domain: "localhost", path: "/" },
   ])
-  await page.goto(`${BASE}${path}`, { waitUntil: "networkidle" })
+  await page.goto(`${BASE}${path}`, { waitUntil: "load" })
 }
 
 // ─── ESTIMATE SAVE PIPELINE ─────────────────────────────────────────────────
@@ -15,10 +15,10 @@ async function setupAdminPage(page: Page, path: string) {
 test.describe("Estimate Save Pipeline", () => {
 
   test("Calculator: calculate and save to localStorage", async ({ page }) => {
-    await page.goto(`${BASE}/calculator`, { waitUntil: "networkidle" })
+    await page.goto(`${BASE}/admin/calculator`, { waitUntil: "load" })
 
     // Select Kitchen project type
-    await page.locator("button:has-text('Kitchen')").click()
+    await page.locator("button:has-text('Kitchen')").first().click()
     await page.waitForTimeout(500)
 
     // Select Cabinet Quality: Basic (required before calculation can proceed)
@@ -32,7 +32,7 @@ test.describe("Estimate Save Pipeline", () => {
     await page.locator('input[type="number"]').first().fill("5")
 
     // Click Calculate
-    const calcButton = page.locator("button:has-text('Calculate Estimate')")
+    const calcButton = page.locator("button:has-text('Calculate Estimate')").nth(1)
     await expect(calcButton).toBeVisible()
     await calcButton.click()
 

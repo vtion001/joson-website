@@ -1,0 +1,416 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - navigation "Main navigation" [ref=e3]:
+      - link "A Joson Furniture Admin" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: A
+        - generic [ref=e8]: Joson Furniture Admin
+      - generic [ref=e10]:
+        - img [ref=e11]
+        - textbox "Search" [ref=e14]:
+          - /placeholder: Search...
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - heading "OVERVIEW" [level=3] [ref=e20]
+          - generic [ref=e21]:
+            - link "Dashboard" [ref=e23] [cursor=pointer]:
+              - /url: /admin
+              - generic [ref=e24]:
+                - img [ref=e25]
+                - generic [ref=e30]: Dashboard
+            - link "Builder Dashboard" [ref=e32] [cursor=pointer]:
+              - /url: /admin/dashboard
+              - generic [ref=e33]:
+                - img [ref=e34]
+                - generic [ref=e36]: Builder Dashboard
+        - generic [ref=e37]:
+          - heading "CONTENT" [level=3] [ref=e38]
+          - link "Projects" [ref=e41] [cursor=pointer]:
+            - /url: /admin/projects
+            - generic [ref=e42]:
+              - img [ref=e43]
+              - generic [ref=e45]: Projects
+        - generic [ref=e46]:
+          - heading "COMMUNICATION" [level=3] [ref=e47]
+          - link "Email" [ref=e50] [cursor=pointer]:
+            - /url: /admin/email
+            - generic [ref=e51]:
+              - img [ref=e52]
+              - generic [ref=e55]: Email
+        - generic [ref=e56]:
+          - heading "OPERATIONS" [level=3] [ref=e57]
+          - generic [ref=e58]:
+            - link "CRM" [ref=e60] [cursor=pointer]:
+              - /url: /admin/crm
+              - generic [ref=e61]:
+                - img [ref=e62]
+                - generic [ref=e67]: CRM
+            - link "Project Management" [ref=e69] [cursor=pointer]:
+              - /url: /admin/project-management
+              - generic [ref=e70]:
+                - img [ref=e71]
+                - generic [ref=e73]: Project Management
+        - generic [ref=e74]:
+          - heading "BUILDER SYSTEM" [level=3] [ref=e75]
+          - generic [ref=e76]:
+            - link "Inventory" [ref=e78] [cursor=pointer]:
+              - /url: /admin/inventory
+              - generic [ref=e79]:
+                - img [ref=e80]
+                - generic [ref=e84]: Inventory
+            - link "Calculator Pricing" [ref=e86] [cursor=pointer]:
+              - /url: /admin/calculator-pricing
+              - generic [ref=e87]:
+                - img [ref=e88]
+                - generic [ref=e90]: Calculator Pricing
+            - link "PDF Extractor" [ref=e92] [cursor=pointer]:
+              - /url: /admin/pdf-extractor
+              - generic [ref=e93]:
+                - img [ref=e94]
+                - generic [ref=e97]: PDF Extractor
+            - link "Proposals" [ref=e99] [cursor=pointer]:
+              - /url: /admin/proposals
+              - generic [ref=e100]:
+                - img [ref=e101]
+                - generic [ref=e104]: Proposals
+            - link "Fabricators" [ref=e106] [cursor=pointer]:
+              - /url: /admin/fabricators
+              - generic [ref=e107]:
+                - img [ref=e108]
+                - generic [ref=e110]: Fabricators
+        - separator [ref=e111]
+        - generic [ref=e112]:
+          - link "Settings" [ref=e114] [cursor=pointer]:
+            - /url: /admin/settings
+            - generic [ref=e115]:
+              - img [ref=e116]
+              - generic [ref=e119]: Settings
+          - link "Help" [ref=e121] [cursor=pointer]:
+            - /url: /admin/help
+            - generic [ref=e122]:
+              - img [ref=e123]
+              - generic [ref=e126]: Help
+      - generic [ref=e128]:
+        - generic [ref=e130]: JD
+        - generic [ref=e131]:
+          - paragraph [ref=e132]: John Doe
+          - paragraph [ref=e133]: Administrator
+        - button [ref=e134]:
+          - img [ref=e135]
+    - banner [ref=e137]:
+      - generic [ref=e138]:
+        - generic [ref=e139]:
+          - generic [ref=e140]: Dashboard
+          - generic [ref=e141]: /
+          - generic [ref=e142]: Admin
+        - generic [ref=e143]:
+          - button "Toggle theme" [ref=e144] [cursor=pointer]:
+            - img [ref=e145]
+          - button "View notifications" [ref=e151] [cursor=pointer]:
+            - img [ref=e152]
+            - generic [ref=e155]: "3"
+          - button "Open settings" [ref=e156] [cursor=pointer]:
+            - img [ref=e157]
+    - main [ref=e160]:
+      - generic [ref=e161]:
+        - generic [ref=e162]:
+          - generic [ref=e163]:
+            - img [ref=e164]
+            - text: Cost Estimator
+          - button "Collapse calculator" [ref=e166]:
+            - img [ref=e167]
+            - text: Hide
+        - generic [ref=e169]:
+          - generic [ref=e170]:
+            - img [ref=e172]
+            - generic [ref=e174]:
+              - heading "Cost Estimator" [level=2] [ref=e175]
+              - paragraph [ref=e176]: Get an instant quote for your project
+          - generic [ref=e177]:
+            - generic [ref=e178]:
+              - generic [ref=e179]:
+                - text: Project Type
+                - generic [ref=e180]:
+                  - button "Kitchen Base, hanging & tall cabinets" [ref=e181] [cursor=pointer]:
+                    - generic [ref=e183]:
+                      - img [ref=e185]
+                      - generic [ref=e187]:
+                        - generic [ref=e189]: Kitchen
+                        - paragraph [ref=e190]: Base, hanging & tall cabinets
+                  - button "Bathroom Vanity & storage cabinets" [ref=e193] [cursor=pointer]:
+                    - generic [ref=e195]:
+                      - img [ref=e197]
+                      - generic [ref=e200]:
+                        - generic [ref=e202]: Bathroom
+                        - paragraph [ref=e203]: Vanity & storage cabinets
+                  - button "Bedroom Closet & wardrobe systems" [ref=e205] [cursor=pointer]:
+                    - generic [ref=e207]:
+                      - img [ref=e209]
+                      - generic [ref=e212]:
+                        - generic [ref=e214]: Bedroom
+                        - paragraph [ref=e215]: Closet & wardrobe systems
+                  - button "Office Built-in desks & storage" [ref=e217] [cursor=pointer]:
+                    - generic [ref=e219]:
+                      - img [ref=e221]
+                      - generic [ref=e224]:
+                        - generic [ref=e226]: Office
+                        - paragraph [ref=e227]: Built-in desks & storage
+                  - button "Bunk Bed Custom bunk beds & lofts" [ref=e229] [cursor=pointer]:
+                    - generic [ref=e231]:
+                      - img [ref=e233]
+                      - generic [ref=e235]:
+                        - generic [ref=e237]: Bunk Bed
+                        - paragraph [ref=e238]: Custom bunk beds & lofts
+              - generic [ref=e240]:
+                - generic [ref=e241]: Kitchen Cabinet Scope
+                - generic [ref=e242]:
+                  - combobox [ref=e243] [cursor=pointer]:
+                    - option "Full Kitchen (base + hanging)" [selected]
+                    - option "Full Kitchen (Base + Hanging)"
+                    - option "Base Cabinets Only"
+                    - option "Hanging Cabinets Only"
+                  - img
+              - generic [ref=e244]:
+                - generic [ref=e245]:
+                  - img [ref=e246]
+                  - text: Linear Meters
+                - generic [ref=e252]:
+                  - spinbutton "Linear Meters" [ref=e253]: "5"
+                  - generic [ref=e254]: m
+                - paragraph [ref=e255]: Total length of all cabinets combined in meters
+              - generic [ref=e256]:
+                - text: Cabinet Quality
+                - generic [ref=e257]:
+                  - button "Standard Value-driven, reliable quality" [ref=e258] [cursor=pointer]:
+                    - generic [ref=e260]:
+                      - img [ref=e262]
+                      - generic [ref=e265]:
+                        - generic [ref=e267]: Standard
+                        - paragraph [ref=e268]: Value-driven, reliable quality
+                  - button "Premium Enhanced features & materials" [ref=e270] [cursor=pointer]:
+                    - generic [ref=e272]:
+                      - img [ref=e274]
+                      - generic [ref=e276]:
+                        - generic [ref=e278]: Premium
+                        - paragraph [ref=e279]: Enhanced features & materials
+                  - button "Luxury Top-tier quality and finishes" [ref=e281] [cursor=pointer]:
+                    - generic [ref=e283]:
+                      - img [ref=e285]
+                      - generic [ref=e288]:
+                        - generic [ref=e290]: Luxury
+                        - paragraph [ref=e291]: Top-tier quality and finishes
+              - generic [ref=e293]:
+                - generic [ref=e294]:
+                  - img [ref=e295]
+                  - text: Cabinet Material
+                - generic [ref=e299]:
+                  - combobox [ref=e300] [cursor=pointer]:
+                    - option "Select material…" [selected]
+                    - option "Melamine"
+                    - option "Laminate"
+                    - option "Plywood"
+                    - option "Solid Wood"
+                  - img
+              - generic [ref=e301]:
+                - generic [ref=e302]:
+                  - img [ref=e303]
+                  - text: Surface Finish
+                - generic [ref=e309]:
+                  - combobox [ref=e310] [cursor=pointer]:
+                    - option "Select finish…" [selected]
+                    - option "Standard Finish"
+                    - option "Painted"
+                    - option "Stained"
+                    - option "Lacquer"
+                  - img
+              - generic [ref=e311]:
+                - generic [ref=e312]:
+                  - img [ref=e313]
+                  - text: Door & Hardware
+                - generic [ref=e324]:
+                  - combobox [ref=e325] [cursor=pointer]:
+                    - option "Select hardware level…" [selected]
+                    - option "Basic Hinges"
+                    - option "Soft-Close"
+                    - option "Premium Hardware"
+                  - img
+              - generic [ref=e326]:
+                - checkbox "Professional Installation Includes assembly, leveling & hardware setup Include Professional Installation" [checked] [ref=e327] [cursor=pointer]
+                - generic [ref=e328] [cursor=pointer]:
+                  - text: Professional Installation
+                  - generic [ref=e329]: Includes assembly, leveling & hardware setup
+                - img [ref=e331]
+              - button "Calculate Estimate" [disabled] [ref=e333]:
+                - img [ref=e334]
+                - text: Calculate Estimate
+            - generic [ref=e336]:
+              - heading "Your Estimate" [level=2] [ref=e337]
+              - generic [ref=e338]:
+                - generic [ref=e339]:
+                  - img [ref=e341]
+                  - img [ref=e344]
+                - generic [ref=e350]:
+                  - paragraph [ref=e351]: No estimate yet
+                  - paragraph [ref=e352]: Fill in your project details and hit Calculate to get a quote
+      - generic [ref=e354]:
+        - generic [ref=e355]:
+          - heading "Project Cost Calculator" [level=1] [ref=e356]
+          - paragraph [ref=e357]: Get an instant estimate for your modular cabinet project. This calculator provides approximate pricing based on your specifications.
+        - generic [ref=e358]:
+          - generic [ref=e359]:
+            - heading "Project Details" [level=2] [ref=e360]
+            - generic [ref=e361]:
+              - generic [ref=e362]:
+                - generic [ref=e363]: Project Type
+                - generic [ref=e364]:
+                  - button "Kitchen" [ref=e365]
+                  - button "Bathroom" [ref=e366]
+                  - button "Bedroom" [ref=e367]
+                  - button "Office" [ref=e368]
+                - generic [ref=e369]:
+                  - generic [ref=e370]:
+                    - generic [ref=e371]: Cabinet Type
+                    - combobox [ref=e372]:
+                      - option "Base Cabinet" [selected]
+                      - option "Hanging Cabinet"
+                      - option "Tall Units"
+                  - generic [ref=e373]:
+                    - generic [ref=e374]: Quality Tier
+                    - combobox [ref=e375]:
+                      - option "Luxury" [selected]
+                      - option "Premium"
+                      - option "Standard"
+              - generic [ref=e376]:
+                - generic [ref=e377]: Cabinet Units
+                - generic [ref=e378]:
+                  - generic [ref=e379]:
+                    - generic [ref=e380]:
+                      - generic [ref=e381]: base units
+                      - generic [ref=e382]:
+                        - checkbox "Enable" [checked] [ref=e383]
+                        - text: Enable
+                    - generic [ref=e384]:
+                      - spinbutton [ref=e385]: "0"
+                      - combobox [ref=e386]:
+                        - option "Material" [selected]
+                        - option "Melamine"
+                        - option "Laminate"
+                        - option "Solid Wood"
+                        - option "Premium Wood"
+                      - combobox [ref=e387]:
+                        - option "Finish" [selected]
+                        - option "Standard"
+                        - option "Painted"
+                        - option "Stained"
+                        - option "Lacquer"
+                      - combobox [ref=e388]:
+                        - option "Hardware" [selected]
+                        - option "Basic"
+                        - option "Soft-close"
+                        - option "Premium"
+                  - generic [ref=e389]:
+                    - generic [ref=e390]:
+                      - generic [ref=e391]: hanging units
+                      - generic [ref=e392]:
+                        - checkbox "Enable" [ref=e393]
+                        - text: Enable
+                    - generic [ref=e394]:
+                      - spinbutton [ref=e395]: "0"
+                      - combobox [ref=e396]:
+                        - option "Material" [selected]
+                        - option "Melamine"
+                        - option "Laminate"
+                        - option "Solid Wood"
+                        - option "Premium Wood"
+                      - combobox [ref=e397]:
+                        - option "Finish" [selected]
+                        - option "Standard"
+                        - option "Painted"
+                        - option "Stained"
+                        - option "Lacquer"
+                      - combobox [ref=e398]:
+                        - option "Hardware" [selected]
+                        - option "Basic"
+                        - option "Soft-close"
+                        - option "Premium"
+                  - generic [ref=e399]:
+                    - generic [ref=e400]:
+                      - generic [ref=e401]: tall units
+                      - generic [ref=e402]:
+                        - checkbox "Enable" [ref=e403]
+                        - text: Enable
+                    - generic [ref=e404]:
+                      - spinbutton [ref=e405]: "0"
+                      - combobox [ref=e406]:
+                        - option "Material" [selected]
+                        - option "Melamine"
+                        - option "Laminate"
+                        - option "Solid Wood"
+                        - option "Premium Wood"
+                      - combobox [ref=e407]:
+                        - option "Finish" [selected]
+                        - option "Standard"
+                        - option "Painted"
+                        - option "Stained"
+                        - option "Lacquer"
+                      - combobox [ref=e408]:
+                        - option "Hardware" [selected]
+                        - option "Basic"
+                        - option "Soft-close"
+                        - option "Premium"
+              - generic [ref=e409]:
+                - generic [ref=e410]: Cabinet Quality
+                - generic [ref=e411]:
+                  - button "Basic Standard quality cabinets" [ref=e412]:
+                    - generic [ref=e413]: Basic
+                    - generic [ref=e414]: Standard quality cabinets
+                  - button "Premium Enhanced features and materials" [ref=e415]:
+                    - generic [ref=e416]: Premium
+                    - generic [ref=e417]: Enhanced features and materials
+                  - button "Luxury Top-tier quality and finishes" [ref=e418]:
+                    - generic [ref=e419]: Luxury
+                    - generic [ref=e420]: Top-tier quality and finishes
+              - generic [ref=e421]:
+                - generic [ref=e422]: Material
+                - combobox [ref=e423]:
+                  - option "Select Material" [selected]
+                  - option "Melamine"
+                  - option "Laminate"
+                  - option "Solid Wood"
+                  - option "Premium Wood"
+              - generic [ref=e424]:
+                - checkbox [ref=e425]
+                - generic [ref=e426]: Include Professional Installation
+              - button "Calculate Estimate" [active] [ref=e427]
+              - generic [ref=e428]:
+                - generic [ref=e429]:
+                  - generic [ref=e430]: Discount (0–1)
+                  - spinbutton [ref=e431]: "0"
+                - generic [ref=e432]:
+                  - generic [ref=e433]: Tax Rate
+                  - spinbutton [ref=e434]: "0.12"
+                - generic [ref=e435]:
+                  - checkbox "Apply Tax" [checked] [ref=e436]
+                  - text: Apply Tax
+              - generic [ref=e437]:
+                - button "Save Config" [ref=e438]
+                - button "Load Config" [ref=e439]
+                - button "Print / PDF" [ref=e440]
+          - generic [ref=e441]:
+            - heading "Your Estimate" [level=2] [ref=e442]
+            - img "Cabinet preview" [ref=e445]
+            - generic [ref=e446]:
+              - img [ref=e447]
+              - paragraph [ref=e449]: Fill out the project details to get your estimate
+        - generic [ref=e450]:
+          - heading "Important Notes:" [level=3] [ref=e451]
+          - list [ref=e452]:
+            - listitem [ref=e453]: • Estimates are based on standard configurations and may vary
+            - listitem [ref=e454]: • Final pricing depends on specific measurements and requirements
+            - listitem [ref=e455]: • Additional costs may apply for custom designs or special materials
+            - listitem [ref=e456]: • Contact us for a detailed consultation and accurate quote
+  - alert [ref=e457]
+```
