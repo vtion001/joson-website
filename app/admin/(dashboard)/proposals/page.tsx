@@ -5,7 +5,7 @@ import { toast } from "sonner"
 import {
   FileText, Plus, Download, Loader2, RefreshCw,
   Search, Trash2, Copy, ChevronLeft, ChevronRight,
-  InboxIcon,
+  InboxIcon, Send, CheckCircle2,
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -454,24 +454,46 @@ function EstimateCard({
   onDelete,
   onDuplicate,
   onDownloadPdf,
+  onMarkSent,
 }: {
   estimate: Estimate
   onStatusChange: (id: string, status: string) => Promise<void>
   onDelete: (id: string) => Promise<void>
   onDuplicate: (estimate: Estimate) => Promise<void>
   onDownloadPdf: (estimate: Estimate) => Promise<void>
+  onMarkSent: (id: string) => Promise<void>
 }) {
-  const [statusOpen, setStatusOpen] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [markingSent, setMarkingSent] = useState(false)
+
+  const STATUS_STRIP_COLOR: Record<string, string> = {
+    draft:    "bg-gradient-to-r from-gray-600 to-gray-700",
+    sent:     "bg-gradient-to-r from-blue-500 to-blue-600",
+    approved: "bg-gradient-to-r from-emerald-500 to-emerald-600",
+    rejected: "bg-gradient-to-r from-red-500 to-red-600",
+    project:  "bg-gradient-to-r from-violet-500 to-violet-600",
+  }
+  const stripColor = STATUS_STRIP_COLOR[estimate.status] || STATUS_STRIP_COLOR.draft
+
+  // Days until valid_until / days since created
+  const daysUntilExpiry = estimate.valid_until
+    ? Math.ceil((new Date(estimate.valid_until).getTime() - Date.now()) / 86400000)
+    : null
+  const daysSinceCreated = Math.ceil((Date.now() - new Date(estimate.created_at).getTime()) / 86400000)
 
   return (
-    <Card className="hover:shadow-md transition-all duration-200 group">
+    <Card className="hover:shadow-md transition-all duration-200 group overflow-hidden p-0">
+      {/* Colored status strip at top */}
+      <div className={`h-1 ${stripColor}`} />
+
       <CardContent className="p-5">
         {/* Top row: ref + status + amount */}
         <div className="flex items-start justify-between gap-4 mb-4">
           <div className="flex items-center gap-2.5 flex-wrap">
-            <span className="font-mono font-semibold text-sm">{estimate.reference_no}</span>
-            <Badge className={`${STATUS_COLORS[estimate.status as EstimateStatus] || STATUS_COLORS.draft} text-xs`}>
+            <span className="font-mono font-bold text-sm tracking-wide text-primary">
+              {estimate.reference_no}
+            </span>
+            <Badge className={`${STATUS_COLORS[estimate.status as EstimateStatus] || STATUS_COLORS.draft} text-xs font-medium`}>
               {STATUS_LABELS[estimate.status as EstimateStatus] || estimate.status}
             </Badge>
             {estimate.project_type && (
@@ -479,7 +501,7 @@ function EstimateCard({
             )}
           </div>
           <div className="text-right shrink-0">
-            <p className="font-bold text-xl text-foreground">
+            <p className="font-bold text-2xl text-foreground">
               {formatCurrency(estimate.total_amount)}
             </p>
             {(estimate.tax_amount ?? 0) > 0 && (
@@ -490,10 +512,10 @@ function EstimateCard({
 
         {/* Client info */}
         <div className="mb-4">
-          <p className="font-medium text-sm truncate">
+          <p className="font-semibold text-base truncate text-foreground">
             {estimate.client_name || <span className="text-muted-foreground italic">No client name</span>}
           </p>
-          <p className="text-xs text-muted-foreground truncate">
+          <p className="text-sm text-muted-foreground truncate">
             {estimate.client_email && <span>{estimate.client_email}</span>}
             {estimate.client_email && estimate.client_phone && <span> · </span>}
             {estimate.client_phone && <span>{estimate.client_phone}</span>}
@@ -501,18 +523,59 @@ function EstimateCard({
           </p>
         </div>
 
-        {/* Footer: dates + actions */}
-        <div className="flex items-center justify-between gap-3">
+        {/* Meta row: dates + expiry warning */}
+        <div className="flex items-center justify-between gap-3 mb-4">
           <div className="text-xs text-muted-foreground">
             <span>Created {formatDate(estimate.created_at)}</span>
-            {estimate.valid_until && (
-              <span className="ml-2">· Valid until {formatDate(estimate.valid_until)}</span>
+            <span className="mx-1.5">·</span>
+            <span>{daysSinceCreated}d ago</span>
+          </div>
+          {daysUntilExpiry !== null && (
+            <div className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+              daysUntilExpiry < 0 ? "bg-red-500/15 text-red-400" :
+              daysUntilExpiry <= 7 ? "bg-amber-500/15 text-amber-400" :
+              "bg-emerald-500/15 text-emerald-400"
+            }`}>
+              {daysUntilExpiry < 0 ? `Expired ${Math.abs(daysUntilExpiry)}d ago` :
+               daysUntilExpiry === 0 ? "Expires today" :
+               `Valid ${daysUntilExpiry}d`}
+            </div>
+          )}
+        </div>
+
+        {/* Footer: actions */}
+        <div className="flex items-center justify-between gap-3 pt-3 border-t border-border/40">
+          <div className="flex items-center gap-1">
+            {/* Quick: Mark as Sent */}
+            {estimate.status === "draft" && (
+              <button
+                onClick={async () => {
+                  setMarkingSent(true)
+                  await onMarkSent(estimate.id)
+                  setMarkingSent(false)
+                }}
+                disabled={markingSent}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-lg hover:bg-blue-500/20 transition-colors disabled:opacity-50"
+                title="Mark as Sent"
+              >
+                {markingSent ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Send className="w-3.5 h-3.5" />}
+                Mark Sent
+              </button>
+            )}
+            {estimate.status === "sent" && (
+              <button
+                onClick={async () => { await onStatusChange(estimate.id, "approved") }}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-lg hover:bg-emerald-500/20 transition-colors"
+                title="Mark as Approved"
+              >
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                Approve
+              </button>
             )}
           </div>
 
-          {/* Actions */}
+          {/* Right actions */}
           <div className="flex items-center gap-1 opacity-60 group-hover:opacity-100 transition-opacity">
-            {/* Download PDF */}
             <button
               onClick={() => onDownloadPdf(estimate)}
               className="p-2 hover:bg-accent rounded-lg transition-colors"
@@ -520,17 +583,13 @@ function EstimateCard({
             >
               <Download className="w-4 h-4" />
             </button>
-
-            {/* Duplicate */}
             <button
               onClick={() => onDuplicate(estimate)}
               className="p-2 hover:bg-accent rounded-lg transition-colors"
-              title="Duplicate Estimate"
+              title="Duplicate"
             >
               <Copy className="w-4 h-4" />
             </button>
-
-            {/* Change Status */}
             <div className="relative">
               <select
                 className="appearance-none pl-2 pr-7 py-1.5 text-xs border rounded-lg bg-background hover:bg-accent cursor-pointer transition-colors"
@@ -551,8 +610,6 @@ function EstimateCard({
                 style={{ transform: "translateY(-50%) rotate(270deg)" }}
               />
             </div>
-
-            {/* Delete */}
             <button
               onClick={async () => {
                 setDeleting(true)
@@ -841,6 +898,10 @@ export default function ProposalsPage() {
     }
   }
 
+  const handleMarkSent = async (id: string) => {
+    await handleStatusChange(id, "sent")
+  }
+
   const handleDuplicate = async (original: Estimate) => {
     const res = await fetch("/api/estimates", {
       method: "POST",
@@ -928,6 +989,7 @@ export default function ProposalsPage() {
                 onDelete={handleDelete}
                 onDuplicate={handleDuplicate}
                 onDownloadPdf={generateProposalPDF}
+                onMarkSent={handleMarkSent}
               />
             ))}
           </div>

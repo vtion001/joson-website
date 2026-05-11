@@ -134,8 +134,37 @@ export default function CalculatorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background">
+      {/* ── Admin Calculator Header ── */}
+      <div className="border-b border-border/50 bg-gradient-to-r from-[#141414] to-[#0f0f0f]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-6 h-6 rounded bg-primary flex items-center justify-center">
+                  <span className="text-xs font-bold text-primary-foreground">J</span>
+                </div>
+                <span className="text-xs text-muted-foreground font-mono tracking-widest uppercase">Joson Admin</span>
+              </div>
+              <h1 className="text-2xl font-bold text-foreground">Project Cost Calculator</h1>
+              <p className="text-sm text-muted-foreground mt-0.5">
+                Cabinet pricing engine · calculations saved to proposals
+              </p>
+            </div>
+            <div className="hidden sm:flex flex-col items-end gap-1">
+              <span className="text-xs text-muted-foreground">Admin Panel</span>
+              <a
+                href="/admin"
+                className="text-xs text-primary hover:text-primary/80 font-medium transition-colors flex items-center gap-1"
+              >
+                ← Back to Dashboard
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Project Cost Calculator</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

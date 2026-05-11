@@ -1,6 +1,18 @@
 import { query, queryOne, execute } from "@/lib/db"
 import type { QueryParam } from "@/lib/db"
 
+// ─── Shared Helpers ─────────────────────────────────────────────────────────
+
+export function formatCurrency(v: number | null | undefined, currency = "PHP"): string {
+  if (v == null) return "—"
+  return new Intl.NumberFormat("en-PH", {
+    style: "currency",
+    currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(v)
+}
+
 // ─── Types ──────────────────────────────────────────────────────────────────
 
 export interface PricingConfig {

@@ -3,12 +3,13 @@ import { getEstimates, getRevenueByMonth } from "@/lib/services/pricing"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   DollarSign, TrendingUp, TrendingDown, FileText,
-  Send, BarChart3, PieChart as PieChartIcon, Plus,
-  Package, ArrowRight, Eye
+  Send, BarChart3, Plus,
+  Package, ArrowRight, Activity, TrendingUp as PipelineIcon, CheckCircle2, XCircle, Clock
 } from "lucide-react"
 import { RevenueChart } from "@/components/admin/revenue-chart"
 import { EstimatesPipeline } from "@/components/admin/estimates-pipeline"
 import { ProjectTypeChart } from "@/components/admin/project-type-chart"
+import { formatCurrency } from "@/lib/services/pricing"
 
 // ─── KPI Card ────────────────────────────────────────────────────────────────
 function KpiCard({
@@ -102,6 +103,35 @@ export default async function AdminDashboardPage() {
   }
   const projectTypeData = Object.entries(projectTypeCounts).map(([name, value]) => ({ name, value }))
 
+  // ─── Conversion Funnel ───────────────────────────────────────────────────────
+  const funnel = [
+    { label: "Draft",     key: "draft",    icon: <Clock className="w-3.5 h-3.5" />, color: "text-gray-400" },
+    { label: "Sent",      key: "sent",     icon: <Send className="w-3.5 h-3.5" />, color: "text-blue-400" },
+    { label: "Approved",  key: "approved", icon: <CheckCircle2 className="w-3.5 h-3.5" />, color: "text-emerald-400" },
+    { label: "Project",  key: "project",  icon: <PipelineIcon className="w-3.5 h-3.5" />, color: "text-violet-400" },
+    { label: "Rejected",  key: "rejected", icon: <XCircle className="w-3.5 h-3.5" />, color: "text-red-400" },
+  ]
+  const funnelMax = Math.max(...funnel.map(f => estimates.filter(e => e.status === f.key).length), 1)
+
+  // ─── Recent Activity ────────────────────────────────────────────────────────
+  const recentActivity = [...estimates]
+    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+    .slice(0, 5)
+
+  function timeAgo(dateStr: string) {
+    const diff = Date.now() - new Date(dateStr).getTime()
+    const mins = Math.floor(diff / 60000)
+    if (mins < 60) return `${mins}m ago`
+    const hrs = Math.floor(mins / 60)
+    if (hrs < 24) return `${hrs}h ago`
+    return `${Math.floor(hrs / 24)}d ago`
+  }
+
+  function statusLabel(s: string) {
+    const map: Record<string, string> = { draft: "Draft", sent: "Sent", approved: "Approved", rejected: "Rejected", project: "In Project" }
+    return map[s] || s
+  }
+
   return (
     <div className="space-y-8">
       {/* ── KPI Row ─────────────────────────────────────────────────────────── */}
@@ -151,7 +181,101 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* ── Estimates Pipeline ──────────────────────────────────────────────── */}
-      <EstimatesPipeline estimates={latestEstimates} />
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <div className="lg:col-span-3">
+          <EstimatesPipeline estimates={latestEstimates} />
+        </div>
+
+        {/* ── Conversion Funnel ─────────────────────────────────────────────── */}
+        <div className="lg:col-span-2">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base font-semibold flex items-center gap-2">
+                <PipelineIcon className="w-4 h-4 text-primary" />
+                Pipeline
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {funnel.map((f) => {
+                  const count = estimates.filter((e) => e.status === f.key).length
+                  const pct = (count / funnelMax) * 100
+                  return (
+                    <div key={f.key} className="flex items-center gap-3">
+                      <div className={`w-7 h-7 rounded-lg flex items-center justify-center bg-muted/50 shrink-0 ${f.color}`}>
+                        {f.icon}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-xs text-muted-foreground">{f.label}</span>
+                          <span className={`text-xs font-semibold ${f.color}`}>{count}</span>
+                        </div>
+                        <div className="h-1.5 bg-muted/30 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full transition-all duration-500 ${
+                              f.key === "draft" ? "bg-gray-500" :
+                              f.key === "sent" ? "bg-blue-500" :
+                              f.key === "approved" ? "bg-emerald-500" :
+                              f.key === "project" ? "bg-violet-500" : "bg-red-500"
+                            }`}
+                            style={{ width: `${Math.max(pct, count > 0 ? 8 : 0)}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      {/* ── Recent Activity ─────────────────────────────────────────────────── */}
+      <div className="bg-card rounded-xl border border-border/50 overflow-hidden">
+        <div className="px-5 py-4 border-b border-border/50 flex items-center gap-2">
+          <Activity className="w-4 h-4 text-primary" />
+          <span className="text-sm font-semibold">Recent Activity</span>
+        </div>
+        <div className="divide-y divide-border/30">
+          {recentActivity.length === 0 ? (
+            <div className="px-5 py-8 text-center text-muted-foreground text-sm">
+              No estimates yet — create one from the calculator.
+            </div>
+          ) : (
+            recentActivity.map((e) => {
+              const statusColor: Record<string, string> = {
+                draft:    "bg-gray-500",
+                sent:     "bg-blue-500",
+                approved: "bg-emerald-500",
+                rejected: "bg-red-500",
+                project:  "bg-violet-500",
+              }
+              return (
+                <div key={e.id} className="px-5 py-3.5 flex items-center gap-3 hover:bg-muted/20 transition-colors">
+                  <div className={`w-2 h-2 rounded-full mt-0.5 shrink-0 ${statusColor[e.status] || "bg-gray-500"}`} />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-mono text-muted-foreground">{e.reference_no}</span>
+                      <span className="text-xs text-muted-foreground">·</span>
+                      <span className="text-xs text-muted-foreground capitalize">{e.project_type || "General"}</span>
+                    </div>
+                    <p className="text-sm truncate">
+                      {e.client_name || <span className="italic text-muted-foreground">No client name</span>}
+                    </p>
+                  </div>
+                  <div className="text-right shrink-0">
+                    <p className="text-xs font-semibold text-foreground">
+                      {formatCurrency(e.total_amount)}
+                    </p>
+                    <p className="text-xs text-muted-foreground">{timeAgo(e.created_at)}</p>
+                  </div>
+                </div>
+              )
+            })
+          )}
+        </div>
+      </div>
 
       {/* ── Quick Actions ────────────────────────────────────────────────────── */}
       <div className="flex flex-wrap gap-3">
